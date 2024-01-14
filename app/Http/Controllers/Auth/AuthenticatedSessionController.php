@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,6 +29,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        $allowedRoles = ['admin', 'employee'];
+
+        if (in_array($request->user()->role, $allowedRoles)) {
+            return redirect()->intended('/staff/dashboard');
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

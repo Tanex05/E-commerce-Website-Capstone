@@ -17,7 +17,7 @@ Route::get('staff/dashboard', [StaffController::class, 'dashboard'])->middleware
 
 
 /** Profile Route */
-Route::get('profile', [ProfileController::class, 'index'])->middleware('staff')->name('staff.profile');
+Route::get('/profile/staff', [ProfileController::class, 'index'])->middleware('staff')->name('staff.profile');
 Route::post('profile/update', [ProfileController::class, 'updateProfile'])->middleware('staff')->name('staff.profile.update');
 Route::post('profile/update/password', [ProfileController::class, 'updatePassword'])->middleware('staff')->name('staff.password.update');
 

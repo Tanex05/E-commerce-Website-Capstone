@@ -11,4 +11,9 @@ class StaffController extends Controller
     {
         return view('Staff.dashboard');
     }
+
+    public function login()
+    {
+        return view('Staff.auth.login');
+    }
 }

@@ -35,7 +35,7 @@
                     <div class="wsus__forget_area">
                         <span class="qiestion_icon"><i class="fal fa-question-circle"></i></span>
                         <h4>forget password ?</h4>
-                        <p>enter the email address to register with <span>e-shop</span></p>
+                        <p>enter the email address to register with <span>TechnoBlast</span></p>
                         <div class="wsus__login">
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
@@ -46,7 +46,7 @@
                                 <button class="common_btn" type="submit">send</button>
                             </form>
                         </div>
-                        <a class="see_btn mt-4" href="login.html">go to login</a>
+                        <a class="see_btn mt-4" href="{{ route('login') }}">go to login</a>
                     </div>
                 </div>
             </div>

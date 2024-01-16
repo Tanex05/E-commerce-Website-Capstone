@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('staff/dashboard', [StaffController::class, 'dashboard'])->middleware('staff')->name('staff.dashboard');
 
 
-/** Profile Route */
-Route::get('/profile/staff', [ProfileController::class, 'index'])->middleware('staff')->name('staff.profile');
-Route::post('profile/update', [ProfileController::class, 'updateProfile'])->middleware('staff')->name('staff.profile.update');
-Route::post('profile/update/password', [ProfileController::class, 'updatePassword'])->middleware('staff')->name('staff.password.update');
-
-
+/**Staff Profile Route */
+Route::group(['middlware'=>'staff', 'as' => 'staff.'] , function(){
+    Route::get('/profile/staff', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('password.update');
+});

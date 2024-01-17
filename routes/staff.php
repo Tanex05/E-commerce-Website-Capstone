@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
@@ -24,5 +25,9 @@ Route::group(['middlware'=>'staff', 'as' => 'staff.'] , function(){
     Route::post('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('password.update');
 });
 
-/** Slider Route */
+/** Slider Resource */
 Route::resource('/staff/slider', SliderController::class)->middleware('staff');
+
+/** Category Resource */
+Route::put('change-status', [CategoryController::class, 'changeStatus'])->middleware('staff')->name('category.change-status');
+Route::resource('/staff/category', CategoryController::class)->middleware('staff');

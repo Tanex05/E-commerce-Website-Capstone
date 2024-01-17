@@ -11,16 +11,19 @@
         <li class="menu-header">Dashboard</li>
         <!-- Dashboard  -->
         <li class="dropdown active">
-          <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-          <!-- Dashboard Dropdown -->
-          <ul class="dropdown-menu">
-            <li class=active><a class="nav-link" href="index-0.html">General</a></li>
-            <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
-          </ul>
+          <a href="{{ route('staff.dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
         </li>
         <!-- Starter -->
         <li class="menu-header">Manage Website</li>
         <!-- Starter Dropdown -->
+        <li class="dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Category</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
+            <li><a class="nav-link" href="#">Sub-Category</a></li>
+            <li><a class="nav-link" href="#">Child-Category</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
           <ul class="dropdown-menu">

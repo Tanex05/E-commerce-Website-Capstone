@@ -5,7 +5,7 @@
 
 <section class="section">
     <div class="section-header">
-      <h1>Table</h1>
+      <h1>Slider</h1>
     </div>
 
     <div class="section-body">

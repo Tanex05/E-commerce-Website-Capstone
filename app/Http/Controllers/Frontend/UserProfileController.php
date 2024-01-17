@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ImageUploadTrait;
 use File;
 
 class UserProfileController extends Controller
 {
+    use ImageUploadTrait;
+
     public function index()
     {
         return view('frontend.dashboard.profile');
@@ -24,17 +27,8 @@ class UserProfileController extends Controller
 
         $user = Auth::user();
 
-        if($request->hasFile('image')){
-            if(File::exists(public_path($user->image))){
-                File::delete(public_path($user->image));
-            }
-            $image = $request->image;
-            $imageName = rand().'_'.$image->getClientOriginalName();
-            $image->move(public_path('uploads'), $imageName);
-
-            $path = "/uploads/".$imageName;
-            $user->image = $path;
-        }
+        $imagePath = $this->updateImage($request, 'image', 'uploads', $user->image);
+        $user->image = empty(!$imagePath) ? $imagePath : $user->image;
 
         $user->name = $request->name;
         $user->email = $request->email;

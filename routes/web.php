@@ -41,3 +41,4 @@ Route::group(['middlware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => '
     Route::put('/profile', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/profile', [UserProfileController::class, 'updatePassword'])->name('profile.password');
 });
+

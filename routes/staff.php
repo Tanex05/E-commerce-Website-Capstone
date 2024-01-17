@@ -26,8 +26,9 @@ Route::group(['middlware'=>'staff', 'as' => 'staff.'] , function(){
 });
 
 /** Slider Resource */
+Route::put('slider/change-status', [SliderController::class, 'changeStatus'])->middleware('staff')->name('slider.change-status');
 Route::resource('/staff/slider', SliderController::class)->middleware('staff');
 
 /** Category Resource */
-Route::put('change-status', [CategoryController::class, 'changeStatus'])->middleware('staff')->name('category.change-status');
+Route::put('category/change-status', [CategoryController::class, 'changeStatus'])->middleware('staff')->name('category.change-status');
 Route::resource('/staff/category', CategoryController::class)->middleware('staff');

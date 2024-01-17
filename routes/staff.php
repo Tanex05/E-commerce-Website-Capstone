@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StaffController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,3 +33,7 @@ Route::resource('/staff/slider', SliderController::class)->middleware('staff');
 /** Category Resource */
 Route::put('category/change-status', [CategoryController::class, 'changeStatus'])->middleware('staff')->name('category.change-status');
 Route::resource('/staff/category', CategoryController::class)->middleware('staff');
+
+/** Sub Category Resource */
+Route::put('sub-category/change-status', [SubCategoryController::class, 'changeStatus'])->middleware('staff')->name('sub-category.change-status');
+Route::resource('/staff/sub-category', SubCategoryController::class)->middleware('staff');

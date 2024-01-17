@@ -26,7 +26,7 @@ class SliderDataTable extends DataTable
                 $editBtn = "<a href='".route('slider.edit', $query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
                 $deleteBtn = "<a href='".route('slider.destroy', $query->id)."'class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
 
-                return $editBtn." ". $deleteBtn;
+                return $editBtn.$deleteBtn;
             })
             ->addColumn('banner', function($query){
               return $img = "<img width='100px' src='".asset($query->banner)."'></img>";

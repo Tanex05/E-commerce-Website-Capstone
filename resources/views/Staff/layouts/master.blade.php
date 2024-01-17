@@ -82,73 +82,13 @@
   <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
   <!-- Page Specific JS File -->
   <script src="{{ asset('Backend/assets/js/page/index-0.js') }}"></script>
 
   <!-- Template JS File -->
   <script src="{{ asset('Backend/assets/js/scripts.js') }}"></script>
   <script src="{{ asset('Backend/assets/js/custom.js') }}"></script>
-
-  <!-- Dynamic Delete Alert -->
-  <script>
-    $(document).ready(function(){
-        // This function runs when the document (webpage) has finished loading
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('body').on('click', '.delete-item', function(event){
-            // This sets up a click event listener for elements with the class 'delete-item' in the body of the HTML
-
-            event.preventDefault();
-            // This prevents the default behavior of the clicked element, which is often navigating to a new page
-
-            let deleteUrl = $(this).attr('href');
-            // This gets the value of the 'href' attribute of the clicked element and stores it in the variable 'deleteUrl'
-
-            Swal.fire({
-                // This initializes a pop-up modal using the SweetAlert (Swal) library
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                // This uses a promise to execute code after the user interacts with the modal
-                if (result.isConfirmed) {
-                    // If the user clicks the confirmation button in the modal
-
-                    $.ajax({
-                        // This initiates an AJAX request to the server
-                        type: 'DELETE', // The type of request is DELETE
-                        url: deleteUrl, // The URL where the DELETE request will be sent
-                        success: function(data) {
-                            // This function is executed if the server responds successfully
-                            console.log(data); // This logs the server's response to the console
-
-                            Swal.fire({
-                                // This initializes another pop-up modal using SweetAlert
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            // This function is executed if there is an error in the AJAX request
-                            console.log(error); // This logs the error to the console
-                        }
-                    });
-                }
-            });
-        });
-    });
-
-  </script>
 
   <!-- Notification Error -->
   <script>
@@ -158,6 +98,71 @@
         @endforeach
     @endif
   </script>
+
+  <!-- Dynamic Delete Alert -->
+  <script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+        $('body').on('click', '.delete-item', function(event){
+            event.preventDefault();
+
+            let deleteURL = $(this).attr('href');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            type: 'DELETE',
+                            url: deleteURL,
+
+                            success: function(data) {
+                            if (data.status === 'success') {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: data.message,
+                                    icon: "success",
+                                    willClose: () => {
+                                        window.location.reload();
+                                    }
+                                });
+                            } else if (data.status === 'error') {
+                                Swal.fire({
+                                    title: "Can't Delete",
+                                    text: data.message,
+                                });
+                            }
+                        },
+
+
+                            error: function(xhr, status, error ){
+                                console.log(error);
+                            }
+                        })
+
+
+
+                    }
+                });
+            })
+
+    })
+
+  </script>
+
+
 
   @stack('scripts')
 

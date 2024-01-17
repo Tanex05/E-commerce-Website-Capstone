@@ -33,11 +33,11 @@ trait ImageUploadTrait {
             return $path.'/'.$imageName;
         }
     }
-
+    // Handle Delete File
     public function deleteImage(string $path)
     {
-        if(File::exists(public_path($oldPath))){
-            File::delete(public_path($oldPath));
+        if(File::exists(public_path($path))){
+            File::delete(public_path($path));
         }
     }
 

@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
@@ -37,3 +38,8 @@ Route::resource('/staff/category', CategoryController::class)->middleware('staff
 /** Sub Category Resource */
 Route::put('sub-category/change-status', [SubCategoryController::class, 'changeStatus'])->middleware('staff')->name('sub-category.change-status');
 Route::resource('/staff/sub-category', SubCategoryController::class)->middleware('staff');
+
+/** Child Category Resource */
+Route::put('child-category/change-status', [ChildCategoryController::class, 'changeStatus'])->middleware('staff')->name('child-category.change-status');
+Route::get('get-subcategory', [ChildCategoryController::class, 'getSubCategories'])->middleware('staff')->name('get-subcategories');
+Route::resource('/staff/child-category', ChildCategoryController::class)->middleware('staff');

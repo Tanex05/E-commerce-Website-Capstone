@@ -21,7 +21,7 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
             <li><a class="nav-link" href="{{ route('sub-category.index') }}">Sub Category</a></li>
-            <li><a class="nav-link" href="#">Child Category</a></li>
+            <li><a class="nav-link" href="{{ route('child-category.index') }}">Child Category</a></li>
           </ul>
         </li>
         <li class="dropdown">

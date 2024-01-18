@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\EmployeeController;
@@ -43,3 +44,7 @@ Route::resource('/staff/sub-category', SubCategoryController::class)->middleware
 Route::put('child-category/change-status', [ChildCategoryController::class, 'changeStatus'])->middleware('staff')->name('child-category.change-status');
 Route::get('get-subcategory', [ChildCategoryController::class, 'getSubCategories'])->middleware('staff')->name('get-subcategories');
 Route::resource('/staff/child-category', ChildCategoryController::class)->middleware('staff');
+
+/** Brand Resource */
+Route::put('Brand/change-status', [BrandController::class, 'changeStatus'])->middleware('staff')->name('brand.change-status');
+Route::resource('/staff/brand', BrandController::class)->middleware('staff');

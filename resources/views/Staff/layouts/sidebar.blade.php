@@ -15,19 +15,28 @@
         </li>
         <!-- Starter -->
         <li class="menu-header">Manage Website</li>
-        <!-- Starter Dropdown -->
-        <li class="dropdown">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Category</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
-            <li><a class="nav-link" href="{{ route('sub-category.index') }}">Sub Category</a></li>
-            <li><a class="nav-link" href="{{ route('child-category.index') }}">Child Category</a></li>
-          </ul>
+        <!-- Category Dropdown -->
+        <li class="dropdown {{ setActive(['category.*','sub-category.*','child-category.*']) }}">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Category</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ setActive(['category.*']) }}"><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
+                <li class="{{ setActive(['sub-category.*']) }}"><a class="nav-link" href="{{ route('sub-category.index') }}">Sub Category</a></li>
+                <li class="{{ setActive(['child-category.*']) }}"><a class="nav-link" href="{{ route('child-category.index') }}">Child Category</a></li>
+            </ul>
         </li>
-        <li class="dropdown">
+        <!-- Products Dropdown -->
+        <li class="dropdown {{ setActive(['brand.*']) }}">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ setActive(['brand.*']) }}"><a class="nav-link" href="{{ route('brand.index') }}">Brands</a></li>
+            </ul>
+        </li>
+
+        <!-- Slider Dropdown -->
+        <li class="dropdown {{ setActive(['slider.*',]) }}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="{{ route('slider.index') }}">Slider</a></li>
+            <li class="{{ setActive(['slider.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider</a></li>
           </ul>
         </li>
 

@@ -144,6 +144,7 @@
                                 Swal.fire({
                                     title: "Can't Delete",
                                     text: data.message,
+                                    icon: "error",
                                 });
                             }
                         },

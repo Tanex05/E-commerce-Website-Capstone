@@ -110,11 +110,13 @@ class ChildCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(string $id)
     {
         $childCategory = ChildCategory::findOrFail($id);
         $childCategory->delete();
     }
+
     public function changeStatus(Request $request)
     {
         $childCategory = ChildCategory::findOrFail($request->id);

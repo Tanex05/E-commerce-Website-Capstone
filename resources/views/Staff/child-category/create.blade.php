@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label>Sub Category</label>
-                        <select name="child_category" select2 class="form-control sub-category"">
+                        <select name="sub_category" select2 class="form-control sub-category"">
                             <option value="">Select</option>
                         </select>
                     </div>

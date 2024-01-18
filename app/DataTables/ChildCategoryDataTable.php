@@ -22,7 +22,34 @@ class ChildCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'childcategory.action')
+            ->addColumn('action', function($query){
+                $editBtn = "<a href='".route('child-category.edit', $query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+                $deleteBtn = "<a href='".route('child-category.destroy', $query->id)."'class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                return $editBtn.$deleteBtn;
+            })
+            ->addColumn('category', function($query){
+                $category = $query->category->name;
+                return $category;
+            })
+            ->addColumn('sub_category', function($query){
+                $subCategory = $query->subCategory->name;
+                return $subCategory;
+            })
+            ->addColumn('status', function($query){
+                if($query->status == 1){
+                    $button = '<label class="custom-switch mt-2">
+                        <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status" >
+                        <span class="custom-switch-indicator"></span>
+                    </label>';
+                }else {
+                    $button = '<label class="custom-switch mt-2">
+                        <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
+                        <span class="custom-switch-indicator"></span>
+                    </label>';
+                }
+                return $button;
+            })
+            ->rawColumns(['action','status'])
             ->setRowId('id');
     }
 
@@ -63,9 +90,10 @@ class ChildCategoryDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('name'),
+            Column::make('category'),
+            Column::make('sub_category'),
+            Column::make('status'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)

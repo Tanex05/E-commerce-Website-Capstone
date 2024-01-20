@@ -50,7 +50,7 @@
                             <option value="0">Inactive</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create Banner</button>
+                    <button type="submit" class="btn btn-primary">Create Slider</button>
                 </form>
               </div>
             </div>

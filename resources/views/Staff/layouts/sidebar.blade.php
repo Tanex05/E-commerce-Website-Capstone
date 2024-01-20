@@ -26,9 +26,16 @@
         </li>
         <!-- Products Dropdown -->
         <li class="dropdown {{ setActive(['brand.*']) }}">
-            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Brand</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['brand.*']) }}"><a class="nav-link" href="{{ route('brand.index') }}">Brands</a></li>
+            </ul>
+        </li>
+        <!-- Ecommerce Dropdown -->
+        <li class="dropdown {{ setActive(['product.*']) }}">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ setActive(['product.*']) }}"><a class="nav-link" href="{{ route('product.index') }}">Products</a></li>
             </ul>
         </li>
 

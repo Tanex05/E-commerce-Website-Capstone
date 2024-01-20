@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StaffController;
@@ -46,5 +47,11 @@ Route::get('get-subcategory', [ChildCategoryController::class, 'getSubCategories
 Route::resource('/staff/child-category', ChildCategoryController::class)->middleware('staff');
 
 /** Brand Resource */
-Route::put('Brand/change-status', [BrandController::class, 'changeStatus'])->middleware('staff')->name('brand.change-status');
+Route::put('brand/change-status', [BrandController::class, 'changeStatus'])->middleware('staff')->name('brand.change-status');
 Route::resource('/staff/brand', BrandController::class)->middleware('staff');
+
+/** Product Resource */
+Route::put('product/change-status', [ProductController::class, 'changeStatus'])->middleware('staff')->name('product.change-status');
+Route::get('product/sub-category', [ProductController::class, 'getSubCategories'])->middleware('staff')->name('product-get-subcategories');
+Route::get('product/child-category', [ProductController::class, 'getChildCategories'])->middleware('staff')->name('product-get-childcategories');
+Route::resource('/staff/product', ProductController::class)->middleware('staff');

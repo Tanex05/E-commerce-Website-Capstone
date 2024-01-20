@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StaffController;
@@ -55,3 +56,6 @@ Route::put('product/change-status', [ProductController::class, 'changeStatus'])-
 Route::get('product/sub-category', [ProductController::class, 'getSubCategories'])->middleware('staff')->name('product-get-subcategories');
 Route::get('product/child-category', [ProductController::class, 'getChildCategories'])->middleware('staff')->name('product-get-childcategories');
 Route::resource('/staff/product', ProductController::class)->middleware('staff');
+
+/** ProductImageGallary Resource */
+Route::resource('image-gallery', ProductImageGalleryController::class)->middleware('staff');

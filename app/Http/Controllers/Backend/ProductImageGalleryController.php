@@ -43,6 +43,11 @@ class ProductImageGalleryController extends Controller
         /** Handle image upload */
         $imagePaths = $this->uploadMultiImage($request, 'image', 'uploads');
 
+        if ($imagePaths === null) {
+            toastr()->error('Image upload failed. No images were uploaded.');
+            return redirect()->back();
+        }
+
         foreach($imagePaths as $path){
             $productImageGallery = new ProductImageGallery();
             $productImageGallery->image = $path;

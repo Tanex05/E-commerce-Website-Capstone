@@ -48,7 +48,7 @@ class SubCategoryController extends Controller
         $subCategory->status = $request->status;
         $subCategory->save();
 
-        toastr('Created Successfully', 'success');
+        toastr('Created Successfully', 'success', 'Success');
         return redirect()->route('sub-category.index');
     }
 
@@ -89,7 +89,7 @@ class SubCategoryController extends Controller
         $subCategory->status = $request->status;
         $subCategory->save();
 
-        toastr('Updated Successfully', 'success');
+        toastr('Updated Successfully', 'success', 'Success');
         return redirect()->route('sub-category.index');
     }
 

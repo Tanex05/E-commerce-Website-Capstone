@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        toastr('Created Successfully', 'success');
+        toastr('Created Successfully', 'success', 'Success');
 
         return redirect()->route('category.index');
     }
@@ -86,7 +86,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        toastr('Updated Successfully', 'success');
+        toastr('Updated Successfully', 'success', 'Success');
         return redirect()->route('category.index');
     }
 

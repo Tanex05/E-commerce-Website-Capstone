@@ -45,7 +45,7 @@ class ProductVariantController extends Controller
         $varinat->status = $request->status;
         $varinat->save();
 
-        toastr('Created Successfully!', 'success', 'success');
+        toastr('Created Successfully!', 'success', 'Success');
 
         return redirect()->route('product-variant.index', ['product' => $request->product]);
     }
@@ -82,7 +82,7 @@ class ProductVariantController extends Controller
         $varinat->status = $request->status;
         $varinat->save();
 
-        toastr('Updated Successfully!', 'success', 'success');
+        toastr('Updated Successfully!', 'success', 'Success');
 
         return redirect()->route('product-variant.index', ['product' => $varinat->product_id]);
     }

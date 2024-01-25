@@ -44,7 +44,7 @@ class ProductImageGalleryController extends Controller
         $imagePaths = $this->uploadMultiImage($request, 'image', 'uploads');
 
         if ($imagePaths === null) {
-            toastr()->error('Image upload failed. No images were uploaded.');
+            toastr()->error('Image upload failed. No images were uploaded.', 'Error');
             return redirect()->back();
         }
 
@@ -55,7 +55,7 @@ class ProductImageGalleryController extends Controller
             $productImageGallery->save();
         }
 
-        toastr('Uploaded successfully!');
+        toastr('Uploaded successfully!','success', 'Success');
 
         return redirect()->back();
     }

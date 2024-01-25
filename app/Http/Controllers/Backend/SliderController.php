@@ -57,7 +57,7 @@ class SliderController extends Controller
         $slider->status = $request->status;
         $slider->save();
 
-        toastr('Created Successfully', 'success');
+        toastr('Created Successfully', 'success', 'Success');
 
         return redirect()->route('slider.index');
     }
@@ -108,7 +108,7 @@ class SliderController extends Controller
         $slider->status = $request->status;
         $slider->save();
 
-        toastr('Edited Banner Successfully', 'success');
+        toastr('Edited Banner Successfully', 'success', 'Success');
 
         return redirect()->route('slider.index');
     }

@@ -82,7 +82,7 @@ class ProductController extends Controller
         $product->status = $request->status;
         $product->save();
 
-        toastr('Created Successfully', 'success');
+        toastr('Created Successfully', 'success', 'Success');
 
         return redirect()->route('product.index');
     }
@@ -154,7 +154,7 @@ class ProductController extends Controller
         $product->seo_description = $request->seo_description;
         $product->save();
 
-        toastr('Updated Successfully!', 'success');
+        toastr('Updated Successfully!', 'success', 'Success');
 
         return redirect()->route('product.index');
     }

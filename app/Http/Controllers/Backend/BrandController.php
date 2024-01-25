@@ -52,7 +52,7 @@ class BrandController extends Controller
         $brand->status = $request->status;
         $brand->save();
 
-        toastr('Created Successfully', 'success');
+        toastr('Created Successfully', 'success', 'Success');
 
         return redirect()->route('brand.index');
     }
@@ -98,7 +98,7 @@ class BrandController extends Controller
         $brand->status = $request->status;
         $brand->save();
 
-        toastr('Edited Brand Successfully', 'success');
+        toastr('Edited Brand Successfully', 'success', 'Success');
 
         return redirect()->route('brand.index');
     }

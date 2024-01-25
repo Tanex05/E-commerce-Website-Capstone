@@ -59,7 +59,7 @@ class ChildCategoryController extends Controller
         $childCategory->status = $request->status;
         $childCategory->save();
 
-        toastr('Created Successfully', 'success');
+        toastr('Created Successfully', 'success', 'Success');
         return redirect()->route('child-category.index');
     }
 
@@ -103,7 +103,7 @@ class ChildCategoryController extends Controller
         $childCategory->status = $request->status;
         $childCategory->save();
 
-        toastr('Updated Successfully', 'success');
+        toastr('Updated Successfully', 'success', 'Success');
         return redirect()->route('child-category.index');
     }
 

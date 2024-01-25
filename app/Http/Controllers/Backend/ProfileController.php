@@ -34,7 +34,8 @@ class ProfileController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        toastr()->success('Updated Profile Successfully!');
+        toastr()->success('Updated Profile Successfully!', 'Success');
+
         return redirect()->back();
     }
        /** Update Password */

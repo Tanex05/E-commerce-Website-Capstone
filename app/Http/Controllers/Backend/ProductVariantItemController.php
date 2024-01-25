@@ -44,7 +44,7 @@ class ProductVariantItemController extends Controller
         $variantItem->status = $request->status;
         $variantItem->save();
 
-        toastr('Created Successfully!', 'success', 'success');
+        toastr('Created Successfully!', 'success', 'Success');
 
         return redirect()->route('product-variant-item.index', ['productId' => $request->product_id, 'variantId' => $request->variant_id]);
 
@@ -72,7 +72,7 @@ class ProductVariantItemController extends Controller
         $variantItem->status = $request->status;
         $variantItem->save();
 
-        toastr('Update Successfully!', 'success', 'success');
+        toastr('Update Successfully!', 'success', 'Success');
 
         return redirect()->route('Staff.product-variant-item.index',
         ['productId' => $variantItem->productVariant->product_id, 'variantId' => $variantItem->product_variant_id]);

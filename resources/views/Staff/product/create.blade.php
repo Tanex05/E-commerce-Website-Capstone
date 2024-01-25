@@ -37,6 +37,7 @@
                                       <option value="">Select</option>
                                       @foreach ($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
+                                        {{ $subCategory->id }}" {{ old('sub_category') == $subCategory->id ? 'selected' : '' }}
                                       @endforeach
                                     </select>
                                 </div>

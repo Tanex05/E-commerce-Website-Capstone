@@ -32,10 +32,11 @@
             </ul>
         </li>
         <!-- Ecommerce Dropdown -->
-        <li class="dropdown {{ setActive(['product.*']) }}">
+        <li class="dropdown {{ setActive(['product.*','flash-sale.*']) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['product.*']) }}"><a class="nav-link" href="{{ route('product.index') }}">Products</a></li>
+                <li class="{{ setActive(['flash-sale.*']) }}"><a class="nav-link" href="{{ route('flash-sale.index') }}">Fash-Sale Products</a></li>
             </ul>
         </li>
 

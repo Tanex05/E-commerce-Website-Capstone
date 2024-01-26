@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-xl-5 col-md-6 col-lg-4 d-none d-lg-block">
-                <div class="wsus__search">
+                <div class="wsus__search col">
                     <form>
                         <input type="text" placeholder="Search...">
                         <button type="submit"><i class="far fa-search"></i></button>

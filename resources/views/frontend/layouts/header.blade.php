@@ -1,15 +1,15 @@
 <header>
     <div class="container">
-        <div class="row">
+        <div class="row" >
             <div class="col-2 col-md-1 d-lg-none">
                 <div class="wsus__mobile_menu_area">
                     <span class="wsus__mobile_menu_icon"><i class="fal fa-bars"></i></span>
                 </div>
             </div>
-            <div class="col-xl-2 col-7 col-md-8 col-lg-2">
+            <div class="col-xl-2 col-5 col-md-4 col-lg-2">
                 <div class="wsus_logo_area">
-                    <a class="wsus__header_logo" href="index.html">
-                        <img src="{{ asset('Frontend/images/logo_2.png') }}" alt="logo" class="img-fluid w-100">
+                    <a class="wsus__header_logo" href="{{ route('home') }}">
+                        <img src="{{ asset('Frontend/logo/LOGO1.PNG') }}" alt="logo" class="w-100">
                     </a>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                             <i class="fas fa-user-headset"></i>
                         </div>
                         <div class="wsus__call_text">
-                            <p>example@gmail.com</p>
+                            <p>technoblast@gmail.com</p>
                             <p>+569875544220</p>
                         </div>
                     </div>
@@ -42,6 +42,8 @@
             </div>
         </div>
     </div>
+
+    {{-- Shopping Cart --}}
     <div class="wsus__mini_cart">
         <h4>shopping cart <span class="wsus_close_mini_cart"><i class="far fa-times"></i></span></h4>
         <ul>

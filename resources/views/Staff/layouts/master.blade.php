@@ -7,6 +7,9 @@
 
   <title>General Dashboards &mdash; Technoblast</title>
 
+  <link rel="icon" type="image/x-icon" href="{{ asset('Backend/assets/logo/favicon.ico') }}">
+
+
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('Backend/assets/modules/bootstrap/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('Backend/assets/modules/fontawesome/css/all.min.css') }}">

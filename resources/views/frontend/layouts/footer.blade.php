@@ -4,7 +4,7 @@
             <div class="col-xl-3 col-sm-7 col-md-6 col-lg-3">
                 <div class="wsus__footer_content">
                     <a class="wsus__footer_2_logo" href="#">
-                        <img src="{{asset('Frontend/images/logo_2.png')}}" alt="logo">
+                        <img src="{{asset('Frontend/logo/android-chrome-512x512.png')}}" style="width: 100px" alt="logo">
                     </a>
                     <a class="action" href="callto:+8896254857456"><i class="fas fa-phone-alt"></i>
                         +0905 365 8863</a>

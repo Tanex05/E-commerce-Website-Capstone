@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <title>TechnoBlast</title>
-    <link rel="icon" type="image/png" href="{{ asset('Frontend/images/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('Frontend/logo/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/select2.min.css') }}">
@@ -165,6 +165,30 @@
             @endforeach
         @endif
     </script>
+
+
+
+
+<!-- Start of Tawk.to Script -->
+
+    @auth
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            Tawk_API.visitor = {
+                name: '{{ auth()->user()->name }}',
+            };
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/655ca8b491e5c13bb5b23d00/1hfov60li';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+    @endauth
+
+<!--End of Tawk.to Script-->
 
     @stack('scripts')
 </body>

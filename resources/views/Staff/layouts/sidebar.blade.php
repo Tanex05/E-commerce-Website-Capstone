@@ -32,11 +32,11 @@
             </ul>
         </li>
         <!-- Ecommerce Dropdown -->
-        <li class="dropdown {{ setActive(['product.*','flash-sale.*','Coupons.*']) }}">
+        <li class="dropdown {{ setActive(['product.*','flash-sale.*','coupons.*']) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['product.*']) }}"><a class="nav-link" href="{{ route('product.index') }}">Products</a></li>
-                <li class="{{ setActive(['Coupons.*']) }}"><a class="nav-link" href="{{ route('coupons.index') }}">Coupons</a></li>
+                <li class="{{ setActive(['coupons.*']) }}"><a class="nav-link" href="{{ route('coupons.index') }}">Coupons</a></li>
                 <li class="{{ setActive(['flash-sale.*']) }}"><a class="nav-link" href="{{ route('flash-sale.index') }}">Fash-Sale Products</a></li>
             </ul>
         </li>
@@ -50,10 +50,10 @@
         </li>
 
         <!-- General Settings Dropdown -->
-        <li class="dropdown {{ setActive(['FAQ.*',]) }}">
+        <li class="dropdown {{ setActive(['faq.*',]) }}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>General Setting</span></a>
           <ul class="dropdown-menu">
-            <li class="{{ setActive(['FAQ.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">FAQ</a></li>
+            <li class="{{ setActive(['faq.*']) }}"><a class="nav-link" href="{{ route('faq.index') }}">FAQ</a></li>
           </ul>
         </li>
 

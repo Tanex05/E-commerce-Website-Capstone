@@ -34,11 +34,12 @@
                                 <div class="form-group">
                                     <label for="inputState">Category</label>
                                     <select id="inputState" class="form-control main-category" name="category">
-                                      <option value="">Select</option>
-                                      @foreach ($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                        {{ $subCategory->id }}" {{ old('sub_category') == $subCategory->id ? 'selected' : '' }}
-                                      @endforeach
+                                        <option value="">Select</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -47,7 +48,6 @@
                                     <label for="inputState">Sub Category</label>
                                     <select id="inputState" class="form-control sub-category" name="sub_category">
                                         <option value="">Select</option>
-
                                     </select>
                                 </div>
                             </div>
@@ -59,8 +59,8 @@
                                     </select>
                                 </div>
                             </div>
-
                         </div>
+
 
                         <div class="form-group">
                             <label for="inputState">Brand</label>

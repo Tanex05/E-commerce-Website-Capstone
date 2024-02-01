@@ -2,7 +2,7 @@
 
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Session;
-use Str;
+
 
 /** Set Sidebar item active */
 
@@ -121,7 +121,7 @@ function getFinalPayableAmount(){
     return  getMainCartTotal() + getShppingFee();
 }
 
-/** lemit text */
+/** limit text */
 function limitText($text, $limit = 20)
 {
     return \Str::limit($text, $limit);

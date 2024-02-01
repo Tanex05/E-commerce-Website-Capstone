@@ -16,7 +16,7 @@ class StaffMiddleware
     public function handle(Request $request, Closure $next)
     {
     if ($request->user() && ($request->user()->role != 'admin' && $request->user()->role != 'employee')) {
-        return redirect()->route('dashboard');
+        return redirect()->route('user.dashboard');
     }
 
     return $next($request);

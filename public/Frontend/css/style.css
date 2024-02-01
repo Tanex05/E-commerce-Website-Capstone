@@ -1813,6 +1813,7 @@ PRODUCT MODAL VIEW END
     width: 100%;
     text-align: center;
     border-radius: 0;
+    border: none;
 }
 
 /* .wsus__product_item:hover

@@ -1,6 +1,9 @@
 <div class="col-xl-3 col-sm-6 col-lg-4 {{ @$key }}">
     <div class="wsus__product_item">
-        <span class="wsus__new">{{productType($product->product_type)}}</span>
+        @if(!empty($product->product_type))
+            <span class="wsus__new">{{ productType($product->product_type) }}</span>
+        @endif
+
         @if(checkDiscount($product))
             <span class="wsus__minus">-{{calculateDiscountPercent($product->price, $product->offer_price)}}%</span>
         @endif

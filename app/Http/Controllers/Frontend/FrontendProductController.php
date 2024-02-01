@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
+use App\Models\Faq;
 use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -20,8 +21,9 @@ class FrontendProductController extends Controller
     /** Show product detail page */
     public function showProduct(string $slug)
     {
+        $faqs = Faq::all();
         $product = Product::with(['category','productImageGalleries','variants','brand'])->where('slug', $slug)->where('status', 1)->first();
-        return view('frontend.pages.product-detail', compact('product'));
+        return view('frontend.pages.product-detail', compact('product' ,'faqs'));
     }
 
     public function chageListView(Request $request)

@@ -11,13 +11,6 @@
                     <a class="action" href="mailto:example@gmail.com"><i class="far fa-envelope"></i>
                         example@gmail.com</a>
                     <p><i class="fal fa-map-marker-alt"></i> TECHNOBLAST COMPUTER TRADING, RICO CARINO BLDG. RIZAL PACANA ST BRGY 11 CAGAYAN DE ORO CITY MISAMIS ORIENTAL . 9000, Cagayan de Oro, Philippines</p>
-                    <ul class="wsus__footer_social" style="width: 100%">
-                        <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                        {{-- <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a></li>
-                        <li><a class="pinterest" href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                        <li><a class="behance" href="#"><i class="fab fa-behance"></i></a></li> --}}
-                    </ul>
                 </div>
             </div>
             <div class="col-xl-2 col-sm-5 col-md-4 col-lg-2">

@@ -10,9 +10,7 @@ class UserDashboardController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->role == 'admin' || Auth::user()->role == 'employee'){
-            return redirect()->route('staff.profile');
-        }
+
         return view('frontend.dashboard.dashboard');
     }
 }

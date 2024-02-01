@@ -22,15 +22,15 @@
                     <ul class="wsus_menu_cat_item show_home toggle_menu">
                         {{-- <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li> --}}
                         @foreach ($categories as $category)
-                            <li><a class="{{ count($category->subCategories) > 0 ? 'wsus__droap_arrow' : '' }}" href="#"><i class="{{ $category->icon }}"></i> {{ $category->name }} </a>
+                            <li><a class="{{ count($category->subCategories) > 0 ? 'wsus__droap_arrow' : '' }}" href="{{route('product.index', ['category' => $category->slug])}}"><i class="{{ $category->icon }}"></i> {{ $category->name }} </a>
                                 @if (count($category->subCategories) > 0)
                                     <ul class="wsus_menu_cat_droapdown">
                                         @foreach ( $category->subCategories as $subCategory )
-                                            <li><a href="#">{{ $subCategory->name }} <i class="{{ count($subCategory->childCategories)> 0 ? 'fas fa-angle-right' : '' }}"></i></a>
+                                            <li><a href="{{route('product.index', ['subcategory' => $subCategory->slug])}}">{{ $subCategory->name }} <i class="{{ count($subCategory->childCategories)> 0 ? 'fas fa-angle-right' : '' }}"></i></a>
                                                 @if (count($subCategory->childCategories) > 0)
                                                     @foreach ($subCategory->childCategories as $childCategory )
                                                             <ul class="wsus__sub_category">
-                                                                <li><a href="#">{{ $childCategory->name }}</a></li>
+                                                                <li><a href="{{route('product.index', ['childcategory' => $childCategory->slug])}}">{{ $childCategory->name }}</a></li>
                                                             </ul>
                                                     @endforeach
                                                 @endif
@@ -42,88 +42,34 @@
                         @endforeach
 
 
-                        <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li>
+                        {{-- <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li> --}}
                     </ul>
 
                     <ul class="wsus__menu_item">
                         <li><a class="active" href="{{ route('home') }}">home</a></li>
-                        <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
-                            <div class="wsus__mega_menu">
-                                <div class="row">
-                                    <div class="col-xl-3 col-lg-3">
-                                        <div class="wsus__mega_menu_colum">
-                                            <h4>women</h4>
-                                            <ul class="wsis__mega_menu_item">
-                                                <li><a href="#">New Arrivals</a></li>
-                                                <li><a href="#">Best Sellers</a></li>
-                                                <li><a href="#">Trending</a></li>
-                                                <li><a href="#">Clothing</a></li>
-                                                <li><a href="#">Shoes</a></li>
-                                                <li><a href="#">Bags</a></li>
-                                                <li><a href="#">Accessories</a></li>
-                                                <li><a href="#">Jewlery & Watches</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3">
-                                        <div class="wsus__mega_menu_colum">
-                                            <h4>men</h4>
-                                            <ul class="wsis__mega_menu_item">
-                                                <li><a href="#">New Arrivals</a></li>
-                                                <li><a href="#">Best Sellers</a></li>
-                                                <li><a href="#">Trending</a></li>
-                                                <li><a href="#">Clothing</a></li>
-                                                <li><a href="#">Shoes</a></li>
-                                                <li><a href="#">Bags</a></li>
-                                                <li><a href="#">Accessories</a></li>
-                                                <li><a href="#">Jewlery & Watches</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3">
-                                        <div class="wsus__mega_menu_colum">
-                                            <h4>category</h4>
-                                            <ul class="wsis__mega_menu_item">
-                                                <li><a href="#"> Healthy & Beauty</a></li>
-                                                <li><a href="#">Gift Ideas</a></li>
-                                                <li><a href="#">Toy & Games</a></li>
-                                                <li><a href="#">Cooking</a></li>
-                                                <li><a href="#">Smart Phones</a></li>
-                                                <li><a href="#">Cameras & Photo</a></li>
-                                                <li><a href="#">Accessories</a></li>
-                                                <li><a href="#">View All Categories</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3">
-                                        <div class="wsus__mega_menu_colum">
-                                            <h4>women</h4>
-                                            <ul class="wsis__mega_menu_item">
-                                                <li><a href="#">New Arrivals</a></li>
-                                                <li><a href="#">Best Sellers</a></li>
-                                                <li><a href="#">Trending</a></li>
-                                                <li><a href="#">Clothing</a></li>
-                                                <li><a href="#">Shoes</a></li>
-                                                <li><a href="#">Bags</a></li>
-                                                <li><a href="#">Accessories</a></li>
-                                                <li><a href="#">Jewlery & Watches</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        {{-- Tracker Order --}}
-                        <li><a href="track_order.html">track order</a></li>
+
+                        <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">flash Sale</a></li>
+                        {{-- {{route('about')}} --}}
+                        <li><a class="{{setActive(['about'])}}" href="#">about</a></li>
+                        {{-- {{route('contact')}} --}}
+                        <li><a class="{{setActive(['contact'])}}" href="#">contact</a></li>
+
                     </ul>
+
                     <ul class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="contact.html">contact</a></li>
-                        @auth
-                            <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
-                        @endauth
-                        @guest
-                            <li><a href="{{ route('login') }}">login</a></li>
-                        @endguest
+                        <li><a href="#">track order</a></li>
+
+                        @if (auth()->check())
+                            @if (auth()->user()->role === 'user')
+                                <li><a href="{{route('user.dashboard')}}">my account</a></li>
+                            @elseif (auth()->user()->role === 'employee')
+                                <li><a href="{{route('staff.profile')}}">Employee Dashboard</a></li>
+                            @elseif (auth()->user()->role === 'admin')
+                                <li><a href="{{route('staff.profile')}}">Admin Dashboard</a></li>
+                            @endif
+                        @else
+                            <li><a href="{{route('login')}}">login</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

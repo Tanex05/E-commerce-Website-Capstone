@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Frontend\FlashSaleController;
+use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
@@ -35,7 +36,12 @@ Route::get('flash-sale/page', [FlashSaleController::class, 'index'])->name('flas
 
 Route::get('/staff/login', [StaffController::class, 'login'])->name('staff.login');
 
-// User Routes
+/** Product route */
+// Route::get('products', [FrontendProductController::class, 'productsIndex'])->name('products.index');
+Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
+// Route::get('change-product-list-view', [FrontendProductController::class, 'chageListView'])->name('change-product-list-view');
+
+/** User Routes */
 Route::group(['middlware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => 'user.'] , function(){
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');

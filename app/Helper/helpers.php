@@ -2,6 +2,7 @@
 
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Session;
+use Str;
 
 /** Set Sidebar item active */
 

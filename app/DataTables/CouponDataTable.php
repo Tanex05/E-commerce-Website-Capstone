@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ProductImageGallery;
+use App\Models\Coupon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductImageGalleryDataTable extends DataTable
+class CouponDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,22 +23,41 @@ class ProductImageGalleryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function($query){
-            $deleteBtn = "<a href='".route('image-gallery.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
-            return $deleteBtn;
+            $editBtn = "<a href='".route('coupons.edit', $query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+            $deleteBtn = "<a href='".route('coupons.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+
+            return $editBtn.$deleteBtn;
         })
-        ->addColumn('image', function($query){
-            return "<img width='200px' src='".asset($query->image)."' ></img>";
+        ->addColumn('discount', function($query){
+            if($query->discount_type == 'amount'){
+                return '₱'.$query->discount;
+            }
+            return $query->discount.'%';
         })
-        ->rawColumns(['image', 'action'])
+        ->addColumn('status', function($query){
+            if($query->status == 1){
+                $button = '<label class="custom-switch mt-2">
+                    <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status" >
+                    <span class="custom-switch-indicator"></span>
+                </label>';
+            }else {
+                $button = '<label class="custom-switch mt-2">
+                    <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
+                    <span class="custom-switch-indicator"></span>
+                </label>';
+            }
+            return $button;
+        })
+        ->rawColumns(['action', 'status'])
         ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(ProductImageGallery $model): QueryBuilder
+    public function query(Coupon $model): QueryBuilder
     {
-        return $model->where('product_id', request()->product)->newQuery();
+        return $model->newQuery();
     }
 
     /**
@@ -47,7 +66,7 @@ class ProductImageGalleryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('productimagegallery-table')
+                    ->setTableId('coupon-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -69,12 +88,17 @@ class ProductImageGalleryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')->width(100),
-            Column::make('image'),
+            Column::make('id'),
+            Column::make('name'),
+            Column::make('discount_type'),
+            Column::make('discount'),
+            Column::make('start_date'),
+            Column::make('end_date'),
+            Column::make('status'),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)
-            ->width(400)
+            ->width(200)
             ->addClass('text-center'),
         ];
     }
@@ -84,6 +108,6 @@ class ProductImageGalleryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProductImageGallery_' . date('YmdHis');
+        return 'Coupon_' . date('YmdHis');
     }
 }

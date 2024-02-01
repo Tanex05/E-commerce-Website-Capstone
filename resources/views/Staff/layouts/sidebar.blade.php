@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="index.html">TechnoBlast</a>
+        <a href="{{ route('home') }}">TechnoBlast</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="index.html">TB</a>
@@ -25,17 +25,18 @@
             </ul>
         </li>
         <!-- Products Dropdown -->
-        <li class="dropdown {{ setActive(['brand.*']) }}">
+        <li class="dropdown {{ setActive(['brand.*',]) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Brand</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['brand.*']) }}"><a class="nav-link" href="{{ route('brand.index') }}">Brands</a></li>
             </ul>
         </li>
         <!-- Ecommerce Dropdown -->
-        <li class="dropdown {{ setActive(['product.*','flash-sale.*']) }}">
+        <li class="dropdown {{ setActive(['product.*','flash-sale.*','Coupons.*']) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['product.*']) }}"><a class="nav-link" href="{{ route('product.index') }}">Products</a></li>
+                <li class="{{ setActive(['Coupons.*']) }}"><a class="nav-link" href="{{ route('coupons.index') }}">Coupons</a></li>
                 <li class="{{ setActive(['flash-sale.*']) }}"><a class="nav-link" href="{{ route('flash-sale.index') }}">Fash-Sale Products</a></li>
             </ul>
         </li>
@@ -45,6 +46,14 @@
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
           <ul class="dropdown-menu">
             <li class="{{ setActive(['slider.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider</a></li>
+          </ul>
+        </li>
+
+        <!-- General Settings Dropdown -->
+        <li class="dropdown {{ setActive(['FAQ.*',]) }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>General Setting</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ setActive(['FAQ.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">FAQ</a></li>
           </ul>
         </li>
 

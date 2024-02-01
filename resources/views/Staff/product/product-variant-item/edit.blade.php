@@ -17,7 +17,7 @@
 
                   </div>
                   <div class="card-body">
-                    <form action="{{route('products-variant-item.update', $variantItem->id)}}" method="POST">
+                    <form action="{{route('product-variant-item.update', $variantItem->id)}}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

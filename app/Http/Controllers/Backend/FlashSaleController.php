@@ -91,4 +91,13 @@ class FlashSaleController extends Controller
         $flashSaleItem->delete();
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
+
+    public function getProductsForDropdown(Request $request)
+    {
+        $search = $request->input('q');
+
+        $products = Product::where('name', 'like', "%{$search}%")->get(['id', 'name']);
+
+        return response()->json($products);
+    }
 }

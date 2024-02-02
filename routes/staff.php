@@ -87,6 +87,10 @@ Route::put('flash-sale/show-at-home/status-change', [FlashSaleController::class,
 Route::put('flash-sale-status', [FlashSaleController::class, 'changeStatus'])->middleware('staff')->name('flash-sale-status');
 Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destory'])->middleware('staff')->name('flash-sale.destory');
 
+//search
+Route::get('/get-products-for-dropdown', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown');
+
+
 /** Coupon Routes */
 Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->middleware('staff')->name('coupons.change-status');
 Route::resource('coupons', CouponController::class)->middleware('staff');

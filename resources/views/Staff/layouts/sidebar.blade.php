@@ -32,13 +32,14 @@
             </ul>
         </li>
         <!-- Ecommerce Dropdown -->
-        <li class="dropdown {{ setActive(['product.*','flash-sale.*','coupons.*','flash-out.*']) }}">
+        <li class="dropdown {{ setActive(['product.*','flash-sale.*','coupons.*','flash-out.*','shipping-rule.*']) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['product.*']) }}"><a class="nav-link" href="{{ route('product.index') }}">Products</a></li>
                 <li class="{{ setActive(['coupons.*']) }}"><a class="nav-link" href="{{ route('coupons.index') }}">Coupons</a></li>
                 <li class="{{ setActive(['flash-sale.*']) }}"><a class="nav-link" href="{{ route('flash-sale.index') }}">Fash-Sale Products</a></li>
                 <li class="{{ setActive(['flash-out.*']) }}"><a class="nav-link" href="{{ route('flash-out.index') }}">Fash-Out Products</a></li>
+                <li class="{{ setActive(['shipping-rule.*']) }}"><a class="nav-link" href="{{ route('shipping-rule.index') }}">Shipping Rule</a></li>
             </ul>
         </li>
 

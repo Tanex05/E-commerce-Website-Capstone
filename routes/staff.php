@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -96,7 +97,7 @@ Route::put('flash-out-status', [FlashOutController::class, 'changeStatus'])->mid
 Route::delete('flash-out/{id}', [FlashOutController::class, 'destory'])->middleware('staff')->name('flash-out.destory');
 
 
-//search
+/** Flash Sale And Flash Out */
 Route::get('/get-products-for-dropdown-flashsale', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashsale');
 Route::get('/get-products-for-dropdown-flashout', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashout');
 
@@ -104,6 +105,10 @@ Route::get('/get-products-for-dropdown-flashout', [FlashSaleController::class, '
 /** Coupon Routes */
 Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->middleware('staff')->name('coupons.change-status');
 Route::resource('coupons', CouponController::class)->middleware('staff');
+
+/** Coupon Routes */
+Route::put('shipping-rule/change-status', [ShippingRuleController::class, 'changeStatus'])->middleware('staff')->name('shipping-rule.change-status');
+Route::resource('shipping-rule', ShippingRuleController::class)->middleware('staff');
 
 /** General Setting  Routes */
 Route::resource('faq', FaqsController::class)->middleware('staff');

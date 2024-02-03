@@ -95,7 +95,6 @@
                                             </div>
                                         @endif
                                         @endforeach
-
                                     </div>
                                 </div>
 
@@ -113,7 +112,9 @@
                                         border-radius: 100%;" href="javascript:;" class="add_to_wishlist" data-id="{{$product->id}}"><i class="fal fa-heart"></i></a></li>
                                 </ul>
                             </form>
-
+                            <br>
+                            <p class="brand_model"><span>SKU :</span> {{$product->sku}}</p>
+                            <br>
                             <p class="brand_model"><span>brand :</span> {{$product->brand->name}}</p>
 
                         </div>

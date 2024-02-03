@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\FlashOutController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('flash-sale/page', [FlashSaleController::class, 'index'])->name('flash-sale');
+Route::get('flash-out/page', [FlashOutController::class,'index'])->name('flashout');
 
 Route::get('/staff/login', [StaffController::class, 'login'])->name('staff.login');
 

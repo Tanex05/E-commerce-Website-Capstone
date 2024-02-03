@@ -1,28 +1,39 @@
-<section id="wsus__flash_sell" class="wsus__flash_sell_2">
-    <div class=" container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="offer_time" style="background: url({{asset('Frontend/images/flash_sell_bg.jpg')}})">
-                    <div class="wsus__flash_coundown">
-                        <span class=" end_text">Flash Sale</span>
-                        <div class="simply-countdown simply-countdown-one"></div>
-                        <a class="common_btn" href="{{ route('flash-sale') }}">see more <i class="fas fa-caret-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row flash_sell_slider">
+ <section id="wsus__flash_sell" class="wsus__flash_sell_2">
+        <div class="container">
 
             @php
-                $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();
+                // Fetch Flash Out items with related data
+                $FlashSale = \App\Models\FlashSaleItem::with(['product.variants', 'product.category', 'product.productImageGalleries'])
+                    ->where('status', 1)
+                    ->get();
             @endphp
-            @foreach ($products as $product)
-                <x-product-card :product="$product" />
-            @endforeach
+
+            @if($FlashSale->isNotEmpty() && $FlashSale->contains('status', 1))
+                <!-- Show this section if there are items with status equal to 1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="offer_time" style="background: url({{ asset('Frontend/images/flash_sell_bg.jpg') }})">
+                            <div class="wsus__flash_coundown">
+                                <span class="end_text">Promo Sale</span>
+                                <div class="simply-countdown simply-countdown-one"></div>
+                                <a class="common_btn" href="{{ route('flash-sale') }}">see more <i class="fas fa-caret-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <div class="row flash_sell_slider">
+                @php
+                    $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();
+                @endphp
+                @foreach ($products as $product)
+                    <x-product-card :product="$product" />
+                @endforeach
+            </div>
 
         </div>
-    </div>
-</section>
+    </section>
 
 
 @push('scripts')

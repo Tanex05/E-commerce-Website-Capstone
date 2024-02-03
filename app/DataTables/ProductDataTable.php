@@ -53,7 +53,15 @@ class ProductDataTable extends DataTable
                         break;
 
                     case 'best_product':
-                        return '<i class="badge badge-danger">Top Product</i>';
+                        return '<i class="badge badge-danger">Best Product</i>';
+                        break;
+
+                    case 'promo_product':
+                        return '<i class="badge badge-danger">Promo Product</i>';
+                        break;
+
+                    case 'flashout_product':
+                        return '<i class="badge badge-danger">Flash Out Product</i>';
                         break;
 
                     default:

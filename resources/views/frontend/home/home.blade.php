@@ -151,11 +151,20 @@
 
 
     <!--============================
-        FLASH SELL START
+        Promo SELL START
     ==============================-->
         @include('frontend.home.sections.flash-sale')
     <!--============================
-        FLASH SELL END
+        Promo SELL END
+    ==============================-->
+
+
+    <!--============================
+        FLASH Out START
+    ==============================-->
+    @include('frontend.home.sections.flash-out')
+    <!--============================
+        FLASH Out END
     ==============================-->
 
 

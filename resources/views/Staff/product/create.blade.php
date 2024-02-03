@@ -131,7 +131,8 @@
                                 <option value="new_arrival">New Arrival</option>
                                 <option value="featured_product">Featured</option>
                                 <option value="top_product">Top Product</option>
-                                <option value="best_product">Best Product</option>
+                                <option value="promo_product">Promo Sale</option>
+                                <option value="flashout_product">Flash Out</option>
                             </select>
                         </div>
 

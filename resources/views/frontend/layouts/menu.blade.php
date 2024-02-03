@@ -48,10 +48,11 @@
                     <ul class="wsus__menu_item">
                         <li><a class="active" href="{{ route('home') }}">home</a></li>
 
-                        <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">flash Sale</a></li>
-                        {{-- {{route('about')}} --}}
+                        <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">Promo Sale</a></li>
+                        <li><a class="{{setActive(['flash-out'])}}" href="{{route('flashout')}}">Flash Out</a></li>
+
                         <li><a class="{{setActive(['about'])}}" href="#">about</a></li>
-                        {{-- {{route('contact')}} --}}
+
                         <li><a class="{{setActive(['contact'])}}" href="#">contact</a></li>
 
                     </ul>

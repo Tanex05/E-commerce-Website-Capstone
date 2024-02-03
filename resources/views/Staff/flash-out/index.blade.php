@@ -4,36 +4,7 @@
       <!-- Main Content -->
         <section class="section">
           <div class="section-header">
-            <h1>Flash Sale</h1>
-          </div>
-
-          <div class="section-body">
-
-            <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Flash Sale End Date</h4>
-
-                  </div>
-                  <div class="card-body">
-                    <form action="{{route('flash-sale.update')}}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="">
-                            <div class="form-group">
-                                <label>Sale End Date</label>
-                                <input type="text" class="form-control datepicker" name="end_date" value="{{@$flashSaleDate->end_date}}">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
+            <h1>Flash Out</h1>
           </div>
 
           <div class="section-body">
@@ -42,10 +13,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h4>Add Flash Sale Products</h4>
+                            <h4>Add Flash Out Products</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('flash-sale.add-product') }}" method="POST">
+                            <form action="{{ route('flash-out.add-product') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label>Search For Product</label>
@@ -98,7 +69,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>All Flash Sale Products</h4>
+                    <h4>All Flash Out Products</h4>
 
                   </div>
                   <div class="card-body">
@@ -125,7 +96,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{route('flash-sale-status')}}",
+                    url: "{{route('flash-out-status')}}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
@@ -147,7 +118,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{route('flash-sale.show-at-home.change-status')}}",
+                    url: "{{route('flash-out.show-at-home.change-status')}}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
@@ -173,7 +144,7 @@
 
             // Fetch products using AJAX
             $.ajax({
-                url: "{{ route('get.products.dropdown-flashsale') }}",
+                url: "{{ route('get.products.dropdown-flashout') }}",
                 method: 'GET',
                 data: { q: searchQuery },
                 success: function (data) {

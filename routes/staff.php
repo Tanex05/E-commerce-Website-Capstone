@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\FaqsController;
+use App\Http\Controllers\Backend\FlashOutController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
@@ -79,7 +80,7 @@ Route::put('product-variant-item-update/{variantItemId}', [ProductVariantItemCon
 Route::delete('product-variant-item/{variantItemId}', [ProductVariantItemController::class, 'destroy'])->middleware('staff')->name('product-variant-item.destroy');
 Route::put('product-variant-item-status', [ProductVariantItemController::class, 'chageStatus'])->middleware('staff')->name('product-variant-item.chages-status');
 
-/** Flash Sale Routes */
+/** Promo Sale Routes */
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->middleware('staff')->name('flash-sale.index');
 Route::put('flash-sale', [FlashSaleController::class, 'update'])->middleware('staff')->name('flash-sale.update');
 Route::post('flash-sale/add-product', [FlashSaleController::class, 'addProduct'])->middleware('staff')->name('flash-sale.add-product');
@@ -87,8 +88,17 @@ Route::put('flash-sale/show-at-home/status-change', [FlashSaleController::class,
 Route::put('flash-sale-status', [FlashSaleController::class, 'changeStatus'])->middleware('staff')->name('flash-sale-status');
 Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destory'])->middleware('staff')->name('flash-sale.destory');
 
+/** Flash Out Routes */
+Route::get('flash-out', [FlashOutController::class, 'index'])->middleware('staff')->name('flash-out.index');
+Route::post('flash-out/add-product', [FlashOutController::class, 'addProduct'])->middleware('staff')->name('flash-out.add-product');
+Route::put('flash-out/show-at-home/status-change', [FlashOutController::class, 'chageShowAtHomeStatus'])->middleware('staff')->name('flash-out.show-at-home.change-status');
+Route::put('flash-out-status', [FlashOutController::class, 'changeStatus'])->middleware('staff')->name('flash-out-status');
+Route::delete('flash-out/{id}', [FlashOutController::class, 'destory'])->middleware('staff')->name('flash-out.destory');
+
+
 //search
-Route::get('/get-products-for-dropdown', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown');
+Route::get('/get-products-for-dropdown-flashsale', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashsale');
+Route::get('/get-products-for-dropdown-flashout', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashout');
 
 
 /** Coupon Routes */

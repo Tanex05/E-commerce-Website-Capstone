@@ -45,23 +45,21 @@ function productType($type)
     switch ($type) {
         case 'new_arrival':
             return 'New';
-            break;
         case 'featured_product':
             return 'Featured';
-            break;
         case 'top_product':
             return 'Top';
-            break;
-
         case 'best_product':
             return 'Best';
-            break;
-
+        case 'promo_product':
+            return 'Promo';
+        case 'flashout_product':
+            return 'Flash Out';
         default:
             return '';
-            break;
     }
 }
+
 
 /** get total cart amount */
 

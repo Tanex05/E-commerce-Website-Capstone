@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
@@ -49,5 +50,8 @@ Route::group(['middlware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => '
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/profile', [UserProfileController::class, 'updatePassword'])->name('profile.password');
+
+    /** User Address Routes */
+    Route::resource('address', UserAddressController::class);
 });
 

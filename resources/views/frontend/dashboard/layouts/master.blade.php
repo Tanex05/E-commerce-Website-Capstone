@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <title>TechnoBlast Computer Profile</title>
   <link rel="icon" type="image/png" href="{{ asset('Frontend/Logo/favicon.ico') }}">
@@ -103,6 +105,9 @@
   <!--Toastr js-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+  <!--Sweetalert js-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!--main/custom js-->
   <script src="{{ asset('Frontend/js/main.js') }}"></script>
 
@@ -114,6 +119,70 @@
         @endforeach
     @endif
   </script>
+
+      <!-- Dynamic Delete Alert -->
+      <script>
+        $(document).ready(function(){
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+            $('body').on('click', '.delete-item', function(event){
+                event.preventDefault();
+
+                let deleteURL = $(this).attr('href');
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            $.ajax({
+                                type: 'DELETE',
+                                url: deleteURL,
+
+                                success: function(data) {
+                                if (data.status === 'success') {
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: data.message,
+                                        icon: "success",
+                                        willClose: () => {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else if (data.status === 'error') {
+                                    Swal.fire({
+                                        title: "Can't Delete",
+                                        text: data.message,
+                                        icon: "error",
+                                    });
+                                }
+                            },
+
+
+                                error: function(xhr, status, error ){
+                                    console.log(error);
+                                }
+                            })
+
+
+
+                        }
+                    });
+                })
+
+        })
+      </script>
+
 
 @auth
 <script type="text/javascript">

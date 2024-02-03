@@ -49,15 +49,15 @@ class ShippingRuleDataTable extends DataTable
                 return '<i class="badge badge-success">Flate Amount</i>';
             }
         })
-        ->addColumn('min_cost', function($query){
-            if($query->type === 'min_cost'){
-                return $this->currencyIcon.$query->min_cost;
-            }else {
-                return $this->currencyIcon.'0';
+        ->addColumn('min_cost', function($query) {
+            if ($query->type === 'min_cost') {
+                return '₱' . $query->min_cost;
+            } else {
+                return '₱' . '0';
             }
         })
-        ->addColumn('cost', function($query){
-            return $this->currencyIcon.$query->cost;
+        ->addColumn('cost', function($query) {
+            return '₱' . $query->cost;
         })
         ->rawColumns(['status', 'action', 'type'])
         ->setRowId('id');

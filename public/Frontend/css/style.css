@@ -59,8 +59,8 @@ p {
 }
 
 /*======================
-	COMMON CSS START
-========================*/
+      COMMON CSS START
+  ========================*/
 .common_btn {
     font-size: 14px;
     text-transform: capitalize;
@@ -158,12 +158,12 @@ p {
 }
 
 /*======================
-	COMMON CSS END
-========================*/
+      COMMON CSS END
+  ========================*/
 
 /*======================
-	TOPBAR START
-========================*/
+      TOPBAR START
+  ========================*/
 #wsus__topbar {
     width: 100%;
     height: 45px;
@@ -293,12 +293,12 @@ p {
 }
 
 /*======================
-	TOPBAR END
-========================*/
+      TOPBAR END
+  ========================*/
 
 /*======================
-	HEADER START
-========================*/
+      HEADER START
+  ========================*/
 header {
     width: 100%;
     background: #08c;
@@ -639,12 +639,12 @@ header {
 }
 
 /*======================
-	HEADER END
-========================*/
+      HEADER END
+  ========================*/
 
 /*======================
-	MAIN MENU START
-========================*/
+      MAIN MENU START
+  ========================*/
 .wsus__main_menu {
     width: 100%;
     height: 50px;
@@ -1127,12 +1127,12 @@ header {
 }
 
 /*=======================
-	MAIN MENU END
-========================*/
+      MAIN MENU END
+  ========================*/
 
 /*=========================
-		POP UP START
-==========================*/
+          POP UP START
+  ==========================*/
 #wsus__pop_up {
     background: rgba(0, 0, 0, 0.6);
     width: 100%;
@@ -1254,12 +1254,12 @@ header {
 }
 
 /*=========================
-		POP UP END
-===========================*/
+          POP UP END
+  ===========================*/
 
 /*=========================
-PRODUCT MODAL VIEW START
-===========================*/
+  PRODUCT MODAL VIEW START
+  ===========================*/
 
 .product_popup_modal .modal-dialog {
     min-width: 1000px;
@@ -1364,12 +1364,12 @@ PRODUCT MODAL VIEW START
 }
 
 /*=========================
-PRODUCT MODAL VIEW END
-===========================*/
+  PRODUCT MODAL VIEW END
+  ===========================*/
 
 /*======================
-	BANNER PART START
-========================*/
+      BANNER PART START
+  ========================*/
 .wsus__banner_content {
     margin-top: 30px;
     position: relative;
@@ -1441,12 +1441,12 @@ PRODUCT MODAL VIEW END
 }
 
 /*======================
-	BANNER PART END
-========================*/
+      BANNER PART END
+  ========================*/
 
 /*======================
-	BRAND SLIDER START
-========================*/
+      BRAND SLIDER START
+  ========================*/
 #wsus__brand_sleder {
     margin-top: 70px;
     border: 1px solid #e5e4e4;
@@ -1497,12 +1497,12 @@ PRODUCT MODAL VIEW END
 }
 
 /*======================
-	BRAND SLIDER END
-========================*/
+      BRAND SLIDER END
+  ========================*/
 
 /*======================
-	FLASH SELL START
-========================*/
+      FLASH SELL START
+  ========================*/
 #wsus__flash_sell {
     padding-top: 70px;
 }
@@ -1813,19 +1813,18 @@ PRODUCT MODAL VIEW END
     width: 100%;
     text-align: center;
     border-radius: 0;
-    border: none;
 }
 
 /* .wsus__product_item:hover
-.wsus__product_details .add_cart {
-  opacity: 1;
-}
+  .wsus__product_details .add_cart {
+    opacity: 1;
+  }
 
-.wsus__product_item:hover
-.wsus__product_details .wsus__price {
-  opacity: 0;
-  visibility: hidden;
-} */
+  .wsus__product_item:hover
+  .wsus__product_details .wsus__price {
+    opacity: 0;
+    visibility: hidden;
+  } */
 
 #wsus__flash_sell .wsus__product_item {
     margin: 25px 12px 0px 12px;
@@ -1878,12 +1877,12 @@ PRODUCT MODAL VIEW END
 }
 
 /*======================
-	FLASH SELL END
-========================*/
+      FLASH SELL END
+  ========================*/
 
 /*======================
-MONTHLY TOP PRODUCT START
-========================*/
+  MONTHLY TOP PRODUCT START
+  ========================*/
 #wsus__monthly_top {
     margin-top: 60px;
     margin-bottom: -5px;
@@ -2048,12 +2047,12 @@ MONTHLY TOP PRODUCT START
 }
 
 /*======================
-MONTHLY TOP PRODUCT END
-========================*/
+  MONTHLY TOP PRODUCT END
+  ========================*/
 
 /*======================
-ELECTRONIC PART START
-========================*/
+  ELECTRONIC PART START
+  ========================*/
 #wsus__electronic {
     margin-top: 60px;
     margin-bottom: 60px;
@@ -2065,23 +2064,23 @@ ELECTRONIC PART START
 }
 
 /*======================
-ELECTRONIC PART  END
-========================*/
+  ELECTRONIC PART  END
+  ========================*/
 
 /*======================
-HOME BLOGS START
-========================*/
+  HOME BLOGS START
+  ========================*/
 .home_blogs {
     margin-top: 20px;
 }
 
 /*======================
-HOME BLOGS END
-========================*/
+  HOME BLOGS END
+  ========================*/
 
 /*======================
-	SINGLE BANNER START
-========================*/
+      SINGLE BANNER START
+  ========================*/
 #wsus__single_banner {
     padding-top: 70px;
 }
@@ -2144,12 +2143,12 @@ HOME BLOGS END
 }
 
 /*======================
-	SINGLE BANNER END
-========================*/
+      SINGLE BANNER END
+  ========================*/
 
 /*======================
-	HOT DEALS START
-========================*/
+      HOT DEALS START
+  ========================*/
 #wsus__hot_deals {
     padding-top: 66px;
 }
@@ -2359,12 +2358,12 @@ HOME BLOGS END
 }
 
 /*======================
-	HOT DEALS END
-========================*/
+      HOT DEALS END
+  ========================*/
 
 /*======================
-	LARGE BANNER START
-========================*/
+      LARGE BANNER START
+  ========================*/
 #wsus__large_banner {
     padding-top: 65px;
 }
@@ -2418,12 +2417,12 @@ HOME BLOGS END
 }
 
 /*======================
-	LARGE BANNER  END
-========================*/
+      LARGE BANNER  END
+  ========================*/
 
 /*======================
-WEEKLY BEST ITEM START
-========================*/
+  WEEKLY BEST ITEM START
+  ========================*/
 #wsus__weekly_best {
     margin-top: 67px;
 }
@@ -2481,12 +2480,12 @@ WEEKLY BEST ITEM START
 }
 
 /*======================
-WEEKLY BEST ITEM END
-========================*/
+  WEEKLY BEST ITEM END
+  ========================*/
 
 /*======================
-HOME SERVOCES START
-========================*/
+  HOME SERVOCES START
+  ========================*/
 #wsus__home_services {
     margin-top: 65px;
 }
@@ -2526,12 +2525,12 @@ HOME SERVOCES START
 }
 
 /*======================
-	HOME SERVOCES  END
-========================*/
+      HOME SERVOCES  END
+  ========================*/
 
 /*======================
-	HOME BLOGS START
-========================*/
+      HOME BLOGS START
+  ========================*/
 #home_blogs {
     padding-top: 65px;
 }
@@ -2572,12 +2571,12 @@ HOME SERVOCES START
 }
 
 /*======================
-	HOME BLOGS END
-========================*/
+      HOME BLOGS END
+  ========================*/
 
 /*======================
-	SUBSCRIBE PART START
-========================*/
+      SUBSCRIBE PART START
+  ========================*/
 #wsus__subscribe {
     margin-top: 70px;
     background: #0b2c3d;
@@ -2635,12 +2634,12 @@ HOME SERVOCES START
 }
 
 /*======================
-	SUBSCRIBE PART END
-========================*/
+      SUBSCRIBE PART END
+  ========================*/
 
 /*======================
-	FOOTER PART START
-========================*/
+      FOOTER PART START
+  ========================*/
 footer {
     background: #def0ff;
     padding-top: 70px;
@@ -2808,12 +2807,12 @@ footer {
 }
 
 /*======================
-	FOOTER PART END
-========================*/
+      FOOTER PART END
+  ========================*/
 
 /*======================
-SCROLL BUTTON START
-========================*/
+  SCROLL BUTTON START
+  ========================*/
 .wsus__scroll_btn {
     width: 35px;
     height: 35px;
@@ -2843,12 +2842,12 @@ SCROLL BUTTON START
 }
 
 /*======================
-SCROLL BUTTON  END
-========================*/
+  SCROLL BUTTON  END
+  ========================*/
 
 /*======================
-BREADCRUMB START
-========================*/
+  BREADCRUMB START
+  ========================*/
 #wsus__breadcrumb {
     background: url(../images/breadcrumb_bg.jpg);
     background-size: cover !important;
@@ -2906,12 +2905,12 @@ BREADCRUMB START
 }
 
 /*======================
-BREADCRUMB END
-========================*/
+  BREADCRUMB END
+  ========================*/
 
 /*======================
-PPRODUCT PAGE START
-========================*/
+  PPRODUCT PAGE START
+  ========================*/
 #wsus__product_page {
     padding-top: 70px;
 }
@@ -3400,12 +3399,12 @@ PPRODUCT PAGE START
 }
 
 /*======================
-PPRODUCT PAGE END
-========================*/
+  PPRODUCT PAGE END
+  ========================*/
 
 /*======================
-PRODUCT DETAILS START
-========================*/
+  PRODUCT DETAILS START
+  ========================*/
 #wsus__product_details {
     padding-top: 70px;
 }
@@ -4274,12 +4273,12 @@ PRODUCT DETAILS START
 }
 
 /*======================
-PRODUCT DETAILS  END
-========================*/
+  PRODUCT DETAILS  END
+  ========================*/
 
 /*======================
-CART VIEW PAGE START
-========================*/
+  CART VIEW PAGE START
+  ========================*/
 #wsus__cart_view {
     padding-top: 65px;
 }
@@ -4561,12 +4560,12 @@ CART VIEW PAGE START
 }
 
 /*======================
-CART VIEW PAGE END
-========================*/
+  CART VIEW PAGE END
+  ========================*/
 
 /*======================
-CHECKOUT PAGE START
-========================*/
+  CHECKOUT PAGE START
+  ========================*/
 .wsus__check_form {
     background: #fff;
     padding: 25px;
@@ -4765,12 +4764,12 @@ CHECKOUT PAGE START
 }
 
 /*======================
-CHECKOUT PAGE END
-========================*/
+  CHECKOUT PAGE END
+  ========================*/
 
 /*======================
-INVOICE PAGE SATAR
-========================*/
+  INVOICE PAGE SATAR
+  ========================*/
 .wsus__invoice_top {
     padding: 20px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
@@ -4932,12 +4931,12 @@ INVOICE PAGE SATAR
 }
 
 /*======================
-INVOICE PAGE END
-========================*/
+  INVOICE PAGE END
+  ========================*/
 
 /*======================
-WISHLIST PAGE START
-========================*/
+  WISHLIST PAGE START
+  ========================*/
 .wishlist .wsus__pro_img {
     position: relative;
     width: 180px;
@@ -5004,12 +5003,12 @@ WISHLIST PAGE START
 }
 
 /*======================
-	WISHLIST PAGE END
-========================*/
+      WISHLIST PAGE END
+  ========================*/
 
 /*========================
-	COMPARE START
-=========================*/
+      COMPARE START
+  =========================*/
 #wsus__compare {
     padding-top: 70px;
 }
@@ -5147,12 +5146,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-		COMPARE END
-=========================*/
+          COMPARE END
+  =========================*/
 
 /*========================
-	CONTACT START
-=========================*/
+      CONTACT START
+  =========================*/
 #wsus__contact {
     padding-top: 70px;
 }
@@ -5267,12 +5266,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	CONTACT END
-=========================*/
+      CONTACT END
+  =========================*/
 
 /*========================
-	LOGIN/REGISTER START
-=========================*/
+      LOGIN/REGISTER START
+  =========================*/
 #wsus__login_register {
     padding-top: 70px;
     position: relative;
@@ -5440,12 +5439,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	LOGIN/REGISTER END
-=========================*/
+      LOGIN/REGISTER END
+  =========================*/
 
 /*========================
-	ABOUT US START
-=========================*/
+      ABOUT US START
+  =========================*/
 .wsus__about_accordian {
     margin-top: 70px;
 }
@@ -5693,12 +5692,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	ABOUT US END
-=========================*/
+      ABOUT US END
+  =========================*/
 
 /*========================
-	TEAM DETAILS START
-=========================*/
+      TEAM DETAILS START
+  =========================*/
 .wsus__team_details {
     margin-top: 70px;
 }
@@ -5944,12 +5943,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	TEAM DETAILS END
-=========================*/
+      TEAM DETAILS END
+  =========================*/
 
 /*========================
-	404  START
-=========================*/
+      404  START
+  =========================*/
 #wsus__404 {
     margin-bottom: 125px;
     margin-top: 40px;
@@ -5986,12 +5985,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	404  END
-=========================*/
+      404  END
+  =========================*/
 
 /*========================
-	BLOGS PAGE START
-=========================*/
+      BLOGS PAGE START
+  =========================*/
 #wsus__blogs {
     padding-top: 45px;
 }
@@ -6023,8 +6022,8 @@ WISHLIST PAGE START
     height: 100%;
     /* background: rgb(11, 44, 61); */
     /* background: linear-gradient(0deg,
-      rgba(11, 44, 61, 0.68) 20%,
-      transparent 100%); */
+        rgba(11, 44, 61, 0.68) 20%,
+        transparent 100%); */
 }
 
 .wsus__blog_text_center {
@@ -6105,12 +6104,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	BLOGS PAGE END
-=========================*/
+      BLOGS PAGE END
+  =========================*/
 
 /*========================
-	BLOGS DETAILS START
-=========================*/
+      BLOGS DETAILS START
+  =========================*/
 #wsus__blog_details {
     padding-top: 70px;
 }
@@ -6569,12 +6568,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	BLOGS DETAILS END
-=========================*/
+      BLOGS DETAILS END
+  =========================*/
 
 /*========================
-	FAQ START
-=========================*/
+      FAQ START
+  =========================*/
 #wsus__faq {
     padding-top: 65px;
 }
@@ -6636,12 +6635,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	FAQ END
-=========================*/
+      FAQ END
+  =========================*/
 
 /*========================
-	DASHBOARD START
-=========================*/
+      DASHBOARD START
+  =========================*/
 #wsus__dashboard {
     padding: 40px 30px 40px 0px;
 }
@@ -7396,12 +7395,12 @@ WISHLIST PAGE START
 }
 
 /*========================
-	DASHBOARD END
-=========================*/
+      DASHBOARD END
+  =========================*/
 
 /*======================
-TERMS & CONDITION START
-========================*/
+  TERMS & CONDITION START
+  ========================*/
 #wsus__terms_condition {
     margin-top: 67px;
 }
@@ -7447,12 +7446,12 @@ TERMS & CONDITION START
 }
 
 /*======================
-TERMS & CONDITION END
-========================*/
+  TERMS & CONDITION END
+  ========================*/
 
 /*======================
-FORGET PASSWORD START
-========================*/
+  FORGET PASSWORD START
+  ========================*/
 .wsus__forget_area {
     border: 1px solid #eee;
     padding: 30px;
@@ -7501,12 +7500,12 @@ FORGET PASSWORD START
 }
 
 /*======================
-FORGET PASSWORD END
-========================*/
+  FORGET PASSWORD END
+  ========================*/
 
 /*======================
-CHANGE PASSWORD START
-========================*/
+  CHANGE PASSWORD START
+  ========================*/
 .wsus__change_password {
     padding: 50px;
     background: #fff;
@@ -7544,12 +7543,12 @@ CHANGE PASSWORD START
 }
 
 /*======================
-CHANGE PASSWORD END
-========================*/
+  CHANGE PASSWORD END
+  ========================*/
 
 /*======================
-PAYMENT PAGE  START
-========================*/
+  PAYMENT PAGE  START
+  ========================*/
 .wsus__pay_info_area .nav-pills .nav-link {
     margin-bottom: 10px;
     padding: 15px 0px;
@@ -7748,12 +7747,12 @@ PAYMENT PAGE  START
 }
 
 /*======================
-PAYMENT PAGE  END
-========================*/
+  PAYMENT PAGE  END
+  ========================*/
 
 /*======================
-TRACKING ORDER START
-========================*/
+  TRACKING ORDER START
+  ========================*/
 .tack_form {
     background: #fff;
     padding: 40px;
@@ -7913,47 +7912,47 @@ TRACKING ORDER START
 }
 
 /* .progtrckr li:last-child::after {
-  width: 100%;
-}
+    width: 100%;
+  }
 
-.progtrckr li:nth-child(1)::before {
-  content: "\f058";
-}
+  .progtrckr li:nth-child(1)::before {
+    content: "\f058";
+  }
 
-.progtrckr li:nth-child(2)::before {
-  content: "\f013";
-}
+  .progtrckr li:nth-child(2)::before {
+    content: "\f013";
+  }
 
-.progtrckr li:nth-child(3)::before {
-  content: "\f0d1";
-}
+  .progtrckr li:nth-child(3)::before {
+    content: "\f0d1";
+  }
 
-.progtrckr li:nth-child(4)::before {
-  content: "\f06b";
-}
+  .progtrckr li:nth-child(4)::before {
+    content: "\f06b";
+  }
 
-.progtrckr li.progtrckr_done::before {
-  content: "\f00c";
-  background:#08C;
-  color: #fff;
-  border-color:#08C;
-}
+  .progtrckr li.progtrckr_done::before {
+    content: "\f00c";
+    background:#08C;
+    color: #fff;
+    border-color:#08C;
+  }
 
-.progtrckr li.progtrckr_done::after {
-  background:#08C;
-} */
+  .progtrckr li.progtrckr_done::after {
+    background:#08C;
+  } */
 
 .wsus__track_area .common_btn {
     margin-top: 25px;
 }
 
 /*======================
-TRACKING ORDER END
-========================*/
+  TRACKING ORDER END
+  ========================*/
 
 /*======================
-VENDORS PAGE START
-========================*/
+  VENDORS PAGE START
+  ========================*/
 .wsus__vendor_sidebar {
     padding: 20px;
 }
@@ -8067,12 +8066,12 @@ VENDORS PAGE START
 }
 
 /*======================
-VENDORS PAGE END
-========================*/
+  VENDORS PAGE END
+  ========================*/
 
 /*======================
-VENDORS DETAILA START
-========================*/
+  VENDORS DETAILA START
+  ========================*/
 .wsus__vendor_det_banner_text {
     background: linear-gradient(
         90deg,
@@ -8127,12 +8126,12 @@ VENDORS DETAILA START
 }
 
 /*======================
-VENDORS DETAILA END
-========================*/
+  VENDORS DETAILA END
+  ========================*/
 
 /*======================
-CATEGORY PAGE START
-========================*/
+  CATEGORY PAGE START
+  ========================*/
 .wsus__category_topbar .select2-container--default .select2-selection--single {
     width: 100%;
 }
@@ -8153,12 +8152,12 @@ CATEGORY PAGE START
 }
 
 /*======================
-CATEGORY PAGE END
-========================*/
+  CATEGORY PAGE END
+  ========================*/
 
 /*======================
-CUSTOM PAGE START
-========================*/
+  CUSTOM PAGE START
+  ========================*/
 .wsus__custom_pages p {
     margin-top: -7px;
 }
@@ -8169,12 +8168,12 @@ CUSTOM PAGE START
 }
 
 /*======================
-CUSTOM PAGE END
-========================*/
+  CUSTOM PAGE END
+  ========================*/
 
 /*======================
-	DAILY DEALS START
-========================*/
+      DAILY DEALS START
+  ========================*/
 #wsus__daily_deals {
     margin-top: 43px;
 }
@@ -8281,12 +8280,12 @@ CUSTOM PAGE END
 }
 
 /*======================
-	DAILY DEALS END
-========================*/
+      DAILY DEALS END
+  ========================*/
 
 /*======================
-DAILY DEALS DETAILS START
-========================*/
+  DAILY DEALS DETAILS START
+  ========================*/
 .wsus__offer_details_banner {
     border-radius: 5px;
     overflow: hidden;
@@ -8378,12 +8377,12 @@ DAILY DEALS DETAILS START
 }
 
 /*======================
-DAILY DEALS DETAILS END
-========================*/
+  DAILY DEALS DETAILS END
+  ========================*/
 
 /*======================
-	BRANDS PAGE START
-========================*/
+      BRANDS PAGE START
+  ========================*/
 #wsus__brands {
     margin-top: 40px;
 }
@@ -8460,12 +8459,12 @@ DAILY DEALS DETAILS END
 }
 
 /*======================
-	BRANDS PAGE END
-========================*/
+      BRANDS PAGE END
+  ========================*/
 
 /*======================
-	HOME PAGE 2 START
-========================*/
+      HOME PAGE 2 START
+  ========================*/
 header .dropdown .nav-link {
     width: auto;
     height: 40px;
@@ -8617,8 +8616,8 @@ header .wsus__call_text a:hover {
 }
 
 /* product start */
-.wsus__new,
 .wsus__minus {
+    width: 50px;
     border-radius: 30px;
     opacity: 0.3;
     transition: all linear 0.3s;
@@ -9044,18 +9043,18 @@ header .wsus__call_text a:hover {
 }
 
 /*======================
-	HOME PAGE 2 END
-========================*/
+      HOME PAGE 2 END
+  ========================*/
 
 /*======================
-DASHBOARD CHAT START
-========================*/
+  DASHBOARD CHAT START
+  ========================*/
 .wsus__chatlist,
 .wsus__chat_main_area {
+    height: 73vh;
     border-radius: 5px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.27) 0px 1px 4px;
-    height: 687px;
     overflow: hidden;
 }
 
@@ -9190,6 +9189,7 @@ DASHBOARD CHAT START
 
 .wsus__chat_area_body {
     max-height: 591px;
+    height: 591px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #08c #0b172d;
@@ -9312,8 +9312,8 @@ DASHBOARD CHAT START
 }
 
 /*======================
-DASHBOARD CHAT END
-========================*/
+  DASHBOARD CHAT END
+  ========================*/
 
 /* extra css start here */
 .modal_btn {
@@ -9410,6 +9410,64 @@ a:not([href]):not([class]):hover {
 
 /* extra css end here */
 
+.wsus__input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #353535;
+    resize: none;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.wsus__input select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #353535;
+    resize: none;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+}
+.wsus__input textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #353535;
+    resize: none;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.wsus__input label {
+    margin-bottom: 5px;
+}
+
+.create_button {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+#flexSwitchCheckDefault {
+    height: 20px !important;
+    width: 50px !important;
+}
+
+.delete-item {
+    margin-left: 4px !important;
+}
+
+.btn-space-right {
+    margin-right: 5px;
+    color: #fff;
+}
+
 .page-item.disabled > .page-link {
     width: 35px;
     height: 35px;
@@ -9476,4 +9534,145 @@ a:not([href]):not([class]):hover {
 
 #sticky_pro_zoom {
     z-index: 9999 !important;
+}
+
+.product_qty_wrapper {
+    display: flex;
+}
+
+.product_qty_wrapper > .product-qty {
+    width: 43px;
+    height: 36px;
+    padding-left: 5px;
+}
+
+.wsus__cart_list .wsus__pro_name {
+    width: 285px;
+}
+.wsus__mini_cart .wsus__cart_img img {
+    height: 70px;
+    object-fit: cover;
+}
+
+#card-element {
+    padding: 18px;
+}
+
+.razorpay-payment-button {
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #fff;
+    background: #08c;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s ease;
+    -moz-transition: all linear 0.3s ease;
+    -ms-transition: all linear 0.3s ease;
+    -o-transition: all linear 0.3s ease;
+    width: 100%;
+}
+
+.add_cart_two {
+    position: static;
+    padding: 0px 19px;
+    font-size: 16px;
+    width: auto;
+    height: 40px;
+    color: #fff;
+    border: 1px solid #08c;
+    background: #08c;
+    margin-right: 10px;
+}
+
+.add_cart_two:hover {
+    color: #08c;
+    border: 1px solid #08c;
+    background: #fff;
+}
+
+.wsus__pro_det_review .wsus__comment_text ul li {
+    width: 20% !important;
+    height: 20% !important;
+    margin-right: 10px;
+    float: left;
+}
+
+.wsus__hot_deals__single_img img {
+    width: 200px !important;
+    height: 150px !important;
+    object-fit: cover;
+}
+.add_cart {
+    border: 0px !important;
+}
+
+/* Loader */
+.loader {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 30px, 0 -30px;
+    border-radius: 4px;
+    background: currentColor;
+    display: block;
+    margin: -50px auto 0;
+    position: relative;
+    color: #fff;
+    transform: translateY(30px);
+    box-sizing: border-box;
+    animation: animloader 2s ease infinite;
+}
+.loader::after,
+.loader::before {
+    content: "";
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 30px, 0 -30px;
+    border-radius: 4px;
+    background: currentColor;
+    color: #fff;
+    position: absolute;
+    left: 30px;
+    top: 0;
+    animation: animloader 2s 0.2s ease infinite;
+}
+.loader::before {
+    animation-delay: 0.4s;
+    left: 60px;
+}
+
+@keyframes animloader {
+    0% {
+        top: 0;
+        color: white;
+    }
+    50% {
+        top: 30px;
+        color: rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        top: 0;
+        color: white;
+    }
+}
+
+.msg-notification {
+    border: 5px solid #08c !important;
+}
+.wsus__chat_area_footer {
+    width: 100% !important;
+    bottom: 0 !important;
+    /* position: absolute !important; */
+}
+
+button.btn.btn-danger.product-decrement {
+    margin-right: 5%;
+}
+
+button.btn.btn-success.product-increment {
+    margin-left: 5%;
 }

@@ -168,10 +168,6 @@
         @endif
     </script>
 
-
-
-<!-- Start of Tawk.to Script -->
-
     @auth
         <script type="text/javascript">
             var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -188,9 +184,7 @@
             })();
         </script>
     @endauth
-
-<!--End of Tawk.to Script-->
-
+    @include('frontend.layouts.scripts')
     @stack('scripts')
 </body>
 

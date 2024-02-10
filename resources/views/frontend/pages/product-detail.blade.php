@@ -73,7 +73,24 @@
                             @else
                                 <h4>₱{{$product->price}}</h4>
                             @endif
-                            <br>
+
+                             {{-- <p class="wsus__pro_rating">
+                                    @php
+                                    $avgRating = $product->reviews()->avg('rating');
+                                    $fullRating = round($avgRating);
+                                    @endphp
+
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $fullRating)
+                                        <i class="fas fa-star"></i>
+                                        @else
+                                        <i class="far fa-star"></i>
+                                        @endif
+                                    @endfor
+
+                                    <span>({{count($product->reviews)}} review)</span>
+                                </p> --}}
+
                             <p class="description">{!! $product->short_description !!}</p>
 
 
@@ -95,6 +112,7 @@
                                             </div>
                                         @endif
                                         @endforeach
+
                                     </div>
                                 </div>
 
@@ -105,13 +123,17 @@
                                     </div>
                                 </div>
 
+
                                 <ul class="wsus__button_area">
                                     <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
+
+
                                     <li><a style="border: 1px solid gray;
                                         padding: 7px 11px;
                                         border-radius: 100%;" href="javascript:;" class="add_to_wishlist" data-id="{{$product->id}}"><i class="fal fa-heart"></i></a></li>
                                 </ul>
                             </form>
+
                             <br>
                             <p class="brand_model"><span>SKU :</span> {{$product->sku}}</p>
                             <br>
@@ -156,17 +178,23 @@
                             <ul class="nav nav-pills mb-3" id="pills-tab3" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="pills-home-tab7" data-bs-toggle="pill"
-                                        data-bs-target="#pills-home22" type="button" role="tab"
-                                        aria-controls="pills-home" aria-selected="true">Description</button>
+                                        data-bs-target="#pills-home22" type="button" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">Description</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
+                                        data-bs-target="#pills-contact2" type="button" role="tab"
+                                        aria-controls="pills-contact2" aria-selected="false">Reviews</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab239" data-bs-toggle="pill"
                                         data-bs-target="#pills-contact239" type="button" role="tab"
-                                        aria-controls="pills-contact239" aria-selected="false">faqs</button>
+                                        aria-controls="pills-contact239" aria-selected="false">FAQs</button>
                                 </li>
                             </ul>
+
                             <div class="tab-content" id="pills-tabContent4">
-                                <div class="tab-pane fade  show active " id="pills-home22" role="tabpanel"
+                                <div class="tab-pane fade show active" id="pills-home22" role="tabpanel"
                                     aria-labelledby="pills-home-tab7">
                                     <div class="row">
                                         <div class="col-xl-12">
@@ -176,7 +204,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="pills-contact239" role="tabpanel" aria-labelledby="pills-contact-tab239">
+
+                                <div class="tab-pane fade" id="pills-contact2" role="tabpanel"
+                                    aria-labelledby="pills-contact-tab2">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="wsus__description_area">
+                                                <!-- Reviews content goes here -->
+                                                Test Reviews
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="pills-contact239" role="tabpanel"
+                                    aria-labelledby="pills-contact-tab239">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="wsus__contact_question">
@@ -186,14 +228,15 @@
                                                         <div class="accordion-item">
                                                             <h2 class="accordion-header" id="heading{{ $index }}">
                                                                 <button class="accordion-button" type="button"
-                                                                        data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}"
-                                                                        aria-expanded="false" aria-controls="collapse{{ $index }}">
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#collapse{{ $index }}" aria-expanded="false"
+                                                                    aria-controls="collapse{{ $index }}">
                                                                     {{ $faq->title }}
                                                                 </button>
                                                             </h2>
-                                                            <div id="collapse{{ $index }}" class="accordion-collapse collapse"
-                                                                 aria-labelledby="heading{{ $index }}"
-                                                                 data-bs-parent="#accordionExample">
+                                                            <div id="collapse{{ $index }}"
+                                                                class="accordion-collapse collapse" aria-labelledby="heading{{ $index }}"
+                                                                data-bs-parent="#accordionExample">
                                                                 <div class="accordion-body">
                                                                     {{ strip_tags($faq->description) }}
                                                                 </div>
@@ -205,13 +248,13 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
+
         </div>
     </section>
     <!--============================

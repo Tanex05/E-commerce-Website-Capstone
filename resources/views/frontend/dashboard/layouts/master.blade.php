@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>TechnoBlast Computer Profile</title>
+  <title>TechnoBlast</title>
   <link rel="icon" type="image/png" href="{{ asset('Frontend/Logo/favicon.ico') }}">
   <link rel="stylesheet" href="{{ asset('Frontend/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('Frontend/css/bootstrap.min.css') }}">

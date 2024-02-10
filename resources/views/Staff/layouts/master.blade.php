@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  <title>General Dashboards &mdash; Technoblast</title>
+  <title>Technoblast - Staff Dashboard</title>
 
   <link rel="icon" type="image/x-icon" href="{{ asset('Backend/assets/logo/favicon.ico') }}">
 

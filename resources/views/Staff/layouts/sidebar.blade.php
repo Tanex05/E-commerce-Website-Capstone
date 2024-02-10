@@ -4,7 +4,7 @@
         <a href="{{ route('home') }}">TechnoBlast</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="index.html">TB</a>
+        <a href="{{ route('home') }}">TB</a>
       </div>
       <ul class="sidebar-menu">
         <!-- Dashboard Header -->

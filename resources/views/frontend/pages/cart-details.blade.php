@@ -128,8 +128,8 @@
                         @if ($disabled)
                              <p style="color:red">Coupon disabled because the cart contains a flashout item.</p>
                         @endif
-                        {{-- {{route('user.checkout')}} --}}
-                        <a class="common_btn mt-4 w-100 text-center" href="#">checkout</a>
+
+                        <a class="common_btn mt-4 w-100 text-center" href="{{route('user.checkout')}}">checkout</a>
                         <a class="common_btn mt-1 w-100 text-center" href="{{route('home')}}"><i
                                 class="fab fa-shopify"></i> Keep Shopping</a>
                     </div>
@@ -314,7 +314,7 @@
                    if(data.status === 'error'){
                     toastr.error(data.message)
                    }else if (data.status === 'success'){
-                    calculateCouponDescount()
+                    calculateCouponDiscount()
                     toastr.success(data.message)
                    }
                 },
@@ -326,21 +326,22 @@
         })
 
         // calculate discount amount
-        function calculateCouponDescount(){
-            $.ajax({
-                method: 'GET',
-                url: "{{ route('coupon-calculation') }}",
-                success: function(data) {
-                    if(data.status === 'success'){
-                        $('#discount').text('₱'+data.discount);
-                        $('#cart_total').text('₱'+data.cart_total);
-                    }
-                },
-                error: function(data) {
-                    console.log(data);
+        function calculateCouponDiscount(){
+        $.ajax({
+            method: 'GET',
+            url: "{{ route('coupon-calculation') }}",
+            success: function(data) {
+                if(data.status === 'success'){
+                    $('#discount').text('₱'+data.discount);
+                    $('#cart_total').text('₱'+data.cart_total);
                 }
-            })
-        }
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        })
+    }
+
 
 
     })

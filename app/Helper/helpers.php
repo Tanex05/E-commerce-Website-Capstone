@@ -71,39 +71,43 @@ function getCartTotal(){
     return $total;
 }
 
-/** get payable total amount */
-function getMainCartTotal(){
-    if(Session::has('coupon')){
+
+function getCartDiscount() {
+    if (Session::has('coupon')) {
         $coupon = Session::get('coupon');
         $subTotal = getCartTotal();
-        if($coupon['discount_type'] === 'amount'){
-            $total = $subTotal - $coupon['discount'];
+        if ($coupon['discount_type'] === 'amount') {
+            $discount = min($coupon['discount'], $subTotal); // Ensure discount doesn't exceed subtotal
+            return $discount;
+        } elseif ($coupon['discount_type'] === 'percent') {
+            $discount = round($subTotal * ($coupon['discount'] / 100), 2); // Calculate discount
+            $discount = min($discount, $subTotal); // Ensure discount doesn't exceed subtotal
+            return $discount;
+        }
+    } else {
+        return 0;
+    }
+}
+
+function getMainCartTotal() {
+    if (Session::has('coupon')) {
+        $coupon = Session::get('coupon');
+        $subTotal = getCartTotal();
+        if ($coupon['discount_type'] === 'amount') {
+            $discount = min($coupon['discount'], $subTotal); // Ensure discount doesn't exceed subtotal
+            $total = $subTotal - $discount;
             return $total;
-        }elseif($coupon['discount_type'] === 'percent'){
-            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
+        } elseif ($coupon['discount_type'] === 'percent') {
+            $discount = round($subTotal * ($coupon['discount'] / 100), 2); // Calculate discount
+            $discount = min($discount, $subTotal); // Ensure discount doesn't exceed subtotal
             $total = $subTotal - $discount;
             return $total;
         }
-    }else {
+    } else {
         return getCartTotal();
     }
 }
 
-/** get cart discount */
-function getCartDiscount(){
-    if(Session::has('coupon')){
-        $coupon = Session::get('coupon');
-        $subTotal = getCartTotal();
-        if($coupon['discount_type'] === 'amount'){
-            return $coupon['discount'];
-        }elseif($coupon['discount_type'] === 'percent'){
-            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
-            return $discount;
-        }
-    }else {
-        return 0;
-    }
-}
 
 /** get selected shipping fee from session */
 function getShppingFee(){

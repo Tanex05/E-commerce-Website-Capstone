@@ -37,7 +37,7 @@ class SliderController extends Controller
             'banner' => ['required','image','max:2000'],
             'type' => ['string','max:200'],
             'title' => ['required','max:200'],
-            'starting_price' => ['required','max:200'],
+            'sub_description' => ['required','max:200'],
             'btn_url' => ['url'],
             'serial' => ['required','integer'],
             'status' => ['required'],
@@ -51,7 +51,7 @@ class SliderController extends Controller
 
         $slider->type = $request->type;
         $slider->title = $request->title;
-        $slider->starting_price = $request->starting_price;
+        $slider->sub_description = $request->sub_description;
         $slider->btn_url = $request->btn_url;
         $slider->serial = $request->serial;
         $slider->status = $request->status;
@@ -90,7 +90,7 @@ class SliderController extends Controller
             'banner' => ['nullable','image','max:2000'],
             'type' => ['string','max:200'],
             'title' => ['required','max:200'],
-            'starting_price' => ['required','max:200'],
+            'sub_description' => ['required','max:200'],
             'btn_url' => ['url'],
             'serial' => ['required','integer'],
             'status' => ['required'],
@@ -102,7 +102,7 @@ class SliderController extends Controller
 
         $slider->type = $request->type;
         $slider->title = $request->title;
-        $slider->starting_price = $request->starting_price;
+        $slider->sub_description = $request->sub_description;
         $slider->btn_url = $request->btn_url;
         $slider->serial = $request->serial;
         $slider->status = $request->status;

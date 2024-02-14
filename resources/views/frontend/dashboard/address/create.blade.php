@@ -21,7 +21,7 @@
                   </div>
                   <div class="col-xl-6 col-md-6">
                     <div class="wsus__add_address_single">
-                      <label>email</label>
+                      <label>email <b>*</b></label>
                       <input type="email" placeholder="Email" name="email">
                     </div>
                   </div>

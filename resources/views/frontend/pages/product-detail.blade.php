@@ -137,7 +137,7 @@
                             <br>
                             <p class="brand_model"><span>SKU :</span> {{$product->sku}}</p>
                             <br>
-                            <p class="brand_model"><span>brand :</span> {{$product->brand->name}}</p>
+                            <p class="brand_model"><span>brand :</span>    {{ $product->brand !== null ? $product->brand->name : "None" }}</p>
 
                         </div>
                     </div>

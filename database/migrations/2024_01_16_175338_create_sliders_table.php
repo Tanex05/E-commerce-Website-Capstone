@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('banner')->nullable();
             $table->string('type')->nullable();
             $table->string('title')->nullable();
-            $table->string('starting_price')->nullable();
+            $table->string('sub_description')->nullable();
             $table->string('btn_url')->nullable();
             $table->integer('serial')->nullable();
             $table->boolean('status')->nullable();

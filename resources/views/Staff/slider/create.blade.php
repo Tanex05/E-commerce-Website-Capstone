@@ -32,8 +32,8 @@
                         <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                     </div>
                     <div class="form-group">
-                        <label>Starting Price</label>
-                        <input type="text" class="form-control" name="starting_price" value="{{ old('starting_price') }}">
+                        <label>Sub_Description</label>
+                        <input type="text" class="form-control" name="sub_description" value="{{ old('sub_description') }}">
                     </div>
                     <div class="form-group">
                         <label>Button Url</label>

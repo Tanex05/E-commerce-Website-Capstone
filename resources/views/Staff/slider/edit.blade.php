@@ -36,8 +36,8 @@
                         <input type="text" class="form-control" name="title" value="{{ $slider->title }}">
                     </div>
                     <div class="form-group">
-                        <label>Starting Price</label>
-                        <input type="text" class="form-control" name="starting_price" value="{{ $slider->starting_price }}">
+                        <label>Sub_Description</label>
+                        <input type="text" class="form-control" name="sub_description" value="{{ $slider->sub_description }}">
                     </div>
                     <div class="form-group">
                         <label>Button Url</label>

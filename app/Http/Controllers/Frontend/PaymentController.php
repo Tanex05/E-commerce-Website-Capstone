@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -32,7 +33,7 @@ class PaymentController extends Controller
     {
 
         $order = new Order();
-        $order->invocie_id = rand(1, 999999);
+        $order->invoice_id  = rand(1, 999999);
         $order->user_id = Auth::user()->id;
         $order->sub_total = getCartTotal();
         $order->amount =  getFinalPayableAmount();
@@ -64,7 +65,9 @@ class PaymentController extends Controller
             $product->save();
         }
 
-        // Increment total_used for the coupon if a coupon is applied
+        // not yet tested hehe
+
+        // Increment usage Total_used for the coupon if a coupon is applied
         $coupon = Session::get('coupon');
         if (!empty($coupon)) {
             $couponModel = Coupon::where('code', $coupon)->first();

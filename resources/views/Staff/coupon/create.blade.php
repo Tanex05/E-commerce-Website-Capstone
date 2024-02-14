@@ -36,11 +36,6 @@
                             <input type="text" class="form-control" name="quantity" value="">
                         </div>
 
-                        <div class="form-group">
-                            <label>Max Use Per Person</label>
-                            <input type="text" class="form-control" name="max_use" value="">
-                        </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

@@ -300,8 +300,7 @@
             })
         }
 
-        // applay coupon on cart
-
+        // apply coupon on cart
         $('#coupon_form').on('submit', function(e){
             e.preventDefault();
             let formData = $(this).serialize();

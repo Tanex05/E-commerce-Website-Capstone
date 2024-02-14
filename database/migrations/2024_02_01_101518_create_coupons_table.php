@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('code');
             $table->integer('quantity');
-            $table->integer('max_use');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('discount_type');

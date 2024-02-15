@@ -56,7 +56,10 @@
                                 <div class="row">
                                     <div class="col-xl-12 m-auto">
                                         <div class="wsus__payment_area">
-                                            <a class="nav-link common_btn text-center" href="#">Confirm Payment Option</a>
+                                            <form action="{{ route('user.pay-with-paymongo') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="nav-link common_btn text-center">Pay With Paymongo</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

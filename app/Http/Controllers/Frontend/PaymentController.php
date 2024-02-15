@@ -11,7 +11,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
-
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
@@ -94,5 +94,72 @@ class PaymentController extends Controller
         Session::forget('shipping_method');
         Session::forget('coupon');
     }
+
+    public function payWithPayMongo(Request $request)
+    {
+        // Calculate payable amount
+        $total = getFinalPayableAmount();
+
+        try {
+            // Create PayMongo Checkout Session
+            $sessionId = $this->createCheckoutSession($total);
+
+            // Redirect to PayMongo checkout page
+            return redirect()->away("https://checkout.paymongo.com/{$sessionId}");
+        } catch (\Exception $e) {
+            // Handle error (e.g., log error, display error message)
+            return redirect()->route('user.checkout')->with('error', 'Failed to initiate payment. Please try again later.');
+        }
+    }
+
+    private function createCheckoutSession($amount)
+    {
+        $client = new Client();
+
+        try {
+            $response = $client->post('https://api.paymongo.com/v1/checkout_sessions', [
+                'json' => [
+                    'data' => [
+                        'attributes' => [
+                            'amount' => $amount, // Convert amount to cents
+                            'currency' => 'PHP',
+                            'payment_methods' => [
+                                'gcash',
+                                'bank_transfer', // Add more payment methods as needed
+                            ],
+                            'livemode' => false, // Set to false for test mode
+                            'send_email_receipt' => false, // Don't send email receipt
+                            'show_description' => true, // Show description
+                            'show_line_items' => true, // Show line items
+                        ],
+                    ],
+                ],
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer ' . env('PAYMONGO_SECRET_KEY'),
+                ],
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+
+            // Check if the status code is 200 (success) or 201 (created)
+            if ($response->getStatusCode() === 200 || $response->getStatusCode() === 201) {
+                // Trigger storeOrder and clear session
+                $this->storeOrder('Paymongo', 1, $data['data']['id'], $amount);
+                $this->clearSession();
+            } else {
+                // Handle error (e.g., log error, throw exception)
+                throw new \Exception('Failed to create checkout session: ' . $response->getStatusCode());
+            }
+
+            return $data['data']['id']; // Return the Checkout Session ID
+        } catch (\Exception $e) {
+            // Handle errors (e.g., log error, throw exception)
+            throw $e;
+        }
+    }
+
+
+
 
 }

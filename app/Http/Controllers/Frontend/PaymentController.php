@@ -8,10 +8,11 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\Transaction;
+use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
-use GuzzleHttp\Client;
+use Ixudra\Curl\Facades\Curl;
 use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
@@ -26,7 +27,9 @@ class PaymentController extends Controller
 
     public function paymentSuccess()
     {
-        return view('frontend.pages.payment-success');
+        $sessionID = \Session::get('session_id');
+        dd($sessionID);
+        // return view('frontend.pages.payment-success');
     }
 
     public function storeOrder($paymentMethod, $paymentStatus, $transactionId)
@@ -95,70 +98,44 @@ class PaymentController extends Controller
         Session::forget('coupon');
     }
 
-    public function payWithPayMongo(Request $request)
+    public function payWithPaymongo()
     {
-        // Calculate payable amount
-        $total = getFinalPayableAmount();
-
-        try {
-            // Create PayMongo Checkout Session
-            $sessionId = $this->createCheckoutSession($total);
-
-            // Redirect to PayMongo checkout page
-            return redirect()->away("https://checkout.paymongo.com/{$sessionId}");
-        } catch (\Exception $e) {
-            // Handle error (e.g., log error, display error message)
-            return redirect()->route('user.checkout')->with('error', 'Failed to initiate payment. Please try again later.');
-        }
-    }
-
-    private function createCheckoutSession($amount)
-    {
-        $client = new Client();
-
-        try {
-            $response = $client->post('https://api.paymongo.com/v1/checkout_sessions', [
-                'json' => [
-                    'data' => [
-                        'attributes' => [
-                            'amount' => $amount, // Convert amount to cents
+        $data = [
+            'data' => [
+                'attributes' => [
+                    'line_items' => [
+                        [
                             'currency' => 'PHP',
-                            'payment_methods' => [
-                                'gcash',
-                                'bank_transfer', // Add more payment methods as needed
-                            ],
-                            'livemode' => false, // Set to false for test mode
-                            'send_email_receipt' => false, // Don't send email receipt
-                            'show_description' => true, // Show description
-                            'show_line_items' => true, // Show line items
+                            'amount' => getFinalPayableAmount() * 100, // Adjust to the final payable amount
+                            'name' => 'Technoblast Product Total',
+                            'quantity' => 1,
                         ],
                     ],
-                ],
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . env('PAYMONGO_SECRET_KEY'),
-                ],
-            ]);
+                    'payment_method_types' => ['card', 'gcash', 'billease', 'paymaya'], // Correct key name
+                    'success_url' => route('user.payment.success'),
+                    'cancel_url' => route('user.payment.success'),
+                    'description' => Auth::user()->name
+                ]
+            ]
+        ];
+        $api_key = base64_encode(env('PAYMONGO_SECRET_KEY')); // Encode the API key
+        $headers = [
+            'Content-Type: application/json',
+            'accept: application/json',
+            'Authorization: Basic ' . $api_key, // Use the encoded API key in the Authorization header
+        ];
 
-            $data = json_decode($response->getBody(), true);
 
-            // Check if the status code is 200 (success) or 201 (created)
-            if ($response->getStatusCode() === 200 || $response->getStatusCode() === 201) {
-                // Trigger storeOrder and clear session
-                $this->storeOrder('Paymongo', 1, $data['data']['id'], $amount);
-                $this->clearSession();
-            } else {
-                // Handle error (e.g., log error, throw exception)
-                throw new \Exception('Failed to create checkout session: ' . $response->getStatusCode());
-            }
+        $response = Curl::to('https://api.paymongo.com/v1/checkout_sessions')
+                ->withHeaders($headers)
+                ->withData($data)
+                ->asJson()
+                ->post();
 
-            return $data['data']['id']; // Return the Checkout Session ID
-        } catch (\Exception $e) {
-            // Handle errors (e.g., log error, throw exception)
-            throw $e;
-        }
+        \Session::put('session_id', $response->data->id);
+
+        return redirect()->to($response->data->attributes->checkout_url);
     }
-
 
 
 

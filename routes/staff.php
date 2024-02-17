@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\FaqsController;
 use App\Http\Controllers\Backend\FlashOutController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -96,11 +98,9 @@ Route::put('flash-out/show-at-home/status-change', [FlashOutController::class, '
 Route::put('flash-out-status', [FlashOutController::class, 'changeStatus'])->middleware('staff')->name('flash-out-status');
 Route::delete('flash-out/{id}', [FlashOutController::class, 'destory'])->middleware('staff')->name('flash-out.destory');
 
-
 /** Flash Sale And Flash Out */
 Route::get('/get-products-for-dropdown-flashsale', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashsale');
 Route::get('/get-products-for-dropdown-flashout', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashout');
-
 
 /** Coupon Routes */
 Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->middleware('staff')->name('coupons.change-status');
@@ -113,3 +113,20 @@ Route::resource('shipping-rule', ShippingRuleController::class)->middleware('sta
 /** General Setting  Routes */
 Route::resource('faq', FaqsController::class)->middleware('staff');
 
+
+
+/** Order routes */
+Route::get('payment-status', [OrderController::class, 'changePaymentStatus'])->middleware('staff')->name('payment.status');
+Route::get('order-status', [OrderController::class, 'changeOrderStatus'])->middleware('staff')->name('order.status');
+
+Route::get('pending-orders', [OrderController::class, 'pendingOrders'])->middleware('staff')->name('pending-orders');
+Route::get('processed-orders', [OrderController::class, 'processedOrders'])->middleware('staff')->name('processed-orders');
+
+Route::get('shipped-orders', [OrderController::class, 'shippedOrders'])->middleware('staff')->name('shipped-orders');
+Route::get('delivered-orders', [OrderController::class, 'deliveredOrders'])->middleware('staff')->name('delivered-orders');
+Route::get('canceled-orders', [OrderController::class, 'canceledOrders'])->middleware('staff')->name('canceled-orders');
+
+Route::resource('order', OrderController::class)->middleware('staff');
+
+/** Order Transaction route */
+Route::get('transaction', [TransactionController::class, 'index'])->middleware('staff')->name('transaction');

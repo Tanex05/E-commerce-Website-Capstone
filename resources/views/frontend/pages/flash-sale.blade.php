@@ -13,10 +13,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h4>Promo Sale</h4>
+                        <h4>Flash Sale</h4>
                         <ul>
                             <li><a href="{{url('/')}}">Home</a></li>
-                            <li><a href="javascript:;">Promo Sale</a></li>
+                            <li><a href="javascript:;">Flash Sale</a></li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="wsus__section_header rounded-0">
-                            <h3>Promo Sale</h3>
+                            <h3>Flash Sale</h3>
                             <div class="wsus__offer_countdown">
                                 <span class="end_text">ends time :</span>
                                 <div class="simply-countdown simply-countdown-one"></div>

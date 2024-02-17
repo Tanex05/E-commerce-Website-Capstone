@@ -14,7 +14,7 @@
                     <div class="col-xl-12">
                         <div class="offer_time" style="background: url({{ asset('Frontend/images/flash_sell_bg.jpg') }})">
                             <div class="wsus__flash_coundown">
-                                <span class="end_text">Promo Sale</span>
+                                <span class="end_text">Flash Sale</span>
                                 <div class="simply-countdown simply-countdown-one"></div>
                                 <a class="common_btn" href="{{ route('flash-sale') }}">see more <i class="fas fa-caret-right"></i></a>
                             </div>

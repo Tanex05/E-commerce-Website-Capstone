@@ -73,7 +73,7 @@
                     $('.mini_cart_wrapper').html(html);
 
                     getSidebarCartSubtoal();
-
+                    getCartCount();
                 },
                 error: function(data) {
 
@@ -82,8 +82,37 @@
         }
 
         // reomove product from sidebar cart
+        // $('body').on('click', '.remove_sidebar_product', function(e) {
+        //     e.preventDefault()
+        //     let rowId = $(this).data('id');
+        //     $.ajax({
+        //         method: 'POST',
+        //         url: "{{ route('cart.remove-sidebar-product') }}",
+        //         data: {
+        //             rowId: rowId
+        //         },
+        //         success: function(data) {
+        //             let productId = '#mini_cart_' + rowId;
+        //             $(productId).remove()
+
+        //             getSidebarCartSubtoal()
+
+        //             if ($('.mini_cart_wrapper').find('li').length === 0) {
+        //                 $('.mini_cart_actions').addClass('d-none');
+        //                 $('.mini_cart_wrapper').html(
+        //                     '<li class="text-center">Cart Is Empty!</li>');
+        //             }
+        //             toastr.success(data.message)
+        //         },
+        //         error: function(data) {
+        //             console.log(data);
+        //         }
+        //     })
+        // })
+
+        // reomove product from sidebar cart
         $('body').on('click', '.remove_sidebar_product', function(e) {
-            e.preventDefault()
+            e.preventDefault();
             let rowId = $(this).data('id');
             $.ajax({
                 method: 'POST',
@@ -93,22 +122,32 @@
                 },
                 success: function(data) {
                     let productId = '#mini_cart_' + rowId;
-                    $(productId).remove()
+                    $(productId).remove();
 
-                    getSidebarCartSubtoal()
+                    // Decrement the cart count
+                    let cartCountElement = $('#cart-count');
+                    if (cartCountElement.length > 0) {
+                        let currentCount = parseInt(cartCountElement.text());
+                        if (!isNaN(currentCount) && currentCount > 0) {
+                            cartCountElement.text(currentCount - 1);
+                        }
+                    }
+
+                    getSidebarCartSubtoal();
 
                     if ($('.mini_cart_wrapper').find('li').length === 0) {
                         $('.mini_cart_actions').addClass('d-none');
-                        $('.mini_cart_wrapper').html(
-                            '<li class="text-center">Cart Is Empty!</li>');
+                        $('.mini_cart_wrapper').html('<li class="text-center">Cart Is Empty!</li>');
                     }
-                    toastr.success(data.message)
+                    toastr.success(data.message);
                 },
                 error: function(data) {
                     console.log(data);
                 }
-            })
-        })
+            });
+        });
+
+
 
         // get sidebar cart sub total
         function getSidebarCartSubtoal() {

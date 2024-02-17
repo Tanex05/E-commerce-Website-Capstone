@@ -174,16 +174,101 @@
             }
         });
 
-        // increment product quantity
+        // //increment product quantity
+        // $('.product-increment').on('click', function(){
+        //     let input = $(this).siblings('.product-qty');
+        //     let quantity = parseInt(input.val()) + 1;
+        //     let rowId = input.data('rowid');
+        //     input.val(quantity);
+
+        //     // Send Ajax request to update the quantity
+        //     $.ajax({
+        //         url: "{{route('cart.update-quantity-increment')}}",
+        //         method: 'POST',
+        //         data: {
+        //             rowId: rowId,
+        //             quantity: quantity
+        //         },
+        //         success: function(data){
+        //             if(data.status === 'success'){
+        //                 let productId = '#'+rowId;
+        //                 let totalAmount = "₱"+data.product_total
+        //                 $(productId).text(totalAmount)
+
+        //                 renderCartSubTotal()
+        //                 calculateCouponDescount()
+
+        //                 toastr.success(data.message)
+        //             } else if (data.status === 'error'){
+        //                 // Display error message
+        //                 toastr.error(data.message)
+        //                 // Reset the input value to previous quantity
+        //                 input.val(quantity - 1);
+        //             }
+        //         },
+        //         // Stop Ajax request and display error message directly
+        //         error: function(xhr, status, error){
+        //             toastr.error('Reached maximum quantity of product or not enough stock available');
+        //             // Reset the input value to previous quantity
+        //             input.val(quantity - 1);
+        //         }
+        //     });
+        // });
+
+
+        // //decrement product quantity
+        // $('.product-decrement').on('click', function(){
+        //     let input = $(this).siblings('.product-qty');
+        //     let quantity = parseInt(input.val()) - 1;
+        //     let rowId = input.data('rowid');
+
+        //     // Check if quantity is greater than or equal to 1
+        //     if(quantity >= 1){
+        //         // Update the input value
+        //         input.val(quantity);
+
+        //         // Send AJAX request only if quantity is greater than 0
+        //         $.ajax({
+        //             url: "{{route('cart.update-quantity-decrement')}}",
+        //             method: 'POST',
+        //             data: {
+        //                 rowId: rowId,
+        //                 quantity: quantity
+        //             },
+        //             success: function(data){
+        //                 if(data.status === 'success'){
+        //                     let productId = '#'+rowId;
+        //                     let totalAmount = "₱"+data.product_total
+        //                     $(productId).text(totalAmount)
+
+        //                     renderCartSubTotal()
+        //                     calculateCouponDescount()
+
+        //                     toastr.success(data.message)
+        //                 }else if (data.status === 'error'){
+        //                     toastr.error(data.message)
+        //                 }
+        //             },
+        //             error: function(data){
+
+        //             }
+        //         })
+        //     }
+        // })
+
+        // Increment product quantity
         $('.product-increment').on('click', function(){
             let input = $(this).siblings('.product-qty');
             let quantity = parseInt(input.val()) + 1;
             let rowId = input.data('rowid');
             input.val(quantity);
 
+            let productId = '#' + rowId;
+            $(productId).text(""); // Or any other default value
+
             // Send Ajax request to update the quantity
             $.ajax({
-                url: "{{route('cart.update-quantity-increment')}}",
+                url: "{{ route('cart.update-quantity-increment') }}",
                 method: 'POST',
                 data: {
                     rowId: rowId,
@@ -191,32 +276,37 @@
                 },
                 success: function(data){
                     if(data.status === 'success'){
-                        let productId = '#'+rowId;
-                        let totalAmount = "₱"+data.product_total
-                        $(productId).text(totalAmount)
+                        let productId = '#' + rowId;
+                        let totalAmount = "₱" + data.product_total;
+                        $(productId).text(totalAmount);
 
-                        renderCartSubTotal()
-                        calculateCouponDescount()
+                        // Update cart total
+                        $('#cart_total').text("₱" + data.cart_total);
 
-                        toastr.success(data.message)
+                        // Update other cart details
+                        renderCartSubTotal();
+                        calculateCouponDiscount();
+
+                        toastr.success(data.message);
                     } else if (data.status === 'error'){
                         // Display error message
-                        toastr.error(data.message)
+                        toastr.error(data.message);
+
                         // Reset the input value to previous quantity
                         input.val(quantity - 1);
                     }
                 },
-                // Stop Ajax request and display error message directly
+                // Display error message directly
                 error: function(xhr, status, error){
                     toastr.error('Reached maximum quantity of product or not enough stock available');
+
                     // Reset the input value to previous quantity
                     input.val(quantity - 1);
                 }
             });
         });
 
-
-        // decrement product quantity
+        // Decrement product quantity
         $('.product-decrement').on('click', function(){
             let input = $(this).siblings('.product-qty');
             let quantity = parseInt(input.val()) - 1;
@@ -227,9 +317,9 @@
                 // Update the input value
                 input.val(quantity);
 
-                // Send AJAX request only if quantity is greater than 0
+                // Send AJAX request to update quantity and cart total
                 $.ajax({
-                    url: "{{route('cart.update-quantity-decrement')}}",
+                    url: "{{ route('cart.update-quantity-decrement') }}",
                     method: 'POST',
                     data: {
                         rowId: rowId,
@@ -237,24 +327,32 @@
                     },
                     success: function(data){
                         if(data.status === 'success'){
-                            let productId = '#'+rowId;
-                            let totalAmount = "₱"+data.product_total
-                            $(productId).text(totalAmount)
+                            let productId = '#' + rowId;
+                            let totalAmount = "₱" + data.product_total;
+                            $(productId).text(totalAmount);
 
-                            renderCartSubTotal()
-                            calculateCouponDescount()
+                            // Update cart total
+                            $('#cart_total').text("₱" + data.cart_total);
 
-                            toastr.success(data.message)
-                        }else if (data.status === 'error'){
-                            toastr.error(data.message)
+                            // Update other cart details
+                            renderCartSubTotal();
+                            calculateCouponDiscount();
+
+                            toastr.success(data.message);
+                        } else if (data.status === 'error'){
+                            toastr.error(data.message);
                         }
                     },
                     error: function(data){
 
                     }
-                })
+                });
             }
-        })
+        });
+
+
+
+
 
         // clear cart
         $('.clear_cart').on('click', function(e){

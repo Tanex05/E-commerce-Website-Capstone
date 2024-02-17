@@ -34,8 +34,7 @@
                     </div>
                     <ul class="wsus__icon_area">
                         <li><a href="wishlist.html"><i class="fal fa-heart"></i><span>05</span></a></li>
-                        <li><a class="wsus__cart_icon" href="#"><i
-                                    class="fal fa-shopping-bag"></i><span>{{Cart::content()->count()}}</span></a></li>
+                        <li><a class="wsus__cart_icon" href="#"><i class="fal fa-shopping-bag"></i><span id="cart-count">{{ Cart::content()->count() }}</span></a></li>
                     </ul>
                 </div>
             </div>

@@ -79,10 +79,11 @@ Route::group(['middleware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => 
 
     /** Payment Routes */
     Route::get('payment', [PaymentController::class, 'index'])->name('payment');
-    Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
 
     /** Paymongo routes */
     Route::post('paymongo/payment',[PaymentController::class, 'payWithPaymongo'])->name('paymongo.payment');
+    Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('payment-failed', [PaymentController::class, 'paymentFailed'])->name('payment.failed');
 
     /** COD routes */
     Route::get('cod/payment', [PaymentController::class, 'payWithCod'])->name('cod.payment');

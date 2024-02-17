@@ -39,18 +39,78 @@ class CartController extends Controller
     }
 
     /** Add item to cart */
+    // public function addToCart(Request $request)
+    // {
+
+    //     $product = Product::findOrFail($request->product_id);
+
+    //     // check product quantity
+    //     if($product->qty === 0){
+    //         return response(['status' => 'error', 'message' => 'Product stock out']);
+    //     }elseif($product->qty < $request->qty){
+    //         return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
+    //     }
+
+
+    //     // Check if adding the product exceeds the quantity in cart
+    //     $cartContent = Cart::content();
+    //     foreach ($cartContent as $cartItem) {
+    //         if ($cartItem->id == $product->id && $cartItem->qty + $request->qty > $product->qty) {
+    //             return response(['status' => 'error', 'message' => 'Quantity exceeds maximum limit']);
+    //         }
+    //     }
+
+    //     $variants = [];
+    //     $variantTotalAmount = 0;
+
+    //     if($request->has('variants_items')){
+    //         foreach($request->variants_items as $item_id){
+    //             $variantItem = ProductVariantItem::find($item_id);
+    //             $variants[$variantItem->productVariant->name]['name'] = $variantItem->name;
+    //             $variants[$variantItem->productVariant->name]['price'] = $variantItem->price;
+    //             $variantTotalAmount += $variantItem->price;
+    //         }
+    //     }
+
+
+    //     /** check discount */
+    //     $productPrice = 0;
+
+    //     if(checkDiscount($product)){
+    //         $productPrice = $product->offer_price;
+    //     }else {
+    //         $productPrice = $product->price;
+    //     }
+
+    //     $cartData = [];
+    //     $cartData['id'] = $product->id;
+    //     $cartData['name'] = $product->name;
+    //     $cartData['qty'] = $request->qty;
+    //     $cartData['price'] = $productPrice;
+    //     $cartData['weight'] = 10;
+    //     $cartData['options']['variants'] = $variants;
+    //     $cartData['options']['variants_total'] = $variantTotalAmount;
+    //     $cartData['options']['image'] = $product->thumbnail_image;
+    //     $cartData['options']['slug'] = $product->slug;
+
+    //     Cart::add($cartData)->associate("\App\Models\Product");
+
+    //     $totalCartAmount = $this->cartTotal();
+
+    //     return response(['status' => 'success', 'message' => 'Added to cart successfully!']);
+    // }
+
     public function addToCart(Request $request)
     {
 
         $product = Product::findOrFail($request->product_id);
 
         // check product quantity
-        if($product->qty === 0){
+        if ($product->qty === 0) {
             return response(['status' => 'error', 'message' => 'Product stock out']);
-        }elseif($product->qty < $request->qty){
+        } elseif ($product->qty < $request->qty) {
             return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
         }
-
 
         // Check if adding the product exceeds the quantity in cart
         $cartContent = Cart::content();
@@ -63,8 +123,8 @@ class CartController extends Controller
         $variants = [];
         $variantTotalAmount = 0;
 
-        if($request->has('variants_items')){
-            foreach($request->variants_items as $item_id){
+        if ($request->has('variants_items')) {
+            foreach ($request->variants_items as $item_id) {
                 $variantItem = ProductVariantItem::find($item_id);
                 $variants[$variantItem->productVariant->name]['name'] = $variantItem->name;
                 $variants[$variantItem->productVariant->name]['price'] = $variantItem->price;
@@ -72,13 +132,12 @@ class CartController extends Controller
             }
         }
 
-
         /** check discount */
         $productPrice = 0;
 
-        if(checkDiscount($product)){
+        if (checkDiscount($product)) {
             $productPrice = $product->offer_price;
-        }else {
+        } else {
             $productPrice = $product->price;
         }
 
@@ -95,8 +154,13 @@ class CartController extends Controller
 
         Cart::add($cartData)->associate("\App\Models\Product");
 
-        return response(['status' => 'success', 'message' => 'Added to cart successfully!']);
+        // Calculate total cart amount
+        $totalCartAmount = $this->cartTotal();
+
+        // Return the updated total cart amount in the response
+        return response(['status' => 'success', 'message' => 'Added to cart successfully!', 'cart_total' => $totalCartAmount]);
     }
+
 
     /** Update product quantity Decrement  */
     public function updateProductQtyDecrement(Request $request)

@@ -34,7 +34,7 @@ class processedOrderDataTable extends DataTable
                 return $query->user->name;
             })
             ->addColumn('amount', function($query){
-                return $query->currency_icon.$query->amount;
+                return '₱'.$query->amount;
             })
             ->addColumn('date', function($query){
                 return date('d-M-Y', strtotime($query->created_at));

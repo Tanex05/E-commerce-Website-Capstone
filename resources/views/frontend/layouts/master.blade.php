@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('Frontend/css/jquery.exzoom.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/multiple-image-video.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/ranger_style.css') }}">
+
     <link rel="stylesheet" href="{{ asset('Frontend/css/jquery.classycountdown.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/venobox.min.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -30,6 +31,8 @@
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
 </head>
 
 <body>
@@ -156,8 +159,12 @@
     <!--Sweetalert js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     <!--main/custom js-->
     <script src="{{ asset('Frontend/js/main.js') }}"></script>
+
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 
       <!-- Notification Error -->
     <script>

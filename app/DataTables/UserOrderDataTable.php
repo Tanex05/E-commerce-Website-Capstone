@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -12,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class OrderDataTable extends DataTable
+class UserOrderDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,16 +24,15 @@ class OrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $showBtn = "<a href='".route('order.show', $query->id)."' class='btn btn-primary'><i class='far fa-eye'></i></a>";
-                $deleteBtn = "<a href='".route('order.destroy', $query->id)."' class='btn btn-danger ml-2 mr-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+                $showBtn = "<a href='".route('user.dashboard.orders.show', $query->id)."' class='btn btn-primary'><i class='far fa-eye'></i></a>";
 
-                return $showBtn.$deleteBtn;
+                return $showBtn;
             })
             ->addColumn('customer', function($query){
                 return $query->user->name;
             })
             ->addColumn('amount', function($query){
-                return '₱'.$query->amount;
+                return $query->currency_icon.$query->amount;
             })
             ->addColumn('date', function($query){
                 return date('d-M-Y', strtotime($query->created_at));
@@ -62,6 +62,7 @@ class OrderDataTable extends DataTable
                         return "<span class='badge bg-danger'>canceled</span>";
                         break;
                     default:
+                        # code...
                         break;
                 }
 
@@ -75,7 +76,7 @@ class OrderDataTable extends DataTable
      */
     public function query(Order $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model::where('user_id', Auth::user()->id)->newQuery();
     }
 
     /**
@@ -84,7 +85,7 @@ class OrderDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('order-table')
+                    ->setTableId('vendororder-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -106,7 +107,6 @@ class OrderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-
             Column::make('id'),
             Column::make('invoice_id'),
             Column::make('customer'),
@@ -115,13 +115,15 @@ class OrderDataTable extends DataTable
             Column::make('amount'),
             Column::make('order_status'),
             Column::make('payment_status'),
+
             Column::make('payment_method'),
 
-            Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(200)
-            ->addClass('text-center'),
+
+            // Column::computed('action')
+            // ->exportable(false)
+            // ->printable(false)
+            // ->width(200)
+            // ->addClass('text-center'),
         ];
     }
 
@@ -130,6 +132,6 @@ class OrderDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Order_' . date('YmdHis');
+        return 'UserOrder_' . date('YmdHis');
     }
 }

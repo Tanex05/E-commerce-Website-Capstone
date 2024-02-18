@@ -32,7 +32,7 @@ class UserOrderDataTable extends DataTable
                 return $query->user->name;
             })
             ->addColumn('amount', function($query){
-                return $query->currency_icon.$query->amount;
+                return '₱' . number_format((double) $query->amount, 2);
             })
             ->addColumn('date', function($query){
                 return date('d-M-Y', strtotime($query->created_at));
@@ -119,11 +119,11 @@ class UserOrderDataTable extends DataTable
             Column::make('payment_method'),
 
 
-            // Column::computed('action')
-            // ->exportable(false)
-            // ->printable(false)
-            // ->width(200)
-            // ->addClass('text-center'),
+            Column::computed('action')
+            ->exportable(false)
+            ->printable(false)
+            ->width(200)
+            ->addClass('text-center'),
         ];
     }
 

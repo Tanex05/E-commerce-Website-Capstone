@@ -69,9 +69,11 @@
                                 <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{$product->qty}} item)</p>
                             @endif
                             @if (checkDiscount($product))
-                                <h4>₱{{$product->offer_price}} <del>₱{{$product->price}}</del></h4>
+                                <h4>₱{{ number_format((double) $product->offer_price, 2) }} <del>₱{{ number_format((double) $product->price, 2) }}</del></h4>
+
                             @else
-                                <h4>₱{{$product->price}}</h4>
+                                <h4>₱{{ number_format((double) $product->price, 2) }}</h4>
+
                             @endif
 
                              {{-- <p class="wsus__pro_rating">
@@ -105,7 +107,7 @@
                                                 <select class="select_2" name="variants_items[]">
                                                     @foreach ($variant->productVariantItems as $variantItem)
                                                         @if ($variantItem->status != 0)
-                                                            <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} (${{$variantItem->price}})</option>
+                                                            <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} (₱{{ number_format((double) $variantItem->price, 2) }})</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -115,9 +117,9 @@
 
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="wsus__quentity">
-                                    <h5>quentity :</h5>
+                                    <h5>quantity :</h5>
                                     <div class="select_number">
                                         <input class="number_area" name="qty" type="text" min="1" max="100" value="1" />
                                     </div>

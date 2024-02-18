@@ -81,7 +81,7 @@ Route::post('product-variant-item', [ProductVariantItemController::class, 'store
 Route::get('product-variant-item-edit/{variantItemId}', [ProductVariantItemController::class, 'edit'])->middleware('staff')->name('product-variant-item.edit');
 Route::put('product-variant-item-update/{variantItemId}', [ProductVariantItemController::class, 'update'])->middleware('staff')->name('product-variant-item.update');
 Route::delete('product-variant-item/{variantItemId}', [ProductVariantItemController::class, 'destroy'])->middleware('staff')->name('product-variant-item.destroy');
-Route::put('product-variant-item-status', [ProductVariantItemController::class, 'chageStatus'])->middleware('staff')->name('product-variant-item.chages-status');
+Route::put('product-variant-item-status', [ProductVariantItemController::class, 'changeStatus'])->middleware('staff')->name('product-variant-item.change-status');
 
 /** Promo Sale Routes */
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->middleware('staff')->name('flash-sale.index');

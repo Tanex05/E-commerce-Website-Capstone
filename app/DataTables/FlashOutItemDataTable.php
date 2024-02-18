@@ -31,14 +31,22 @@ class FlashOutItemDataTable extends DataTable
             return "<a href='".route('product.edit', $query->product->id)."'>".$query->product->name."</a>";
         })
         ->addColumn('status', function($query){
-            if($query->status == 1){
+            if ($query->product->status == 1) {
+                if($query->status == 1) {
+                    $button = '<label class="custom-switch mt-2">
+                        <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status" >
+                        <span class="custom-switch-indicator"></span>
+                    </label>';
+                } else {
+                    $button = '<label class="custom-switch mt-2">
+                        <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
+                        <span class="custom-switch-indicator"></span>
+                    </label>';
+                }
+            } else {
+                // Product status is 0, disable the switch button
                 $button = '<label class="custom-switch mt-2">
-                    <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status" >
-                    <span class="custom-switch-indicator"></span>
-                </label>';
-            }else {
-                $button = '<label class="custom-switch mt-2">
-                    <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
+                    <input type="checkbox" disabled>
                     <span class="custom-switch-indicator"></span>
                 </label>';
             }

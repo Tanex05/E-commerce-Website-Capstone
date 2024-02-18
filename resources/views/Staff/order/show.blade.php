@@ -89,13 +89,14 @@
                             @endif
                             <td>
                                 @foreach ($variants as $key => $variant)
-                                    <b>{{$key}}:</b> {{$variant->name}} ( ₱{{$variant->price}} )
+                                <b>{{ $key }}:</b> {{ $variant->name }} ( ₱{{ number_format((double) $variant->price, 2) }} )
+
 
                                 @endforeach
                             </td>
-                            <td class="text-center">₱{{$product->unit_price}} </td>
+                            <td class="text-center">₱{{ number_format((double) $product->unit_price, 2) }}</td>
                             <td class="text-center">{{$product->qty}}</td>
-                            <td class="text-right">₱{{($product->unit_price * $product->qty) + $product->variant_total}}</td>
+                            <td class="text-right">₱{{ number_format((double) ($product->unit_price * $product->qty) + $product->variant_total, 2) }}</td>
                             </tr>
                         @endforeach
 
@@ -126,20 +127,21 @@
                       <div class="col-lg-4 text-right">
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Subtotal</div>
-                          <div class="invoice-detail-value">₱ {{$order->sub_total}}</div>
+                          <div class="invoice-detail-value">₱ {{ number_format((double) $order->sub_total, 2) }}</div>
                         </div>
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Shipping (+)</div>
-                          <div class="invoice-detail-value">₱ {{@$shipping->cost}}</div>
+                          <div class="invoice-detail-value">₱ {{ isset($shipping->cost) ? number_format((double) $shipping->cost, 2) : '0.00' }}
+                        </div>
                         </div>
                         <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Coupon (-)</div>
-                            <div class="invoice-detail-value">₱ {{@$coupon->discount ? @$coupon->discount : 0}}</div>
+                            <div class="invoice-detail-value">₱ {{ isset($coupon->discount) ? number_format((double) $coupon->discount, 2) : '0.00' }}</div>
                           </div>
                         <hr class="mt-2 mb-2">
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Total</div>
-                          <div class="invoice-detail-value invoice-detail-value-lg">₱ {{$order->amount}}</div>
+                          <div class="invoice-detail-value invoice-detail-value-lg">₱ {{ number_format((double) $order->amount, 2) }}</div>
                         </div>
                       </div>
                     </div>

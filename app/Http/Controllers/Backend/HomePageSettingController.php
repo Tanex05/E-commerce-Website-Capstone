@@ -29,17 +29,6 @@ class HomePageSettingController extends Controller
 
     }
 
-    public function indexThree()
-    {
-        $categories = Category::where('status', 1)->get();
-
-        $sliderSectionThree = HomePageSetting::where('key', 'product_slider_section_three')->first();
-
-        return view('Staff.product-slider-three.product-slider-three', compact('categories', 'sliderSectionThree'));
-
-    }
-
-
     public function updateProductSliderSectionOne(Request $request)
     {
         $request->validate([
@@ -97,32 +86,4 @@ class HomePageSettingController extends Controller
         return redirect()->back();
     }
 
-    public function updateProductSliderSectionThree(Request $request)
-    {
-        $request->validate([
-            'category_three' => ['required'],
-        ], [
-            'category_three.required' => 'Category filed is required'
-
-        ]);
-
-        $data =  [
-                'category' => $request->category_three,
-                'sub_category' => $request->sub_category_three,
-                'child_category' => $request->child_category_three,
-            ];
-
-        HomePageSetting::updateOrCreate(
-            [
-                'key' => 'product_slider_section_three'
-            ],
-            [
-                'value' => json_encode($data)
-            ]
-        );
-
-        toastr('Updated successfully!', 'success', 'success');
-
-        return redirect()->back();
-    }
 }

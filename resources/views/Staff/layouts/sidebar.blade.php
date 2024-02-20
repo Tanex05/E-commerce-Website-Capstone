@@ -78,16 +78,16 @@
         </li>
 
         <!-- Slider Dropdown -->
-        <li class="dropdown {{ setActive(['slider.*','product-slider-one.*','product-slider-two.*','product-slider-three.*']) }}">
-            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>Layout</span></a>
+        <li class="dropdown {{ setActive(['slider.*', 'product-slider-one.*', 'product-slider-two.*']) }}">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                <i class="fas fa-cog"></i> <span>Layout</span>
+            </a>
             <ul class="dropdown-menu">
-            <li class="{{ setActive(['slider.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider</a></li>
-            <li class="{{ setActive(['product-slider-one.*']) }}"><a class="nav-link" href="{{ route('product-slider-one') }}">Product Slider One</a></li>
-            <li class="{{ setActive(['product-slider-two.*']) }}"><a class="nav-link" href="{{ route('product-slider-two') }}">Product Slider Two</a></li>
-            <li class="{{ setActive(['product-slider-three.*']) }}"><a class="nav-link" href="{{ route('product-slider-three') }}">Product Slider Three</a></li>
+                <li class="{{ setActive(['slider.index']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider</a></li>
+                <li class="{{ setActive(['product-slider-one']) }}"><a class="nav-link" href="{{ route('product-slider-one') }}">Product Slider One</a></li>
+                <li class="{{ setActive(['product-slider-two']) }}"><a class="nav-link" href="{{ route('product-slider-two') }}">Product Slider Two</a></li>
             </ul>
-
-          </li>
+        </li>
 
         <!-- General Settings Dropdown -->
         <li class="dropdown {{ setActive(['faq.*','home-page-setting']) }}">

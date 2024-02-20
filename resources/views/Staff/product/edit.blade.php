@@ -141,7 +141,6 @@
                                 <option {{$product->product_type == 'new_arrival' ? 'selected' : ''}} value="new_arrival">New Arrival</option>
                                 <option {{$product->product_type == 'featured_product' ? 'selected' : ''}} value="featured_product">Featured</option>
                                 <option {{$product->product_type == 'top_product' ? 'selected' : ''}} value="top_product">Top Product</option>
-                                <option {{$product->product_type == 'best_product' ? 'selected' : ''}} value="best_product">Best Product</option>
                                 <option {{$product->product_type == 'promo_product' ? 'selected' : ''}} value="promo_product">Promo Product</option>
                                 <option {{$product->product_type == 'flashout_product' ? 'selected' : ''}} value="flashout_product">Flash Out Product</option>
                             </select>

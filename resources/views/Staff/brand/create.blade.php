@@ -20,7 +20,7 @@
                 <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label>Brand logo </label>
+                        <label>Brand logo (196x100)</label>
                         <input type="file" class="form-control" name="logo">
                     </div>
                     <div class="form-group">

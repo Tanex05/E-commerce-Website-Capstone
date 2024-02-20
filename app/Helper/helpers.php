@@ -49,8 +49,6 @@ function productType($type)
             return 'Featured';
         case 'top_product':
             return 'Top';
-        case 'best_product':
-            return 'Best';
         case 'promo_product':
             return 'Promo';
         case 'flashout_product':

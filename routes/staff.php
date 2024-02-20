@@ -137,9 +137,8 @@ Route::middleware(['staff'])->group(function () {
     /** Product Slider Routes */
     Route::get('product-slider-one', [HomePageSettingController::class, 'indexOne'])->name('product-slider-one');
     Route::get('product-slider-two', [HomePageSettingController::class, 'indexTwo'])->name('product-slider-two');
-    Route::get('product-slider-three', [HomePageSettingController::class, 'indexThree'])->name('product-slider-three');
 
     Route::put('product-slider-section-one', [HomePageSettingController::class, 'updateProductSliderSectionOne'])->name('product-slider-section-one');
     Route::put('product-slider-section-two', [HomePageSettingController::class, 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
-    Route::put('product-slider-section-three', [HomePageSettingController::class, 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+
 });

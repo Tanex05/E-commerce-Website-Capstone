@@ -43,9 +43,9 @@ Route::get('flash-out/page', [FlashOutController::class,'index'])->name('flashou
 Route::get('/staff/login', [StaffController::class, 'login'])->name('staff.login');
 
 /** Product route */
-// Route::get('products', [FrontendProductController::class, 'productsIndex'])->name('products.index');
+Route::get('products/search', [FrontendProductController::class, 'productsIndex'])->name('products.front.index');
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
-// Route::get('change-product-list-view', [FrontendProductController::class, 'chageListView'])->name('change-product-list-view');
+Route::get('change-product-list-view', [FrontendProductController::class, 'chageListView'])->name('change-product-list-view');
 
 /** Cart routes */
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');

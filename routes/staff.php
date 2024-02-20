@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\FaqsController;
 use App\Http\Controllers\Backend\FlashOutController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
@@ -28,8 +29,7 @@ use Illuminate\Support\Facades\Route;
 /** Employee Route */
 
 
-/** Staff Route (Admin & Employee) */
-Route::get('staff/dashboard', [StaffController::class, 'dashboard'])->middleware('staff')->name('staff.dashboard');
+
 
 
 /**Staff Profile Route */
@@ -39,94 +39,107 @@ Route::group(['middlware'=>'staff', 'as' => 'staff.'] , function(){
     Route::post('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('password.update');
 });
 
-/** Slider Resource */
-Route::put('slider/change-status', [SliderController::class, 'changeStatus'])->middleware('staff')->name('slider.change-status');
-Route::resource('/staff/slider', SliderController::class)->middleware('staff');
+Route::middleware(['staff'])->group(function () {
 
-/** Category Resource */
-Route::put('category/change-status', [CategoryController::class, 'changeStatus'])->middleware('staff')->name('category.change-status');
-Route::resource('/staff/category', CategoryController::class)->middleware('staff');
+    /** Staff Route (Admin & Employee) */
+    Route::get('staff/dashboard', [StaffController::class, 'dashboard'])->name('staff.dashboard');
 
-/** Sub Category Resource */
-Route::put('sub-category/change-status', [SubCategoryController::class, 'changeStatus'])->middleware('staff')->name('sub-category.change-status');
-Route::resource('/staff/sub-category', SubCategoryController::class)->middleware('staff');
+    /** Slider Resource */
+    Route::put('slider/change-status', [SliderController::class, 'changeStatus'])->name('slider.change-status');
+    Route::resource('slider', SliderController::class);
 
-/** Child Category Resource */
-Route::put('child-category/change-status', [ChildCategoryController::class, 'changeStatus'])->middleware('staff')->name('child-category.change-status');
-Route::get('get-subcategory', [ChildCategoryController::class, 'getSubCategories'])->middleware('staff')->name('get-subcategories');
-Route::resource('/staff/child-category', ChildCategoryController::class)->middleware('staff');
+    /** Category Resource */
+    Route::put('category/change-status', [CategoryController::class, 'changeStatus'])->name('category.change-status');
+    Route::resource('category', CategoryController::class);
 
-/** Brand Resource */
-Route::put('brand/change-status', [BrandController::class, 'changeStatus'])->middleware('staff')->name('brand.change-status');
-Route::resource('/staff/brand', BrandController::class)->middleware('staff');
+    /** Sub Category Resource */
+    Route::put('sub-category/change-status', [SubCategoryController::class, 'changeStatus'])->name('sub-category.change-status');
+    Route::resource('sub-category', SubCategoryController::class);
 
-/** Product Resource */
-Route::put('product/change-status', [ProductController::class, 'changeStatus'])->middleware('staff')->name('product.change-status');
-Route::get('product/sub-category', [ProductController::class, 'getSubCategories'])->middleware('staff')->name('product-get-subcategories');
-Route::get('product/child-category', [ProductController::class, 'getChildCategories'])->middleware('staff')->name('product-get-childcategories');
-Route::resource('/staff/product', ProductController::class)->middleware('staff');
+    /** Child Category Resource */
+    Route::put('child-category/change-status', [ChildCategoryController::class, 'changeStatus'])->name('child-category.change-status');
+    Route::get('get-subcategory', [ChildCategoryController::class, 'getSubCategories'])->name('get-subcategories');
+    Route::resource('child-category', ChildCategoryController::class);
 
-/** ProductImageGallary Resource */
-Route::resource('image-gallery', ProductImageGalleryController::class)->middleware('staff');
+    /** Brand Resource */
+    Route::put('brand/change-status', [BrandController::class, 'changeStatus'])->name('brand.change-status');
+    Route::resource('brand', BrandController::class);
 
-/** ProductImageVariant Resource */
-Route::put('product-variant/change-status', [ProductVariantController::class, 'changeStatus'])->middleware('staff')->name('products-variant.change-status');
-Route::resource('product-variant', ProductVariantController::class)->middleware('staff');
+    /** Product Resource */
+    Route::put('product/change-status', [ProductController::class, 'changeStatus'])->name('product.change-status');
+    Route::get('product/sub-category', [ProductController::class, 'getSubCategories'])->name('product-get-subcategories');
+    Route::get('product/child-category', [ProductController::class, 'getChildCategories'])->name('product-get-childcategories');
+    Route::resource('product', ProductController::class);
 
-/** ProductImageVariant Item Resource */
-// Did not use a resource route because we are passing two ID, Product ID and Variant ID
-Route::get('product-variant-item/{productId}/{variantId}', [ProductVariantItemController::class, 'index'])->middleware('staff')->name('product-variant-item.index');
-Route::get('product-variant-item/create/{productId}/{variantId}', [ProductVariantItemController::class, 'create'])->middleware('staff')->name('product-variant-item.create');
-Route::post('product-variant-item', [ProductVariantItemController::class, 'store'])->name('products-variant-item.store');
-Route::get('product-variant-item-edit/{variantItemId}', [ProductVariantItemController::class, 'edit'])->middleware('staff')->name('product-variant-item.edit');
-Route::put('product-variant-item-update/{variantItemId}', [ProductVariantItemController::class, 'update'])->middleware('staff')->name('product-variant-item.update');
-Route::delete('product-variant-item/{variantItemId}', [ProductVariantItemController::class, 'destroy'])->middleware('staff')->name('product-variant-item.destroy');
-Route::put('product-variant-item-status', [ProductVariantItemController::class, 'changeStatus'])->middleware('staff')->name('product-variant-item.change-status');
+    /** ProductImageGallary Resource */
+    Route::resource('image-gallery', ProductImageGalleryController::class);
 
-/** Promo Sale Routes */
-Route::get('flash-sale', [FlashSaleController::class, 'index'])->middleware('staff')->name('flash-sale.index');
-Route::put('flash-sale', [FlashSaleController::class, 'update'])->middleware('staff')->name('flash-sale.update');
-Route::post('flash-sale/add-product', [FlashSaleController::class, 'addProduct'])->middleware('staff')->name('flash-sale.add-product');
-Route::put('flash-sale/show-at-home/status-change', [FlashSaleController::class, 'chageShowAtHomeStatus'])->middleware('staff')->name('flash-sale.show-at-home.change-status');
-Route::put('flash-sale-status', [FlashSaleController::class, 'changeStatus'])->middleware('staff')->name('flash-sale-status');
-Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destory'])->middleware('staff')->name('flash-sale.destory');
+    /** ProductImageVariant Resource */
+    Route::put('product-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
+    Route::resource('product-variant', ProductVariantController::class);
 
-/** Flash Out Routes */
-Route::get('flash-out', [FlashOutController::class, 'index'])->middleware('staff')->name('flash-out.index');
-Route::post('flash-out/add-product', [FlashOutController::class, 'addProduct'])->middleware('staff')->name('flash-out.add-product');
-Route::put('flash-out/show-at-home/status-change', [FlashOutController::class, 'chageShowAtHomeStatus'])->middleware('staff')->name('flash-out.show-at-home.change-status');
-Route::put('flash-out-status', [FlashOutController::class, 'changeStatus'])->middleware('staff')->name('flash-out-status');
-Route::delete('flash-out/{id}', [FlashOutController::class, 'destory'])->middleware('staff')->name('flash-out.destory');
+    /** ProductImageVariant Item Resource */
+    // Did not use a resource route because we are passing two ID, Product ID and Variant ID
+    Route::get('product-variant-item/{productId}/{variantId}', [ProductVariantItemController::class, 'index'])->name('product-variant-item.index');
+    Route::get('product-variant-item/create/{productId}/{variantId}', [ProductVariantItemController::class, 'create'])->name('product-variant-item.create');
+    Route::post('product-variant-item', [ProductVariantItemController::class, 'store'])->name('products-variant-item.store');
+    Route::get('product-variant-item-edit/{variantItemId}', [ProductVariantItemController::class, 'edit'])->name('product-variant-item.edit');
+    Route::put('product-variant-item-update/{variantItemId}', [ProductVariantItemController::class, 'update'])->name('product-variant-item.update');
+    Route::delete('product-variant-item/{variantItemId}', [ProductVariantItemController::class, 'destroy'])->name('product-variant-item.destroy');
+    Route::put('product-variant-item-status', [ProductVariantItemController::class, 'changeStatus'])->name('product-variant-item.change-status');
 
-/** Flash Sale And Flash Out */
-Route::get('/get-products-for-dropdown-flashsale', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashsale');
-Route::get('/get-products-for-dropdown-flashout', [FlashSaleController::class, 'getProductsForDropdown'])->middleware('staff')->name('get.products.dropdown-flashout');
+    /** Promo Sale Routes */
+    Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale.index');
+    Route::put('flash-sale', [FlashSaleController::class, 'update'])->name('flash-sale.update');
+    Route::post('flash-sale/add-product', [FlashSaleController::class, 'addProduct'])->name('flash-sale.add-product');
+    Route::put('flash-sale/show-at-home/status-change', [FlashSaleController::class, 'chageShowAtHomeStatus'])->name('flash-sale.show-at-home.change-status');
+    Route::put('flash-sale-status', [FlashSaleController::class, 'changeStatus'])->name('flash-sale-status');
+    Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destory'])->name('flash-sale.destory');
 
-/** Coupon Routes */
-Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->middleware('staff')->name('coupons.change-status');
-Route::resource('coupons', CouponController::class)->middleware('staff');
+    /** Flash Out Routes */
+    Route::get('flash-out', [FlashOutController::class, 'index'])->name('flash-out.index');
+    Route::post('flash-out/add-product', [FlashOutController::class, 'addProduct'])->name('flash-out.add-product');
+    Route::put('flash-out/show-at-home/status-change', [FlashOutController::class, 'chageShowAtHomeStatus'])->name('flash-out.show-at-home.change-status');
+    Route::put('flash-out-status', [FlashOutController::class, 'changeStatus'])->name('flash-out-status');
+    Route::delete('flash-out/{id}', [FlashOutController::class, 'destory'])->name('flash-out.destory');
 
-/** Coupon Routes */
-Route::put('shipping-rule/change-status', [ShippingRuleController::class, 'changeStatus'])->middleware('staff')->name('shipping-rule.change-status');
-Route::resource('shipping-rule', ShippingRuleController::class)->middleware('staff');
+    /** Flash Sale And Flash Out */
+    Route::get('/get-products-for-dropdown-flashsale', [FlashSaleController::class, 'getProductsForDropdown'])->name('get.products.dropdown-flashsale');
+    Route::get('/get-products-for-dropdown-flashout', [FlashSaleController::class, 'getProductsForDropdown'])->name('get.products.dropdown-flashout');
 
-/** General Setting  Routes */
-Route::resource('faq', FaqsController::class)->middleware('staff');
+    /** Coupon Routes */
+    Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->name('coupons.change-status');
+    Route::resource('coupons', CouponController::class);
 
+    /** Coupon Routes */
+    Route::put('shipping-rule/change-status', [ShippingRuleController::class, 'changeStatus'])->name('shipping-rule.change-status');
+    Route::resource('shipping-rule', ShippingRuleController::class);
 
+    /** General Setting  Routes */
+    Route::resource('faq', FaqsController::class);
 
-/** Order routes */
-Route::get('payment-status', [OrderController::class, 'changePaymentStatus'])->middleware('staff')->name('payment.status');
-Route::get('order-status', [OrderController::class, 'changeOrderStatus'])->middleware('staff')->name('order.status');
+    /** Order routes */
+    Route::get('payment-status', [OrderController::class, 'changePaymentStatus'])->name('payment.status');
+    Route::get('order-status', [OrderController::class, 'changeOrderStatus'])->name('order.status');
 
-Route::get('pending-orders', [OrderController::class, 'pendingOrders'])->middleware('staff')->name('pending-orders');
-Route::get('processed-orders', [OrderController::class, 'processedOrders'])->middleware('staff')->name('processed-orders');
+    Route::get('pending-orders', [OrderController::class, 'pendingOrders'])->name('pending-orders');
+    Route::get('processed-orders', [OrderController::class, 'processedOrders'])->name('processed-orders');
 
-Route::get('shipped-orders', [OrderController::class, 'shippedOrders'])->middleware('staff')->name('shipped-orders');
-Route::get('delivered-orders', [OrderController::class, 'deliveredOrders'])->middleware('staff')->name('delivered-orders');
-Route::get('canceled-orders', [OrderController::class, 'canceledOrders'])->middleware('staff')->name('canceled-orders');
+    Route::get('shipped-orders', [OrderController::class, 'shippedOrders'])->name('shipped-orders');
+    Route::get('delivered-orders', [OrderController::class, 'deliveredOrders'])->name('delivered-orders');
+    Route::get('canceled-orders', [OrderController::class, 'canceledOrders'])->name('canceled-orders');
 
-Route::resource('order', OrderController::class)->middleware('staff');
+    Route::resource('order', OrderController::class);
 
-/** Order Transaction route */
-Route::get('transaction', [TransactionController::class, 'index'])->middleware('staff')->name('transaction');
+    /** Order Transaction route */
+    Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');
+
+    /** Product Slider Routes */
+    Route::get('product-slider-one', [HomePageSettingController::class, 'indexOne'])->name('product-slider-one');
+    Route::get('product-slider-two', [HomePageSettingController::class, 'indexTwo'])->name('product-slider-two');
+    Route::get('product-slider-three', [HomePageSettingController::class, 'indexThree'])->name('product-slider-three');
+
+    Route::put('product-slider-section-one', [HomePageSettingController::class, 'updateProductSliderSectionOne'])->name('product-slider-section-one');
+    Route::put('product-slider-section-two', [HomePageSettingController::class, 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
+    Route::put('product-slider-section-three', [HomePageSettingController::class, 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+});

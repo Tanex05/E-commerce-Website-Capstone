@@ -78,37 +78,25 @@
         </li>
 
         <!-- Slider Dropdown -->
-        <li class="dropdown {{ setActive(['slider.*',]) }}">
+        <li class="dropdown {{ setActive(['slider.*','product-slider-one.*','product-slider-two.*','product-slider-three.*']) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>Layout</span></a>
             <ul class="dropdown-menu">
-              <li class="{{ setActive(['slider.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider</a></li>
+            <li class="{{ setActive(['slider.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider</a></li>
+            <li class="{{ setActive(['product-slider-one.*']) }}"><a class="nav-link" href="{{ route('product-slider-one') }}">Product Slider One</a></li>
+            <li class="{{ setActive(['product-slider-two.*']) }}"><a class="nav-link" href="{{ route('product-slider-two') }}">Product Slider Two</a></li>
+            <li class="{{ setActive(['product-slider-three.*']) }}"><a class="nav-link" href="{{ route('product-slider-three') }}">Product Slider Three</a></li>
             </ul>
+
           </li>
 
         <!-- General Settings Dropdown -->
-        <li class="dropdown {{ setActive(['faq.*',]) }}">
+        <li class="dropdown {{ setActive(['faq.*','home-page-setting']) }}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>General Setting</span></a>
           <ul class="dropdown-menu">
             <li class="{{ setActive(['faq.*']) }}"><a class="nav-link" href="{{ route('faq.index') }}">FAQ</a></li>
           </ul>
         </li>
 
-        <!-- dropdown copy -->
-
-        {{-- <li class="dropdown">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-            <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-            <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-          </ul>
-        </li> --}}
-
-        <!-- Blank -->
-
-        {{-- <li>
-            <a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a>
-        </li> --}}
       </ul>
 
     </aside>

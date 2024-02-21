@@ -3,24 +3,22 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\BackgroundImage;
+use App\Models\BackgroundImageFlashOut;
 use Illuminate\Http\Request;
-
 use File;
 
-
-class BackgroundImageController extends Controller
+class FlashOutImageController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $backgroundImage = BackgroundImage::first();
-        $route = $backgroundImage ? route('background-images.update', ['background_image' => $backgroundImage->id]) : route('background-images.store');
-        return view('staff.backgroundimage.index', compact('backgroundImage', 'route'));
+        $FlashOutbackgroundImage = BackgroundImageFlashOut::first();
+
+        $route = $FlashOutbackgroundImage ? route('background-images-flashout.update', ['background_images_flashout' => $FlashOutbackgroundImage->id]) : route('background-images-flashout.store');
+
+        return view('staff.flashoutimage.index', compact('FlashOutbackgroundImage', 'route'));
     }
 
     /**
@@ -42,7 +40,7 @@ class BackgroundImageController extends Controller
 
         $imagePath = $this->uploadImage($request->file('image'));
 
-        BackgroundImage::create(['image_path' => $imagePath]);
+        BackgroundImageFlashOut::create(['image_path' => $imagePath]);
 
         toastr('Created Successfully', 'success', 'Success');
 
@@ -75,21 +73,21 @@ class BackgroundImageController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $backgroundImage = BackgroundImage::first();
+        $FlashOutbackgroundImage = BackgroundImageFlashOut::first();
 
         if ($request->hasFile('image')) {
-            $oldPath = $backgroundImage ? $backgroundImage->image_path : null;
+            $oldPath = $FlashOutbackgroundImage ? $FlashOutbackgroundImage->image_path : null;
             $imagePath = $this->uploadImage($request->file('image'), $oldPath);
-            if (!$backgroundImage) {
-                BackgroundImage::create(['image_path' => $imagePath]);
+            if (!$FlashOutbackgroundImage) {
+                BackgroundImageFlashOut::create(['image_path' => $imagePath]);
             } else {
-                $backgroundImage->update(['image_path' => $imagePath]);
+                $FlashOutbackgroundImage->update(['image_path' => $imagePath]);
             }
         }
 
         toastr('Updated Successfully', 'success', 'Success');
 
-        return redirect()->back();
+        return redirect()->back();//
     }
 
     /**
@@ -108,9 +106,9 @@ class BackgroundImageController extends Controller
         }
 
         // Save the uploaded image as JPEG format with the name 'backgroundimage.jpg'
-        $image->move(public_path('backgrounds'), 'backgroundimage.jpg');
+        $image->move(public_path('flashoutImage'), 'flashoutImage.jpg');
 
         // Return the path to the saved image
-        return 'backgrounds/backgroundimage.jpg';
+        return 'flashoutImage/flashoutImage.jpg';
     }
 }

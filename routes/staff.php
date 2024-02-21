@@ -8,7 +8,9 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\FaqsController;
 use App\Http\Controllers\Backend\FlashOutController;
+use App\Http\Controllers\Backend\FlashOutImageController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\FlashSaleImageController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
@@ -144,7 +146,8 @@ Route::middleware(['staff'])->group(function () {
 
     /** Product Slider Routes */
     Route::resource('background-images', BackgroundImageController::class);
-
+    Route::resource('background-images-flashsale', FlashSaleImageController::class);
+    Route::resource('background-images-flashout', FlashOutImageController::class);
 
 
 });

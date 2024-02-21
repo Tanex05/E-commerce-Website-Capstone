@@ -91,11 +91,13 @@
 
 
         <!-- General Settings Dropdown -->
-        <li class="dropdown {{ setActive(['faq.*','home-page-setting', 'background-images.*']) }}">
+        <li class="dropdown {{ setActive(['faq.*','home-page-setting', 'background-images.*','background-images-flashsale.*']) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>General Setting</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['faq.*']) }}"><a class="nav-link" href="{{ route('faq.index') }}">FAQ</a></li>
                 <li class="{{ setActive(['background-images.*']) }}"><a class="nav-link" href="{{ route('background-images.index') }}">BackgroundImage</a></li>
+                <li class="{{ setActive(['background-images-flashsale.*']) }}"><a class="nav-link" href="{{ route('background-images-flashsale.index') }}">FlashSale Background</a></li>
+                <li class="{{ setActive(['background-images-flashsale.*']) }}"><a class="nav-link" href="{{ route('background-images-flashout.index') }}">Flashout Background</a></li>
             </ul>
         </li>
 

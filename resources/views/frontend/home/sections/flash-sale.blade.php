@@ -12,7 +12,7 @@
                 <!-- Show this section if there are items with status equal to 1 -->
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="offer_time" style="background: url({{ asset('Frontend/images/flash_sell_bg.jpg') }})">
+                        <div class="offer_time" style="background: url({{ asset('flashsaleimage/flashsaleimage.jpg') }})">
                             <div class="wsus__flash_coundown">
                                 <span class="end_text">Flash Sale</span>
                                 <div class="simply-countdown simply-countdown-one"></div>

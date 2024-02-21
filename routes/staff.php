@@ -11,6 +11,10 @@ use App\Http\Controllers\Backend\FlashOutController;
 use App\Http\Controllers\Backend\FlashOutImageController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FlashSaleImageController;
+use App\Http\Controllers\Backend\FooterGridThreeController;
+use App\Http\Controllers\Backend\FooterGridTwoController;
+use App\Http\Controllers\Backend\FooterInfoController;
+use App\Http\Controllers\Backend\FooterSocialController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
@@ -149,5 +153,20 @@ Route::middleware(['staff'])->group(function () {
     Route::resource('background-images-flashsale', FlashSaleImageController::class);
     Route::resource('background-images-flashout', FlashOutImageController::class);
 
+    /** footer routes */
+    Route::resource('footer-info', FooterInfoController::class);
+    Route::put('footer-socials/change-status', [FooterSocialController::class, 'changeStatus'])->name('footer-socials.change-status');
+    Route::resource('footer-socials', FooterSocialController::class);
+
+    Route::put('footer-grid-two/change-status', [FooterGridTwoController::class, 'changeStatus'])->name('footer-grid-two.change-status');
+    Route::put('footer-grid-two/change-title', [FooterGridTwoController::class, 'changeTitle'])->name('footer-grid-two.change-title');
+    Route::resource('footer-grid-two', FooterGridTwoController::class);
+
+    Route::put('footer-grid-three/change-status', [FooterGridThreeController::class, 'changeStatus'])->name('footer-grid-three.change-status');
+    Route::put('footer-grid-three/change-title', [FooterGridThreeController::class, 'changeTitle'])->name('footer-grid-three.change-title');
+    Route::resource('footer-grid-three', FooterGridThreeController::class);
+
 
 });
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\BackgroundImage;
 use Illuminate\Http\Request;
+
 use File;
 
 
@@ -100,18 +101,16 @@ class BackgroundImageController extends Controller
     }
 
     private function uploadImage($image, $oldPath = null)
-    {
-        if ($oldPath && File::exists(public_path($oldPath))) {
-            File::delete(public_path($oldPath));
-        }
-
-        // Convert all images to JPEG format
-        $image = \Image::make($image)->encode('jpg', 75); // Change 75 to desired quality
-
-        $imageName = 'backgroundimage.jpg'; // Fixed filename with .jpg extension
-
-        $image->save(public_path('backgrounds') . '/' . $imageName);
-
-        return 'backgrounds/' . $imageName;
+{
+    if ($oldPath && File::exists(public_path($oldPath))) {
+        // If there's an old image, delete it
+        File::delete(public_path($oldPath));
     }
+
+    // Save the uploaded image as JPEG format with the name 'backgroundimage.jpg'
+    $image->move(public_path('backgrounds'), 'backgroundimage.jpg');
+
+    // Return the path to the saved image
+    return 'backgrounds/backgroundimage.jpg';
+}
 }

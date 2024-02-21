@@ -229,5 +229,7 @@
             day: {{date('d', strtotime($flashSaleDate->end_date))}},
         });
     })
+
+
 </script>
 @endpush

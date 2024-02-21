@@ -2849,7 +2849,7 @@ footer {
   BREADCRUMB START
   ========================*/
 #wsus__breadcrumb {
-    background: url(../images/breadcrumb_bg.jpg);
+    background: url("/backgrounds/backgroundimage.jpg");
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;

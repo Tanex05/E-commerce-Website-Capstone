@@ -59,5 +59,7 @@
                 timeLeft--;
             }
         }, 1000);
+
     </script>
 @endsection
+

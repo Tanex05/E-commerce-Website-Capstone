@@ -136,30 +136,30 @@
             </div>
         </div>
     </section>
-    {{-- <section id="wsus__single_banner">
+    <section id="wsus__single_banner">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="wsus__single_banner_content">
-                            @if ($cartpage_banner_section->banner_one->status == 1)
+                        @if(isset($cartpage_banner_section->banner_one) && isset($cartpage_banner_section->banner_one->status) && $cartpage_banner_section->banner_one->status == 1)
                             <a href="{{$cartpage_banner_section->banner_one->banner_url}}">
-                                <img class="img-gluid" src="{{asset($cartpage_banner_section->banner_one->banner_image)}}" alt="">
+                                <img class="img-fluid" src="{{asset($cartpage_banner_section->banner_one->banner_image)}}" alt="">
                             </a>
-                            @endif
+                        @endif
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
                     <div class="wsus__single_banner_content single_banner_2">
-                            @if ($cartpage_banner_section->banner_two->status == 1)
+                        @if(isset($cartpage_banner_section->banner_two) && isset($cartpage_banner_section->banner_two->status) && $cartpage_banner_section->banner_two->status == 1)
                             <a href="{{$cartpage_banner_section->banner_two->banner_url}}">
-                                <img class="img-gluid" src="{{asset($cartpage_banner_section->banner_two->banner_image)}}" alt="">
+                                <img class="img-fluid" src="{{asset($cartpage_banner_section->banner_two->banner_image)}}" alt="">
                             </a>
-                            @endif
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
     <!--============================
           CART VIEW PAGE END
     ==============================-->

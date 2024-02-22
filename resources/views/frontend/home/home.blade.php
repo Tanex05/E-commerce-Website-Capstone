@@ -11,13 +11,29 @@
         BANNER PART 2 END
     ==============================-->
 
+    <!--============================
+        HOT DEALS START
+    ==============================-->
+    @include('frontend.home.sections.hot-deals')
+    <!--============================
+        HOT DEALS END
+    ==============================-->
 
     <!--============================
         Promo SELL START
     ==============================-->
-        @include('frontend.home.sections.flash-sale')
+    @include('frontend.home.sections.flash-sale')
     <!--============================
         Promo SELL END
+    ==============================-->
+
+
+    <!--============================
+        Advertisement Banner One
+    ==============================-->
+    @include('frontend.home.sections.advertisement-banner-one')
+    <!--============================
+        Advertisement Banner One
     ==============================-->
 
 
@@ -29,12 +45,10 @@
         FLASH Out END
     ==============================-->
 
-
-
-    <!--============================
+     <!--============================
         BRAND SLIDER START
     ==============================-->
-        @include('frontend.home.sections.brand-slider')
+    @include('frontend.home.sections.brand-slider')
     <!--============================
         BRAND SLIDER END
     ==============================-->
@@ -43,20 +57,10 @@
     <!--============================
         SINGLE BANNER START
     ==============================-->
-        {{-- @include('frontend.home.sections.single-banner') --}}
+        @include('frontend.home.sections.advertisement-banner-two')
     <!--============================
         SINGLE BANNER END
     ==============================-->
-
-
-    <!--============================
-        HOT DEALS START
-    ==============================-->
-        @include('frontend.home.sections.hot-deals')
-    <!--============================
-        HOT DEALS END
-    ==============================-->
-
 
     <!--============================
         ELECTRONIC PART START
@@ -79,19 +83,11 @@
     <!--============================
         LARGE BANNER  START
     ==============================-->
-        {{-- @include('frontend.home.sections.large-banner') --}}
+        @include('frontend.home.sections.advertisement-banner-four')
     <!--============================
         LARGE BANNER  END
     ==============================-->
 
-
-    <!--============================
-        WEEKLY BEST ITEM START
-    ==============================-->
-        {{-- @include('frontend.home.sections.weekly-best-item') --}}
-    <!--============================
-        WEEKLY BEST ITEM END
-    ==============================-->
 
 
     <!--============================
@@ -103,11 +99,5 @@
     ==============================-->
 
 
-    <!--============================
-        HOME BLOGS START
-    ==============================-->
-        {{-- @include('frontend.home.sections.blogs') --}}
-    <!--============================
-        HOME BLOGS END
-    ==============================-->
+
 @endsection

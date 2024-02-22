@@ -60,4 +60,9 @@ class Product extends Model
         return $this->hasMany(FlashOutItem::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
 }

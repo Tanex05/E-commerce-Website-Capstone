@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\ProductVariantItem;
@@ -33,72 +34,13 @@ class CartController extends Controller
                 break;
             }
         }
+        $cartpage_banner_section = Advertisement::where('key', 'cartpage_banner_section')->first();
+        $cartpage_banner_section = json_decode($cartpage_banner_section?->value);
 
-        return view('frontend.pages.cart-details', compact('cartItems','disabled'));
+
+        return view('frontend.pages.cart-details', compact('cartItems','disabled','cartpage_banner_section'));
 
     }
-
-    /** Add item to cart */
-    // public function addToCart(Request $request)
-    // {
-
-    //     $product = Product::findOrFail($request->product_id);
-
-    //     // check product quantity
-    //     if($product->qty === 0){
-    //         return response(['status' => 'error', 'message' => 'Product stock out']);
-    //     }elseif($product->qty < $request->qty){
-    //         return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
-    //     }
-
-
-    //     // Check if adding the product exceeds the quantity in cart
-    //     $cartContent = Cart::content();
-    //     foreach ($cartContent as $cartItem) {
-    //         if ($cartItem->id == $product->id && $cartItem->qty + $request->qty > $product->qty) {
-    //             return response(['status' => 'error', 'message' => 'Quantity exceeds maximum limit']);
-    //         }
-    //     }
-
-    //     $variants = [];
-    //     $variantTotalAmount = 0;
-
-    //     if($request->has('variants_items')){
-    //         foreach($request->variants_items as $item_id){
-    //             $variantItem = ProductVariantItem::find($item_id);
-    //             $variants[$variantItem->productVariant->name]['name'] = $variantItem->name;
-    //             $variants[$variantItem->productVariant->name]['price'] = $variantItem->price;
-    //             $variantTotalAmount += $variantItem->price;
-    //         }
-    //     }
-
-
-    //     /** check discount */
-    //     $productPrice = 0;
-
-    //     if(checkDiscount($product)){
-    //         $productPrice = $product->offer_price;
-    //     }else {
-    //         $productPrice = $product->price;
-    //     }
-
-    //     $cartData = [];
-    //     $cartData['id'] = $product->id;
-    //     $cartData['name'] = $product->name;
-    //     $cartData['qty'] = $request->qty;
-    //     $cartData['price'] = $productPrice;
-    //     $cartData['weight'] = 10;
-    //     $cartData['options']['variants'] = $variants;
-    //     $cartData['options']['variants_total'] = $variantTotalAmount;
-    //     $cartData['options']['image'] = $product->thumbnail_image;
-    //     $cartData['options']['slug'] = $product->slug;
-
-    //     Cart::add($cartData)->associate("\App\Models\Product");
-
-    //     $totalCartAmount = $this->cartTotal();
-
-    //     return response(['status' => 'success', 'message' => 'Added to cart successfully!']);
-    // }
 
     public function addToCart(Request $request)
     {

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\Faq;
 use App\Models\Product;
+use App\Models\ProductReview;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -31,7 +33,7 @@ class FrontendProductController extends Controller
         }
 
         // Query products
-        $query = Product::with(['variants', 'category', 'productImageGalleries'])
+        $query = Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])
             ->where('status', 1);
 
         // Apply price range filter
@@ -74,20 +76,20 @@ class FrontendProductController extends Controller
         }
 
         // Paginate the results
-        $products = $query->paginate(12);
+        $products = $query->withAvg('reviews', 'rating')->withCount('reviews')->paginate(12);
 
         // Get categories and brands for sidebar filter
         $categories = Category::where(['status' => 1])->get();
         $brands = Brand::where(['status' => 1])->get();
 
-        // banner ad
 
-        // $productpage_banner_section = Adverisement::where('key', 'productpage_banner_section')->first();
-        // $productpage_banner_section = json_decode($productpage_banner_section?->value);
 
-        // 'productpage_banner_section'
-        // Pass data to the view
-        return view('frontend.pages.product', compact('products', 'categories', 'brands'));
+        $productpage_banner_section = Advertisement::where('key', 'productpage_banner_section')->first();
+        $productpage_banner_section = json_decode($productpage_banner_section?->value);
+
+
+
+        return view('frontend.pages.product', compact('products', 'categories', 'brands','productpage_banner_section'));
     }
 
 
@@ -96,8 +98,9 @@ class FrontendProductController extends Controller
     public function showProduct(string $slug)
     {
         $faqs = Faq::all();
-        $product = Product::with(['category','productImageGalleries','variants','brand'])->where('slug', $slug)->where('status', 1)->first();
-        return view('frontend.pages.product-detail', compact('product' ,'faqs'));
+        $product = Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['category','productImageGalleries','variants','brand'])->where('slug', $slug)->where('status', 1)->first();
+        $reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(10);
+        return view('frontend.pages.product-detail', compact('product' ,'faqs','reviews'));
     }
 
     public function chageListView(Request $request)

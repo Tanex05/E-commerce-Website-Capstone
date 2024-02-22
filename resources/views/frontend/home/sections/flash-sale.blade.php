@@ -1,4 +1,4 @@
- <section id="wsus__flash_sell" class="wsus__flash_sell_2">
+ <section id="wsus__flash_sell" class="wsus__flash_sell_2" style="padding-top: 40px">
         <div class="container">
 
             @php
@@ -25,7 +25,8 @@
 
             <div class="row flash_sell_slider">
                 @php
-                    $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();
+                    $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
+                    ->with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();
                 @endphp
                 @foreach ($products as $product)
                     <x-product-card :product="$product" />

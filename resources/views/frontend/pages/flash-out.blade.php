@@ -1,9 +1,5 @@
 @extends('frontend.layouts.master')
 
-{{-- @section('title')
-{{$settings->site_name}} || Flash Sale
-@endsection --}}
-
 @section('content')
     <!--============================
             BREADCRUMB START
@@ -48,7 +44,7 @@
 
                 <div class="row">
                     @php
-                        $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashOutItems)->get();
+                        $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashOutItems)->get();
                     @endphp
                     @forelse ($products as $product)
                     <x-product-card :product="$product" />
@@ -58,11 +54,7 @@
                         </div>
                     @endforelse
                 </div>
-                {{-- <div class="mt-5">
-                    @if ($flashSaleItems->hasPages())
-                        {{$flashSaleItems->links()}}
-                    @endif
-                </div> --}}
+
             </div>
         </div>
     </section>

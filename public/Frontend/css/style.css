@@ -1503,9 +1503,9 @@ header {
 /*======================
       FLASH SELL START
   ========================*/
-#wsus__flash_sell {
+/* #wsus__flash_sell {
     padding-top: 70px;
-}
+} */
 
 .wsus__section_header {
     display: flex;
@@ -2150,7 +2150,7 @@ header {
       HOT DEALS START
   ========================*/
 #wsus__hot_deals {
-    padding-top: 66px;
+    padding-bottom: 10px;
 }
 
 .wsus__hot_deals_offer {

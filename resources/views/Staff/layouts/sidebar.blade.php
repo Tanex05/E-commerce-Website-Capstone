@@ -32,7 +32,7 @@
             </ul>
         </li>
         <!-- Ecommerce Dropdown -->
-        <li class="dropdown {{ setActive(['product.*','flash-sale.*','coupons.*','flash-out.*','shipping-rule.*']) }}">
+        <li class="dropdown {{ setActive(['product.*','flash-sale.*','coupons.*','flash-out.*','shipping-rule.*','reviews.*']) }}">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box"></i> <span>Manage Product</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['product.*']) }}"><a class="nav-link" href="{{ route('product.index') }}">Products</a></li>
@@ -40,6 +40,7 @@
                 <li class="{{ setActive(['flash-sale.*']) }}"><a class="nav-link" href="{{ route('flash-sale.index') }}">Fash-Sale Products</a></li>
                 <li class="{{ setActive(['flash-out.*']) }}"><a class="nav-link" href="{{ route('flash-out.index') }}">Fash-Out Products</a></li>
                 <li class="{{ setActive(['shipping-rule.*']) }}"><a class="nav-link" href="{{ route('shipping-rule.index') }}">Shipping Rule</a></li>
+                <li class="{{ setActive(['reviews.*']) }}"><a class="nav-link" href="{{ route('reviews.index') }}">Product Review</a></li>
             </ul>
         </li>
 
@@ -75,7 +76,13 @@
             <li class="{{ setActive(['transaction']) }}"><a class="nav-link"
                 href="{{ route('transaction') }}"><i class="fas fa-money-bill-alt"></i>
                 <span>Transactions</span></a>
-        </li>
+            </li>
+
+
+        <li><a class="nav-link {{ setActive(['advertisement.*']) }}"
+            href="{{ route('advertisement.index') }}"><i class="fas fa-ad"></i>
+            <span>Advertisement</span></a></li>
+
 
         <!-- Slider Dropdown -->
         <li class="dropdown {{ setActive(['slider.*', 'product-slider-one.*', 'product-slider-two.*']) }}">
@@ -101,31 +108,16 @@
             </ul>
         </li>
 
-        <li
-                class="dropdown {{ setActive([
-                    'footer-info.index',
-                    'footer-socials.*',
-                    'footer-grid-two.*',
-                    'footer-grid-three.*',
-                ]) }}">
+        <li class="dropdown {{ setActive(['footer-info.index','footer-socials.*','footer-grid-two.*','footer-grid-three.*',]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-th-large"></i><span>Footer</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setActive(['footer-info.index']) }}"><a class="nav-link"
-                            href="{{ route('footer-info.index') }}">Footer Info</a></li>
-
-                    <li class="{{ setActive(['footer-socials.*']) }}"><a class="nav-link"
-                            href="{{ route('footer-socials.index') }}">Footer Socials</a></li>
-
-                    <li class="{{ setActive(['footer-grid-two.*']) }}"><a class="nav-link"
-                            href="{{ route('footer-grid-two.index') }}">Footer Grid Two</a></li>
-
-                    <li class="{{ setActive(['footer-grid-three.*']) }}"><a class="nav-link"
-                            href="{{ route('footer-grid-three.index') }}">Footer Grid Three</a></li>
-
+                    <li class="{{ setActive(['footer-info.index']) }}"><a class="nav-link"href="{{ route('footer-info.index') }}">Footer Info</a></li>
+                    <li class="{{ setActive(['footer-socials.*']) }}"><a class="nav-link" href="{{ route('footer-socials.index') }}">Footer Socials</a></li>
+                    <li class="{{ setActive(['footer-grid-two.*']) }}"><a class="nav-link" href="{{ route('footer-grid-two.index') }}">Footer Grid Two</a></li>
+                    <li class="{{ setActive(['footer-grid-three.*']) }}"><a class="nav-link" href="{{ route('footer-grid-three.index') }}">Footer Grid Three</a></li>
                 </ul>
             </li>
-
       </ul>
 
     </aside>

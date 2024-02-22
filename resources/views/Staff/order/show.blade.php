@@ -21,7 +21,7 @@
                   <div class="col-lg-12">
                     <div class="invoice-title">
                       <h2></h2>
-                      <div class="invoice-number">Order #{{$order->invocie_id}}</div>
+                      <div class="invoice-number">Order #{{$order->invoice_id}}</div>
                     </div>
                     <hr>
                     <div class="row">

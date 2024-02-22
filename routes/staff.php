@@ -1,5 +1,9 @@
 <?php
+
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminListController;
+use App\Http\Controllers\Backend\EmployeeListController;
 use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\BackgroundImageController;
@@ -7,6 +11,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\CustomerListController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\FaqsController;
 use App\Http\Controllers\Backend\FlashOutController;
@@ -18,6 +23,7 @@ use App\Http\Controllers\Backend\FooterGridTwoController;
 use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\FooterSocialController;
 use App\Http\Controllers\Backend\HomePageSettingController;
+use App\Http\Controllers\Backend\ManageUserController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
@@ -28,6 +34,7 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\TermsAndConditionController;
 use App\Http\Controllers\Backend\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -179,6 +186,36 @@ Route::middleware(['staff'])->group(function () {
     /** reviews routes */
     Route::get('reviews', [AdminReviewController::class, 'index'])->name('reviews.index');
     Route::put('reviews/change-status', [AdminReviewController::class, 'changeStatus'])->name('reviews.change-status');
+
+    /** customer list routes */
+    Route::get('customer', [CustomerListController::class, 'index'])->name('customer.index');
+    Route::put('customer/status-change', [CustomerListController::class, 'changeStatus'])->name('customer.status-change');
+
+    /** Admin list routes */
+    Route::get('employee-list', [EmployeeListController::class, 'index'])->name('employee-list.index');
+    Route::put('employee-list/status-change', [EmployeeListController::class, 'changeStatus'])->name('employee-list.status-change');
+    Route::delete('employee-list/{id}', [EmployeeListController::class, 'destory'])->name('employee-list.destory');
+
+    /** Admin list routes */
+    Route::get('admin-list', [AdminListController::class, 'index'])->name('admin-list.index');
+    Route::put('admin-list/status-change', [AdminListController::class, 'changeStatus'])->name('admin-list.status-change');
+    Route::delete('admin-list/{id}', [AdminListController::class, 'destory'])->name('admin-list.destory');
+
+
+    /** manage user routes */
+    Route::get('manage-user', [ManageUserController::class, 'index'])->name('manage-user.index');
+    Route::post('manage-user', [ManageUserController::class, 'create'])->name('manage-user.create');
+
+    /** about routes */
+    Route::get('about', [AboutController::class, 'index'])->name('about.index');
+    Route::put('about/update', [AboutController::class, 'update'])->name('about.update');
+
+    /** terms and conditons routes */
+    Route::get('terms-and-conditions', [TermsAndConditionController::class, 'index'])->name('terms-and-conditions.index');
+    Route::put('terms-and-conditions/update', [TermsAndConditionController::class, 'update'])->name('terms-and-conditions.update');
+
+
+
 });
 
 

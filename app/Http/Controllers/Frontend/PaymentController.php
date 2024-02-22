@@ -25,19 +25,6 @@ class PaymentController extends Controller
         return view('frontend.pages.payment');
     }
 
-    // public function paymentSuccess()
-    // {
-    //     /// Check if the payment status indicates success
-    //     $sessionID = \Session::get('session_id');
-
-    //     // Proceed with storing the order
-    //     $this->storeOrder('Paymongo', 1, $sessionID);
-
-    //     // Clear session
-    //     $this->clearSession();
-
-    //     return view('frontend.pages.payment-success');
-    // }
     public function paymentSuccess()
     {
         // Check if the session variable indicating successful payment exists and is true
@@ -195,6 +182,31 @@ class PaymentController extends Controller
         return redirect()->to($response->data->attributes->checkout_url);
     }
 
+    /** pay with cod */
+    public function payWithCod()
+    {
+        // Check if address is present in session, if not, redirect to user checkout
+        if(!Session::has('address')){
+            return redirect()->route('user.checkout');
+        }
+
+        // Check if cart is empty, if so, redirect to home
+        if(Cart::count() === 0) {
+            return redirect()->route('home');
+        }
+
+        // Store order and clear session
+        $this->storeOrder('COD', 0, \Str::random(10));
+        $this->clearSession();
+
+        // Redirect to order success page
+        return redirect()->route('user.order.success');
+    }
+
+    public function OrderSuccess()
+    {
+        return view('frontend.pages.order-success');
+    }
 
 
 }

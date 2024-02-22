@@ -8,7 +8,9 @@ use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -68,6 +70,19 @@ Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->
 /** add product in wishlist */
 Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
 
+/** about page route */
+Route::get('about-us-page', [PageController::class, 'about'])->name('aboutus-page');
+
+/** terms and conditions page route */
+Route::get('terms-and-conditions-page', [PageController::class, 'termsAndCondition'])->name('terms-and-conditions-page');
+
+/** contact route */
+Route::get('contact', [PageController::class, 'contact'])->name('contact');
+Route::post('contact', [PageController::class, 'handleContactForm'])->name('handle-contact-form');
+
+/** Product track route */
+Route::get('product-traking', [ProductTrackController::class, 'index'])->name('product-traking.index');
+
 
 /** User Routes */
 Route::group(['middleware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => 'user.'] , function(){
@@ -84,12 +99,12 @@ Route::group(['middleware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => 
     Route::get('dashboard/orders/show/{id}', [UserOrderController::class, 'show'])->name('dashboard.orders.show');
 
     /** Checkout routes */
-    Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');
+    Route::get('checkout', [CheckOutController::class, 'index'])->middleware('NotEmpty')->name('checkout');
     Route::post('checkout/address-create', [CheckOutController::class, 'createAddress'])->name('checkout.address.create');
     Route::post('checkout/form-submit', [CheckOutController::class, 'checkOutFormSubmit'])->name('checkout.form-submit');
 
     /** Payment Routes */
-    Route::get('payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('payment', [PaymentController::class, 'index'])->middleware('NotEmpty')->name('payment');
 
     /** Paymongo routes */
     Route::post('paymongo/payment',[PaymentController::class, 'payWithPaymongo'])->name('paymongo.payment');
@@ -98,6 +113,10 @@ Route::group(['middleware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => 
 
     /** COD routes */
     Route::get('cod/payment', [PaymentController::class, 'payWithCod'])->name('cod.payment');
+    Route::get('order-success', [PaymentController::class, 'OrderSuccess'])
+    ->name('order.success')
+    ->middleware('COD');
+
 
     /** Wishlist routes */
     Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -105,6 +124,7 @@ Route::group(['middleware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => 
 
     /** Review routes */
     Route::post('review', [ReviewController::class, 'create'])->name('review.create');
+
 
 });
 

@@ -14,6 +14,7 @@ class FooterInfo extends Model
         'phone',
         'email',
         'address',
-        'copyright'
+        'copyright',
+        'map',
     ];
 }

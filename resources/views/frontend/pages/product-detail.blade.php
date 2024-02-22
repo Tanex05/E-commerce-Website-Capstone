@@ -216,30 +216,27 @@
                                                     <div class="wsus__comment_area">
                                                         <h4>Reviews <span>{{count($reviews)}}</span></h4>
                                                         @foreach ($reviews as $review)
-                                                        <div class="wsus__main_comment">
-                                                            <div class="wsus__comment_img">
-                                                                <img src="{{asset($review->user->image)}}" alt="user"
-                                                                    class="img-fluid w-100">
+                                                            <div class="wsus__main_comment">
+                                                                <div class="wsus__comment_img">
+                                                                    <!-- Make user profile image circular and consistent -->
+                                                                    <img src="{{ asset($review->user->image) }}" alt="user" class="img-fluid w-100 rounded-circle" style="max-width: 50px; height: auto;">
+                                                                </div>
+                                                                <div class="wsus__comment_text reply">
+                                                                    <h6>{{ $review->user->name }} <span>{{ $review->rating }} <i class="fas fa-star"></i></span></h6>
+                                                                    <span>{{ date('d M Y', strtotime($review->created_at)) }}</span>
+                                                                    <p>{{ $review->review }}</p>
+                                                                    <ul class="list-unstyled">
+                                                                        @if (count($review->productReviewGalleries) > 0)
+                                                                        @foreach ($review->productReviewGalleries as $image)
+                                                                        <!-- Ensure consistent presentation of product review images -->
+                                                                        <li class="d-inline-block mr-2 mb-2">
+                                                                            <img src="{{ asset($image->image) }}" alt="product" class="img-fluid rounded" style="max-width: 100px; height: auto;">
+                                                                        </li>
+                                                                        @endforeach
+                                                                        @endif
+                                                                    </ul>
+                                                                </div>
                                                             </div>
-                                                            <div class="wsus__comment_text reply">
-                                                                <h6>{{$review->user->name}} <span>{{$review->rating}} <i
-                                                                            class="fas fa-star"></i></span></h6>
-                                                                <span>{{date('d M Y', strtotime($review->created_at))}}</span>
-                                                                <p>{{$review->review}}
-                                                                </p>
-                                                                <ul class="">
-                                                                    @if (count($review->productReviewGalleries) > 0)
-
-                                                                    @foreach ($review->productReviewGalleries as $image)
-
-                                                                    <li><img src="{{asset($image->image)}}" alt="product"
-                                                                            class="img-fluid "></li>
-                                                                    @endforeach
-                                                                    @endif
-
-                                                                </ul>
-                                                            </div>
-                                                        </div>
                                                         @endforeach
 
                                                         <div class="mt-5">

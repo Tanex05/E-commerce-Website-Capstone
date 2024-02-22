@@ -51,6 +51,11 @@
                             <input type="text" class="form-control" name="copyright" value="{{@$footerInfo->copyright}}">
                         </div>
 
+                        <div class="form-group">
+                            <label>Map</label>
+                            <input type="text" class="form-control" name="map" value="{{@$footerInfo->map}}">
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                   </div>

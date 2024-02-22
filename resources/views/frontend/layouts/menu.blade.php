@@ -49,16 +49,16 @@
                         <li><a class="active" href="{{ route('home') }}">home</a></li>
 
                         <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">Promo Sale</a></li>
-                        <li><a class="{{setActive(['flash-out'])}}" href="{{route('flashout')}}">Flash Out</a></li>
+                        <li><a class="{{setActive(['flashout'])}}" href="{{route('flashout')}}">Flash Out</a></li>
 
-                        <li><a class="{{setActive(['about'])}}" href="#">about us</a></li>
+                        <li><a class="{{setActive(['aboutus-page'])}}" href="{{ route('aboutus-page') }}">about us</a></li>
 
-                        <li><a class="{{setActive(['contact'])}}" href="#">contact</a></li>
+                        <li><a class="{{setActive(['contact'])}}" href="{{ route('contact') }}">contact</a></li>
 
                     </ul>
 
                     <ul class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="#">track order</a></li>
+                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
 
                         @if (auth()->check())
                             @if (auth()->user()->role === 'user')
@@ -87,13 +87,13 @@
     <span class="wsus__mobile_menu_close"><i class="fal fa-times"></i></span>
     <ul class="wsus__mobile_menu_header_icon d-inline-flex">
 
-        {{-- <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist_count">
+        <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist_count">
             @if (auth()->check())
             {{\App\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
             @else
             0
             @endif
-        </span></a></li> --}}
+        </span></a></li>
 
         @if (auth()->check())
         @if (auth()->user()->role === 'user')
@@ -160,12 +160,12 @@
                     <ul>
                         <li><a href="{{route('home')}}">home</a></li>
 
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">contact</a></li>
+                        <li><a href="{{ route('aboutus-page') }}">about us</a></li>
+                        <li><a href="{{ route('contact') }}">contact</a></li>
 
                         <li><a href="{{route('flash-sale')}}">flash sale</a></li>
                         <li><a href="{{route('flashout')}}">flash sale</a></li>
-                        <li><a href="#">track order</a></li>
+                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
                     </ul>
                 </div>
             </div>

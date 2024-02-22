@@ -32,7 +32,7 @@ class FooterInfoController extends Controller
             'phone' => ['max:100'],
             'email' => ['max:100'],
             'address' => ['max:300'],
-            'copyright' => ['max:200']
+            'copyright' => ['max:200'],
         ]);
 
         $footerInfo = FooterInfo::find($id);
@@ -46,8 +46,8 @@ class FooterInfoController extends Controller
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'address' => $request->address,
-                'copyright' => $request->copyright
-
+                'copyright' => $request->copyright,
+                'map' => $request->map
             ]);
 
         Cache::forget('footer_info');

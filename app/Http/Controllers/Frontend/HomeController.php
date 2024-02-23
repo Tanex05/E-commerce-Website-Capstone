@@ -11,6 +11,7 @@ use App\Models\FlashSaleItem;
 use App\Models\HomePageSetting;
 use App\Models\Product;
 use App\Models\Slider;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +30,6 @@ class HomeController extends Controller
         $categoryProductSliderSectionTwo = HomePageSetting::where('key', 'product_slider_section_two')->first();
 
         // banners
-
         $homepage_section_banner_one = Advertisement::where('key', 'homepage_section_banner_one')->first();
         $homepage_section_banner_one = json_decode($homepage_section_banner_one?->value);
 
@@ -42,7 +42,9 @@ class HomeController extends Controller
         $homepage_section_banner_four = Advertisement::where('key', 'homepage_section_banner_four')->first();
         $homepage_section_banner_four = json_decode($homepage_section_banner_four?->value);
 
-        $sliders = Slider::where('status', 1)->orderBy('serial','asc')->get();
+        $sliders = Cache::rememberForever('sliders', function(){
+            return Slider::where('status', 1)->orderBy('serial', 'asc')->get();
+        });
         return view('frontend.home.home',
          compact(
             'sliders',

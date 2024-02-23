@@ -44,8 +44,6 @@ require __DIR__.'/auth.php';
 Route::get('flash-sale/page', [FlashSaleController::class, 'index'])->name('flash-sale');
 Route::get('flash-out/page', [FlashOutController::class,'index'])->name('flashout');
 
-Route::get('/staff/login', [StaffController::class, 'login'])->name('staff.login');
-
 /** Product route */
 Route::get('products/search', [FrontendProductController::class, 'productsIndex'])->name('products.front.index');
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');

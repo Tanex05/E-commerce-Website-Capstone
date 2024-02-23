@@ -64,8 +64,4 @@ class StaffController extends Controller
         ));
     }
 
-    public function login()
-    {
-        return view('Staff.auth.login');
-    }
 }

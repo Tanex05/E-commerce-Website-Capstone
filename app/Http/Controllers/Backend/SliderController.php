@@ -8,6 +8,7 @@ use App\Models\Slider;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use File;
+use Illuminate\Support\Facades\Cache;
 
 class SliderController extends Controller
 {
@@ -107,6 +108,8 @@ class SliderController extends Controller
         $slider->serial = $request->serial;
         $slider->status = $request->status;
         $slider->save();
+
+        Cache::forget('sliders');
 
         toastr('Edited Banner Successfully', 'success', 'Success');
 

@@ -94,8 +94,8 @@
   <script src="{{ asset('Backend/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
 
 
-  <!-- Page Specific JS File -->
-  <script src="{{ asset('Backend/assets/js/page/index-0.js') }}"></script>
+  {{-- <!-- Page Specific JS File -->
+  <script src="{{ asset('Backend/assets/js/page/index-0.js') }}"></script> --}}
 
   <!-- Template JS File -->
   <script src="{{ asset('Backend/assets/js/scripts.js') }}"></script>

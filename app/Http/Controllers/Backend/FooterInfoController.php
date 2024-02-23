@@ -29,6 +29,7 @@ class FooterInfoController extends Controller
     {
         $request->validate([
             'logo' => ['nullable', 'image', 'max:3000'],
+            'favicon' => ['nullable', 'image', 'max:3000'],
             'phone' => ['max:100'],
             'email' => ['max:100'],
             'address' => ['max:300'],
@@ -36,23 +37,35 @@ class FooterInfoController extends Controller
         ]);
 
         $footerInfo = FooterInfo::find($id);
-        /** Handle file upload */
-       $imagePath = $this->updateImage($request, 'logo', 'uploads', $footerInfo?->logo);
 
-        FooterInfo::updateOrCreate(
-            ['id' => $id],
-            [
-                'logo' => empty(!$imagePath) ? $imagePath : $footerInfo->banner,
+        if ($footerInfo) {
+            // Handle file upload
+            $logoPath = $this->updateImage($request, 'logo', 'uploads', $footerInfo->logo);
+            $faviconPath = $this->updateImage($request, 'favicon', 'uploads', $footerInfo->favicon);
+
+            $updateData = [
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'address' => $request->address,
                 'copyright' => $request->copyright,
                 'map' => $request->map
-            ]);
+            ];
 
-        Cache::forget('footer_info');
+            // Update logo and/or favicon paths if they were uploaded
+            if (!empty($logoPath)) {
+                $updateData['logo'] = $logoPath;
+            }
 
-        toastr('Updated successfully!', 'success', 'success');
+            if (!empty($faviconPath)) {
+                $updateData['favicon'] = $faviconPath;
+            }
+
+            $footerInfo->update($updateData);
+
+            Cache::forget('footer_info');
+
+            toastr('Updated successfully!', 'success', 'success');
+        }
 
         return redirect()->back();
     }

@@ -7,7 +7,11 @@
 
   <title>Technoblast - Staff Dashboard</title>
 
-  <link rel="icon" type="image/x-icon" href="{{ asset('Backend/assets/logo/favicon.ico') }}">
+    @php
+    $settings = \App\Models\FooterInfo::first();
+    @endphp
+
+    <link rel="icon" type="image/x-icon" href="{{ asset($settings->favicon) }}">
 
 
   <!-- General CSS Files -->

@@ -3,7 +3,11 @@
       <i class="far fa-bars dash_bar"></i>
       <i class="far fa-times dash_close"></i>
     </span>
-    <a href="{{ route('home') }}" class="dash_logo"><img src="{{ asset('Frontend/Logo/technoblast_logo.png') }}" alt="logo" class="img-fluid"></a>
+
+    @php
+    $settings = \App\Models\FooterInfo::first();
+    @endphp
+    <a href="{{ route('home') }}" class="dash_logo"><img src="{{ asset($settings->logo) }}" alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
       <li><a class="active" href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
       <li><a href="{{ route('user.dashboard.orders.index') }}"><i class="fas fa-list-ul"></i> Orders</a></li>

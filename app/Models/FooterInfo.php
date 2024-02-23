@@ -11,6 +11,7 @@ class FooterInfo extends Model
 
     protected $fillable = [
         'logo',
+        'favicon',
         'phone',
         'email',
         'address',

@@ -88,16 +88,4 @@
         LARGE BANNER  END
     ==============================-->
 
-
-
-    <!--============================
-      HOME SERVICES START
-    ==============================-->
-        {{-- @include('frontend.home.sections.services') --}}
-    <!--============================
-        HOME SERVICES END
-    ==============================-->
-
-
-
 @endsection

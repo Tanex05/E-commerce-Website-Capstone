@@ -10,7 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <title>TechnoBlast</title>
-    <link rel="icon" type="image/png" href="{{ asset('Frontend/logo/favicon.ico') }}">
+    @php
+        $settings = \App\Models\FooterInfo::first();
+    @endphp
+    <link rel="icon" type="image/png" href="{{ asset($settings->favicon) }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/select2.min.css') }}">

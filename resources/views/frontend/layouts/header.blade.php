@@ -1,3 +1,7 @@
+@php
+    $settings = \App\Models\FooterInfo::first();
+@endphp
+
 <header>
     <div class="container">
         <div class="row">
@@ -9,7 +13,7 @@
             <div class="col-xl-2 col-5 col-md-4 col-lg-2">
                 <div class="wsus_logo_area">
                     <a class="wsus__header_logo" href="{{ route('home') }}">
-                        <img src="{{ asset('Frontend/logo/LOGO1.PNG') }}" alt="logo" class="w-100">
+                        <img src="{{ asset($settings->logo) }}" alt="logo" class="w-100">
                     </a>
                 </div>
             </div>

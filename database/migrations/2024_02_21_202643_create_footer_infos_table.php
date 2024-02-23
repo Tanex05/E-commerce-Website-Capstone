@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('footer_infos', function (Blueprint $table) {
             $table->id();
             $table->text('logo')->nullable();
+            $table->text('favicon')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->text('address')->nullable();

@@ -13,7 +13,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Footer Info</h4>
+                    <h4>General Info</h4>
 
                   </div>
                   <div class="card-body">
@@ -23,8 +23,14 @@
                         <div class="form-group">
                             <img src="{{asset(@$footerInfo->logo)}}" width="150px" alt="">
                             <br>
-                            <label>Footer Logo</label>
+                            <label>Logo</label>
                             <input type="file" class="form-control" name="logo" >
+                        </div>
+                        <div class="form-group">
+                            <img src="{{asset(@$footerInfo->favicon)}}" width="150px" alt="">
+                            <br>
+                            <label>Favicon</label>
+                            <input type="file" class="form-control" name="favicon" >
                         </div>
 
                         <div class="row">

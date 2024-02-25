@@ -111,9 +111,7 @@ Route::group(['middleware'=> ['auth', 'verified'] , 'prefix' => 'user', 'as' => 
 
     /** COD routes */
     Route::get('cod/payment', [PaymentController::class, 'payWithCod'])->name('cod.payment');
-    Route::get('order-success', [PaymentController::class, 'OrderSuccess'])
-    ->name('order.success')
-    ->middleware('COD');
+    Route::get('order-success', [PaymentController::class, 'OrderSuccess'])->name('order.success');
 
 
     /** Wishlist routes */

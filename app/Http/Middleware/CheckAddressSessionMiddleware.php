@@ -17,12 +17,8 @@ class CheckAddressSessionMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Cart::content()->count() === 0) {
-            // Redirect the user to the home page or perform any other action
-            return redirect()->route('home')->with('error', 'Your cart is empty.');
-        }
-        // Check if the 'address' session exists
-        if (!Session::has('address')) {
+         // Check if the 'address' session exists and if the request is not for COD payment
+         if (!Session::has('address') && $request->route()->getName() !== 'user.cod.payment') {
             // Redirect the user to the checkout page or perform any other action
             return redirect()->route('user.checkout')->with('error', 'Please provide your address.');
         }

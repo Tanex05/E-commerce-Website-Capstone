@@ -86,37 +86,41 @@
                                                             $variants = json_decode($product->variants);
                                                             @endphp
                                                             @foreach ($variants as $key => $item)
-                                                            <p class="text-muted mb-0">{{ $key }}: {{ $item->name }}  (₱{{ $item->price }})</p>
+                                                            <p class="text-muted mb-0">{{ $key }}: {{ $item->name }} (₱{{ number_format($item->price, 2) }})</p>
                                                             @endforeach
                                                         </div>
                                                     </td>
                                                     <td>₱{{ $product->unit_price }}</td>
                                                     <td>{{ $product->qty }}</td>
-                                                    <td class="text-end">₱ {{ ($product->unit_price * $product->qty) + ($product->variant_total * $product->qty) }}</td>
+                                                    <td class="text-end">₱ {{ number_format(($product->unit_price * $product->qty) + ($product->variant_total * $product->qty), 2) }}</td>
                                                 </tr>
                                                 @endforeach
                                             <!-- end tr -->
                                             <tr>
                                                 <th scope="row" colspan="4" class="text-end">Sub Total</th>
-                                                <td class="text-end">₱ {{ @$order->sub_total }}</td>
+                                                <td class="text-end">₱ {{ number_format($order->sub_total, 2) }}</td>
                                             </tr>
                                             <!-- end tr -->
                                             <tr>
-                                                <th scope="row" colspan="4" class="border-0 text-end">
-                                                    Coupon :</th>
-                                                <td class="border-0 text-end">₱ {{ @$coupon->discount ? $coupon->discount : 0 }}</td>
+                                                <th scope="row" colspan="4" class="border-0 text-end">Coupon :</th>
+                                                @if ($coupon->discount_type == 'amount')
+                                                     <td class="border-0 text-end">₱ {{ number_format($coupon->discount ?? 0, 2) }}</td>
+                                                @elseif ($coupon->discount_type == 'percent')
+                                                <td class="border-0 text-end">₱ {{ number_format((($coupon->discount / 100) * $order->sub_total) ?? 0, 2) }}</td>
+                                                @endif
                                             </tr>
                                             <!-- end tr -->
                                             <tr>
                                                 <th scope="row" colspan="4" class="border-0 text-end">
                                                     Shipping Fee :</th>
-                                                <td class="border-0 text-end">₱ {{ @$shipping->cost }}</td>
-                                            </tr>
+                                                    <td class="border-0 text-end">₱ {{ number_format(@$shipping->cost, 2) }}</td>
+                                                </tr>
                                             <!-- end tr -->
                                             <tr>
-                                                <th scope="row" colspan="4" class="border-0 text-end">Total</th>
-                                                <td class="border-0 text-end"><h4 class="m-0 fw-semibold">₱ {{ @$order->amount }}</h4></td>
+                                                <th scope="row" colspan="4" class="border-0 text-end" style="font-weight: normal; font-size: 14px;">Total</th>
+                                                <td class="border-0 text-end" style="font-weight: bold; font-size: 14px;"><h4 class="m-0" style="font-weight: bold; margin: 0;">₱{{ number_format(@$order->amount, 2) }}</h4></td>
                                             </tr>
+
                                             <!-- end tr -->
                                         </tbody><!-- end tbody -->
                                     </table><!-- end table -->

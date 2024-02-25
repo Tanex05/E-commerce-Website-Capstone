@@ -190,22 +190,31 @@ class PaymentController extends Controller
             return redirect()->route('user.checkout');
         }
 
-        // Check if cart is empty, if so, redirect to home
-        if(Cart::count() === 0) {
-            return redirect()->route('home');
-        }
-
         // Store order and clear session
         $this->storeOrder('COD', 0, \Str::random(10));
         $this->clearSession();
+
+        // Set the session variable indicating COD payment success
+        \Session::put('cod_payment_success', true);
 
         // Redirect to order success page
         return redirect()->route('user.order.success');
     }
 
+
     public function OrderSuccess()
     {
-        return view('frontend.pages.order-success');
+        // Check if the session variable indicating COD payment success exists and is true
+        if (\Session::has('cod_payment_success') && \Session::get('cod_payment_success')) {
+            // Clear the session variable
+            \Session::forget('cod_payment_success');
+
+            // Proceed to the order success page
+            return view('frontend.pages.order-success');
+        } else {
+            // Redirect the user to the appropriate page with an error message
+            return redirect()->route('user.checkout')->with('error', 'Please complete the COD payment process.');
+        }
     }
 
 

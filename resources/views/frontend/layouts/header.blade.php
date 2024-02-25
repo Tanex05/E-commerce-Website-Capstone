@@ -52,10 +52,9 @@
                     </div>
                     <div class="wsus__cart_text">
                         <a class="wsus__cart_title" href="{{route('product-detail', $sidebarProduct->options->slug)}}">{{$sidebarProduct->name}}</a>
-                        <p>
-                            ₱{{$sidebarProduct->price}}
-                        </p>
-                        <small>Variants total: ₱{{$sidebarProduct->options->variants_total}}</small>
+                        <p>₱{{ number_format($sidebarProduct->price, 2) }}</p>
+
+                        <small>Variants total: ₱{{ number_format($sidebarProduct->options->variants_total, 2) }}</small>
                         <br>
                         <small>Qty: {{$sidebarProduct->qty}}</small>
                     </div>
@@ -66,7 +65,7 @@
             @endif
         </ul>
         <div class="mini_cart_actions {{Cart::content()->count() === 0 ? 'd-none': ''}}">
-            <h5>sub total <span id="mini_cart_subtotal">₱{{getCartTotal()}}</span></h5>
+            <h5>Sub Total <span id="mini_cart_subtotal">₱{{ number_format(getCartTotal(), 2) }}</span></h5>
             <div class="wsus__minicart_btn_area">
                 {{-- {{route('user.checkout')}} --}}
                 <a class="common_btn" href="{{route('cart-details')}}">view cart</a>

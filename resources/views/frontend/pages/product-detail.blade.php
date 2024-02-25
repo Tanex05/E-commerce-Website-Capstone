@@ -1,5 +1,8 @@
 @extends('frontend.layouts.master')
 
+@section('seo_title', 'TechnoBlast - ' . $product->seo_title)
+@section('description', $product->seo_description)
+
 @section('content')
    <!--============================
         BREADCRUMB START

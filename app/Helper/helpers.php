@@ -107,7 +107,7 @@ function getMainCartTotal() {
 
 
 /** get selected shipping fee from session */
-function getShppingFee(){
+function getShippingFee(){
     if(Session::has('shipping_method')){
         return Session::get('shipping_method')['cost'];
     }else {
@@ -117,7 +117,7 @@ function getShppingFee(){
 
 /** get payable amount */
 function getFinalPayableAmount(){
-    return  getMainCartTotal() + getShppingFee();
+    return  getMainCartTotal() + getShippingFee();
 }
 
 /** limit text */

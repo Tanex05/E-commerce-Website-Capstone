@@ -88,10 +88,11 @@
                     <div class="col-xl-4 col-lg-4">
                         <div class="wsus__pay_booking_summary" id="sticky_sidebar2">
                             <h5>Order Summary</h5>
-                            <p>subtotal : <span>₱{{ getCartTotal() }}</span></p>
-                            <p>shipping fee(+) : <span>₱{{ getShppingFee() }}</span></p>
-                            <p>coupon(-) : <span>₱{{ getCartDiscount() }}</span></p>
-                            <h6>total <span>₱{{ getFinalPayableAmount() }}</span></h6>
+                            <p>subtotal : <span>₱{{ number_format(getCartTotal(), 2) }}</span></p>
+                        <p>shipping fee(+) : <span>₱{{ number_format(getShippingFee(), 2) }}</span></p>
+                        <p>coupon(-) : <span>₱{{ number_format(getCartDiscount(), 2) }}</span></p>
+                        <h6>total <span>₱{{ number_format(getFinalPayableAmount(), 2) }}</span></h6>
+
                         </div>
                     </div>
                 </div>

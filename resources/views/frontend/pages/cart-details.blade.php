@@ -72,17 +72,17 @@
                                         <td class="wsus__pro_name">
                                             <p>{!! $item->name !!}</p>
                                             @foreach ($item->options->variants as $key => $variant)
-                                                <span>{{$key}}: {{$variant['name']}} ({{'₱'.$variant['price']}})</span>
+                                            <span>{{ $key }}: {{ $variant['name'] }} (₱{{ number_format((double) $variant['price'], 2) }})</span>
                                             @endforeach
 
                                         </td>
 
                                         <td class="wsus__pro_tk">
-                                            <h6>{{'₱'.$item->price}}</h6>
+                                            <h6>{{ '₱' . number_format((double) $item->price, 2) }}</h6>
                                         </td>
 
                                         <td class="wsus__pro_tk">
-                                            <h6 id="{{$item->rowId}}">{{'₱'.($item->price + $item->options->variants_total) * $item->qty}}</h6>
+                                            <h6 id="{{ $item->rowId }}">{{ '₱' . number_format((double) (($item->price + $item->options->variants_total) * $item->qty), 2) }}</h6>
                                         </td>
 
                                         <td class="wsus__pro_select">
@@ -116,9 +116,10 @@
                 <div class="col-xl-3">
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
-                        <p>subtotal: <span id="sub_total">₱{{getCartTotal()}}</span></p>
-                        <p>coupon(-): <span id="discount">₱{{getCartDiscount()}}</span></p>
-                        <p class="total"><span>total:</span> <span id="cart_total">₱{{getMainCartTotal()}}</span></p>
+                        <p>subtotal: <span id="sub_total">₱ {{ number_format((double)getCartTotal(), 2) }}</span></p>
+                        <p>coupon(-): <span id="discount">₱ {{ number_format((double)getCartDiscount(), 2) }}</span></p>
+                        <p class="total"><span>total:</span> <span id="cart_total">₱ {{ number_format((double)getMainCartTotal(), 2) }}</span></p>
+
 
 
                         <form id="coupon_form">

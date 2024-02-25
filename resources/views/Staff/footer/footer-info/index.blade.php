@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <img src="{{asset(@$footerInfo->logo)}}" width="150px" alt="">
                             <br>
-                            <label>Logo</label>
+                            <label>Logo (249x87)</label>
                             <input type="file" class="form-control" name="logo" >
                         </div>
                         <div class="form-group">

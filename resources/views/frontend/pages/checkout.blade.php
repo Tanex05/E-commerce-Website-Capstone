@@ -77,7 +77,7 @@
                                             value="{{$method->id}}" data-id="{{$method->cost}}">
                                         <label class="form-check-label" for="exampleRadios1">
                                             {{$method->name}}
-                                            <span>cost: (₱{{$method->cost}})</span>
+                                            <span>cost: (₱{{ number_format((double) $method->cost, 2) }})</span>
                                         </label>
                                     </div>
                                 @elseif ($method->type === 'flat_cost')
@@ -86,17 +86,18 @@
                                             value="{{$method->id}}" data-id="{{$method->cost}}">
                                         <label class="form-check-label" for="exampleRadios1">
                                             {{$method->name}}
-                                            <span>cost: (₱{{$method->cost}})</span>
+                                            <span>cost: (₱{{ number_format((double) $method->cost, 2) }})</span>
                                         </label>
                                     </div>
                                 @endif
                             @endforeach
 
                             <div class="wsus__order_details_summery">
-                                <p>subtotal: <span>₱{{getCartTotal()}}</span></p>
+                                <p>subtotal: <span>₱{{ number_format(getCartTotal(), 2) }}</span></p>
                                 <p>shipping fee(+): <span id="shipping_fee">₱0</span></p>
-                                <p>coupon(-): <span>₱{{getCartDiscount()}}</span></p>
-                                <p><b>total:</b> <span><b id="total_amount" data-id="{{getMainCartTotal()}}">₱{{getMainCartTotal()}}</b></span></p>
+                                <p>coupon(-): <span>₱{{ number_format(getCartDiscount(), 2) }}</span></p>
+                                <p><b>total:</b> <span><b id="total_amount" data-id="{{ getMainCartTotal() }}">₱{{ number_format(getMainCartTotal(), 2) }}</b></span></p>
+
                             </div>
                             <div class="terms_area">
                                 <div class="form-check">
@@ -217,9 +218,9 @@
             let totalAmount = currentTotalAmount + shippingFee;
 
             $('#shipping_method_id').val($(this).val());
-            $('#shipping_fee').text("₱"+shippingFee);
+            $('#shipping_fee').text("₱" + shippingFee.toFixed(2)); // Display shipping fee with 2 decimal places
 
-            $('#total_amount').text("₱"+totalAmount)
+            $('#total_amount').text("₱" + totalAmount.toLocaleString('en-US', { minimumFractionDigits: 2 }));
         })
 
         $('.shipping_address').on('click', function(){

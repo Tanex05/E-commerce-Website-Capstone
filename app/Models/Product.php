@@ -10,27 +10,27 @@ class Product extends Model
     use HasFactory;
 
     protected static function booted()
-{
-    static::saved(function ($product) {
-        // Check if the 'status' attribute has changed
-        if ($product->status == '1') {
-            // Update the associated FlashSaleItem records
-            $product->flashSaleItems()->update(['status' => 1]);
-        } else {
-            $product->flashSaleItems()->update(['status' => 0]);
-        }
-
-        // Check if there are FlashOutItem records
-        if ($product->flashOutItem()->exists()) {
-            // Update the associated FlashOutItem records based on the product status
+    {
+        static::saved(function ($product) {
+            // Check if the 'status' attribute has changed
             if ($product->status == '1') {
-                $product->flashOutItem()->update(['status' => 1]);
+                // Update the associated FlashSaleItem records
+                $product->flashSaleItems()->update(['status' => 1]);
             } else {
-                $product->flashOutItem()->update(['status' => 0]);
+                $product->flashSaleItems()->update(['status' => 0]);
             }
-        }
-    });
-}
+
+            // Check if there are FlashOutItem records
+            if ($product->flashOutItem()->exists()) {
+                // Update the associated FlashOutItem records based on the product status
+                if ($product->status == '1') {
+                    $product->flashOutItem()->update(['status' => 1]);
+                } else {
+                    $product->flashOutItem()->update(['status' => 0]);
+                }
+            }
+        });
+    }
 
     public function category()
     {

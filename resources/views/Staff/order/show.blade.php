@@ -137,11 +137,15 @@
                         <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Coupon (-)</div>
                             <div class="invoice-detail-value">₱
-                                @if ($coupon->discount_type == 'amount')
-                                    {{ isset($coupon->discount) ? number_format((double) $coupon->discount, 2) : '0.00' }}
-                                @elseif ($coupon->discount_type == 'percent')
-                                    {{ number_format((($coupon->discount / 100) * $order->sub_total) ?? 0, 2) }}
-                                @endif
+                                @isset($coupon)
+                                    @if ($coupon->discount_type == 'amount')
+                                        {{ isset($coupon->discount) ? number_format((double) $coupon->discount, 2) : '0.00' }}
+                                    @elseif ($coupon->discount_type == 'percent')
+                                        {{ number_format((($coupon->discount / 100) * $order->sub_total) ?? 0, 2) }}
+                                    @endif
+                                @else
+                                    0.00
+                                @endisset
                             </div>
                         </div>
 

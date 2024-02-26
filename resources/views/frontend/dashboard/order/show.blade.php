@@ -103,10 +103,12 @@
                                             <!-- end tr -->
                                             <tr>
                                                 <th scope="row" colspan="4" class="border-0 text-end">Coupon :</th>
-                                                @if ($coupon->discount_type == 'amount')
-                                                     <td class="border-0 text-end">₱ {{ number_format($coupon->discount ?? 0, 2) }}</td>
-                                                @elseif ($coupon->discount_type == 'percent')
-                                                <td class="border-0 text-end">₱ {{ number_format((($coupon->discount / 100) * $order->sub_total) ?? 0, 2) }}</td>
+                                                @if (optional($coupon)->discount_type == 'amount')
+                                                    <td class="border-0 text-end">₱ {{ number_format($coupon->discount ?? 0, 2) }}</td>
+                                                @elseif (optional($coupon)->discount_type == 'percent')
+                                                    <td class="border-0 text-end">₱ {{ number_format((($coupon->discount / 100) * $order->sub_total) ?? 0, 2) }}</td>
+                                                @else
+                                                    <td class="border-0 text-end">₱ 0.00</td>
                                                 @endif
                                             </tr>
                                             <!-- end tr -->

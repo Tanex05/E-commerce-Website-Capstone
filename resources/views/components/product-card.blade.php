@@ -1,7 +1,30 @@
 <div class="col-xl-3 col-sm-6 col-lg-4 {{ @$key }}">
     <div class="wsus__product_item">
         @if(!empty($product->product_type))
-            <span class="wsus__new">{{ productType($product->product_type) }}</span>
+            @php
+                $background_color = '';
+                switch($product->product_type) {
+                    case 'new_arrival':
+                        $background_color = '#ffcc00'; // yellow
+                        break;
+                    case 'featured_product':
+                        $background_color = '#ff6666'; // pink
+                        break;
+                    case 'top_product':
+                        $background_color = '#66ccff'; // light blue
+                        break;
+                    case 'promo_product':
+                        $background_color = '#99ff99'; // light green
+                        break;
+                    case 'flashout_product':
+                        $background_color = '#ff9900'; // orange
+                        break;
+                    default:
+                        // default background color
+                        $background_color = 'none';
+                }
+            @endphp
+            <span class="wsus__new" style="background-color: {{ $background_color }};">{{ productType($product->product_type) }}</span>
         @endif
 
         @if(checkDiscount($product))

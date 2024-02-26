@@ -26,23 +26,6 @@
             </a>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="{{ route('pending-orders') }}">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
-                        <i class="fas fa-cart-plus"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Todays Pending Orders</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $todaysPendingOrder }}
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <a href="{{ route('order.index') }}">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
@@ -54,7 +37,7 @@
                         </div>
                         <div class="card-body">
                             {{ $totalOrders }}
-                        </div>
+                    </div>
                     </div>
                 </div>
             </a>

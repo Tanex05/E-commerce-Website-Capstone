@@ -17,7 +17,7 @@ class UserDashboardController extends Controller
         $pendingOrder = Order::where('user_id', Auth::user()->id)
             ->where('order_status', 'pending')->count();
         $completeOrder = Order::where('user_id', Auth::user()->id)
-        ->where('order_status', 'delivered')->count();
+            ->where('order_status', 'delivered')->count();
         $reviews = ProductReview::where('user_id', Auth::user()->id)->count();
         $wishlist = Wishlist::where('user_id', Auth::user()->id)->count();
 

@@ -81,7 +81,7 @@
                                                     <th scope="row">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</th>
                                                     <td>
                                                         <div>
-                                                            <h5 class="text-truncate font-size-14 mb-1">{{ $product->product_name }}</h5>
+                                                            <h5 class="text-truncate font-size-14 mb-1"><a target="_blank" href="{{route('product-detail', $product->product->slug)}}">{{$product->product_name}}</a></h5>
                                                             @php
                                                             $variants = json_decode($product->variants);
                                                             @endphp
@@ -90,7 +90,7 @@
                                                             @endforeach
                                                         </div>
                                                     </td>
-                                                    <td>₱{{ $product->unit_price }}</td>
+                                                    <td>₱{{ number_format($product->unit_price, 2) }}</td>
                                                     <td>{{ $product->qty }}</td>
                                                     <td class="text-end">₱ {{ number_format(($product->unit_price * $product->qty) + ($product->variant_total * $product->qty), 2) }}</td>
                                                 </tr>

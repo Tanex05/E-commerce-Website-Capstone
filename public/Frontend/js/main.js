@@ -392,7 +392,7 @@ $(function () {
         ],
     });
 
-    //*==========STICKY SIDEBAR=========
+    // *==========STICKY SIDEBAR=========
     $("#sticky_sidebar").stickit({
         top: 70,
     });

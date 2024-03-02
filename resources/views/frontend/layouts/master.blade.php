@@ -15,7 +15,7 @@
         $settings = \App\Models\FooterInfo::first();
         $favicon = $settings ? $settings->favicon : ''; // Check if $settings is not null before accessing properties
     @endphp
-    
+
     @if ($favicon)
         <link rel="icon" type="image/png" href="{{ asset($favicon) }}">
     @endif
@@ -124,7 +124,7 @@
     <!--multiple-image-video js-->
     <script src="{{ asset('Frontend/js/multiple-image-video.js') }}"></script>
     <!--sticky sidebar js-->
-    <script src="js/sticky_sidebar.js"></script>
+    <script src="{{ asset('Frontend/js/sticky_sidebar.js') }}"></script>
     <!--price ranger js-->
     <script src="{{ asset('Frontend/js/ranger_jquery-ui.min.js') }}"></script>
     <script src="{{ asset('Frontend/js/ranger_slider.js') }}"></script>
@@ -146,8 +146,13 @@
 
     <!--Twakto js-->
     @auth
+        <script>
+            var tawktoVisitorName = "{{ auth()->user()->name }}";
+            var tawktoScriptUrl = "{{ env('TAWKTO_SCRIPT_URL') }}";
+        </script>
         <script src="{{ asset('Frontend/js/tawkto.js') }}"></script>
     @endauth
+
 
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 

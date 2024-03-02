@@ -13,8 +13,13 @@
         rel="stylesheet">
     @php
         $settings = \App\Models\FooterInfo::first();
+        $favicon = $settings ? $settings->favicon : ''; // Check if $settings is not null before accessing properties
     @endphp
-    <link rel="icon" type="image/png" href="{{ asset($settings->favicon) }}">
+    
+    @if ($favicon)
+        <link rel="icon" type="image/png" href="{{ asset($favicon) }}">
+    @endif
+
     <link rel="stylesheet" href="{{ asset('Frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/select2.min.css') }}">

@@ -7,12 +7,11 @@
 
   <title>Technoblast - Admin Dashboard</title>
 
-    @php
-    $settings = \App\Models\FooterInfo::first();
-    @endphp
-
-    <link rel="icon" type="image/x-icon" href="{{ asset($settings->favicon) }}">
-
+  @php
+  $settings = \App\Models\FooterInfo::first();
+  @endphp
+  
+  <link rel="icon" type="image/x-icon" href="{{ optional($settings)->favicon ? asset($settings->favicon) : '' }}">  
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('Backend/assets/modules/bootstrap/css/bootstrap.min.css') }}">

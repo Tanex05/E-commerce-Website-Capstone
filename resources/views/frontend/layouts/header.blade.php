@@ -13,7 +13,11 @@
             <div class="col-xl-2 col-5 col-md-4 col-lg-2">
                 <div class="wsus_logo_area">
                     <a class="wsus__header_logo" href="{{ route('home') }}">
-                        <img src="{{ asset($settings->logo) }}" alt="logo" class="w-100">
+                        @if ($settings && $settings->logo)
+                            <img src="{{ asset($settings->logo) }}" alt="logo" class="w-100">
+                        @else
+                            <img src="{{ asset('path_to_default_logo') }}" alt="logo" class="w-100">
+                        @endif
                     </a>
                 </div>
             </div>

@@ -1,40 +1,42 @@
 @php
 $routeParam = '';
+$hasProductsInCategory = false; // Define $hasProductsInCategory here
 
-$categoryProductSliderSectionOne = json_decode($categoryProductSliderSectionOne->value);
-$lastKey = [];
+// Check if $categoryProductSliderSectionOne is not null before decoding it
+if ($categoryProductSliderSectionOne !== null) {
+    $categoryProductSliderSectionOne = json_decode($categoryProductSliderSectionOne->value);
+    $lastKey = [];
 
-foreach($categoryProductSliderSectionOne as $key => $category){
-    if($category === null ){
-        break;
+    foreach ($categoryProductSliderSectionOne as $key => $category) {
+        if ($category === null) {
+            break;
+        }
+        $lastKey = [$key => $category];
     }
-    $lastKey = [$key => $category];
-}
 
-if(array_keys($lastKey)[0] === 'category'){
-    $category = \App\Models\Category::find($lastKey['category']);
-    $routeParam = 'category';
-    $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])
-        ->where('category_id', $category->id)->where('status', 1)->orderBy('id', 'DESC')->take(12)->get();
-}elseif(array_keys($lastKey)[0] === 'sub_category'){
-    $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-    $routeParam = 'subcategory';
-    $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])
-        ->where('sub_category_id', $category->id)->where('status', 1)->orderBy('id', 'DESC')->take(12)->get();
-}else {
-    $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-    $routeParam = 'childcategory';
-    $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])
-        ->where('child_category_id', $category->id)->where('status', 1)->orderBy('id', 'DESC')->take(12)->get();
-}
-@endphp
+    if (array_keys($lastKey)[0] === 'category') {
+        $category = \App\Models\Category::find($lastKey['category']);
+        $routeParam = 'category';
+        $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])
+            ->where('category_id', $category->id)->where('status', 1)->orderBy('id', 'DESC')->take(12)->get();
+    } elseif (array_keys($lastKey)[0] === 'sub_category') {
+        $category = \App\Models\SubCategory::find($lastKey['sub_category']);
+        $routeParam = 'subcategory';
+        $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])
+            ->where('sub_category_id', $category->id)->where('status', 1)->orderBy('id', 'DESC')->take(12)->get();
+    } else {
+        $category = \App\Models\ChildCategory::find($lastKey['child_category']);
+        $routeParam = 'childcategory';
+        $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')->with(['variants', 'category', 'productImageGalleries'])
+            ->where('child_category_id', $category->id)->where('status', 1)->orderBy('id', 'DESC')->take(12)->get();
+    }
 
-@php
-$hasProductsInCategory = false;
-foreach ($products as $product) {
-    if ($product->category_id == $category->id || $product->sub_category_id == $category->id || $product->child_category_id == $category->id) {
-        $hasProductsInCategory = true;
-        break;
+    // Check if $categoryProductSliderSectionOne is not null before using it in the loop
+    foreach ($products as $product) {
+        if ($product->category_id == $category->id || $product->sub_category_id == $category->id || $product->child_category_id == $category->id) {
+            $hasProductsInCategory = true;
+            break;
+        }
     }
 }
 @endphp

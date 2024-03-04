@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminApi; // Import the AdminApi model
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -161,25 +162,42 @@ class PaymentController extends Controller
             ]
         ];
 
-        $api_key = base64_encode(env('PAYMONGO_SECRET_KEY')); // Encode the API key
-        $headers = [
-            'Content-Type: application/json',
-            'accept: application/json',
-            'Authorization: Basic ' . $api_key, // Use the encoded API key in the Authorization header
-        ];
 
 
-        $response = Curl::to('https://api.paymongo.com/v1/checkout_sessions')
+        $adminApi = AdminApi::first();
+
+        if ($adminApi && $adminApi->paymongo_secret_key) {
+            $api_key = base64_encode($adminApi->paymongo_secret_key); // Encode the API key
+            $headers = [
+                'Content-Type: application/json',
+                'accept: application/json',
+                'Authorization: Basic ' . $api_key, // Use the encoded API key in the Authorization header
+            ];
+
+            // Your existing code to make the API call
+            $response = Curl::to('https://api.paymongo.com/v1/checkout_sessions')
                 ->withHeaders($headers)
                 ->withData($data)
                 ->asJson()
                 ->post();
-        // After successful payment, set a session variable indicating successful payment
-        \Session::put('payment_success', true);
 
-        \Session::put('session_id', $response->data->id);
+            // After successful payment, set a session variable indicating successful payment
+            \Session::put('payment_success', true);
 
-        return redirect()->to($response->data->attributes->checkout_url);
+            // Check if the response contains the necessary properties before accessing them
+            if (isset($response->data->id)) {
+                \Session::put('session_id', $response->data->id);
+            }
+
+            if (isset($response->data->attributes->checkout_url)) {
+                return redirect()->to($response->data->attributes->checkout_url);
+            }
+        } else {
+            // Handle case where AdminApi record doesn't exist or paymongo_secret_key is empty
+            // For example, you can log an error message or handle the situation accordingly
+            Log::error('AdminApi record not found or paymongo_secret_key is empty');
+            // Alternatively, you can set a default API key or handle the situation based on your requirements
+        }
     }
 
     /** pay with cod */

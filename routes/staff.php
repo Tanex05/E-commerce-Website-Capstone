@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminApiController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminListController;
@@ -159,6 +160,9 @@ Route::middleware(['staff'])->group(function () {
     Route::resource('background-images', BackgroundImageController::class);
     Route::resource('background-images-flashsale', FlashSaleImageController::class);
     Route::resource('background-images-flashout', FlashOutImageController::class);
+
+    /** General information */
+    Route::resource('Admin-Api', AdminApiController::class);
 
     /** footer routes */
     Route::resource('footer-info', FooterInfoController::class);

@@ -24,6 +24,16 @@
                     <li class="{{ setActive(['child-category.*']) }}"><a class="nav-link" href="{{ route('child-category.index') }}">Child Category</a></li>
                 </ul>
             </li>
+
+            @if (Auth::user()->role == 'admin')
+                <!-- API  -->
+                <li class="{{ setActive(['Admin-Api.*']) }}"><a class="nav-link" href="{{ route('Admin-Api.index') }}"><i class="fas fa-cog"></i><span>Manage API</span></a></li>
+            @endif
+
+
+
+
+
             <!-- Product Dropdown -->
             <li class="dropdown {{ setActive(['product.*','coupons.*','shipping-rule.*','reviews.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box"></i> <span>Manage Product</span></a>
@@ -34,6 +44,9 @@
                     <li class="{{ setActive(['reviews.*']) }}"><a class="nav-link" href="{{ route('reviews.index') }}">Product Review</a></li>
                 </ul>
             </li>
+            <!-- Brand Dropdown -->
+            <li class="{{ setActive(['brand.*']) }}"><a class="nav-link" href="{{ route('brand.index') }}"><i class="fas fa-box"></i><span>Manage Brand</span></a></li>
+
             <!-- Product Layout -->
             <li class="dropdown {{ setActive(['slider.*','flash-sale.*','product-slider-one.*','product-slider-two.*','home-page-setting','background-images.*','flash-out.*','background-images-flashsale.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
@@ -69,13 +82,7 @@
             <li class="{{ setActive(['transaction']) }}"><a class="nav-link" href="{{ route('transaction') }}"><i class="fas fa-money-bill-alt"></i><span>Transactions</span></a></li>
             <!-- Advertisement Dropdown -->
             <li><a class="nav-link {{ setActive(['advertisement.*']) }}" href="{{ route('advertisement.index') }}"><i class="fas fa-ad"></i><span>Advertisement</span></a></li>
-            <!-- Brand Dropdown -->
-            <li class="dropdown {{ setActive(['brand.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box"></i> <span>Manage Brand</span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setActive(['brand.*']) }}"><a class="nav-link" href="{{ route('brand.index') }}">Brands</a></li>
-                </ul>
-            </li>
+
             <!-- Manage Dropdown -->
             <li class="dropdown {{ setActive(['faq.*','about.*','terms-and-conditions.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i><span>Manage Website</span></a>
@@ -113,6 +120,8 @@
                     <li class="{{ setActive(['footer-grid-three.*']) }}"><a class="nav-link" href="{{ route('footer-grid-three.index') }}">Footer Grid Three</a></li>
                 </ul>
             </li>
+
+
         </ul>
     </aside>
 </div>

@@ -22,7 +22,10 @@
     <!--============================
         BREADCRUMB END
     ==============================-->
-
+    @php
+        $adminApi = App\Models\AdminApi::first();
+        $check = $adminApi && $adminApi->paymongo_secret_key;
+    @endphp
 
     <!--============================
         PAYMENT PAGE START
@@ -35,10 +38,12 @@
                         <div class="wsus__payment_menu" id="sticky_sidebar">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
-
+                            @if ($check)
                                 <button class="nav-link common_btn active" id="v-pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-banks-e-wallet" type="button" role="tab"
-                                    aria-controls="v-pills-banks-e-wallet" aria-selected="true">Bank / E-Wallet</button>
+                                data-bs-target="#v-pills-banks-e-wallet" type="button" role="tab"
+                                aria-controls="v-pills-banks-e-wallet" aria-selected="true">Bank / E-Wallet</button>
+                            @endif
+
 
                                 <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-cod" type="button" role="tab"
@@ -50,8 +55,8 @@
                     <div class="col-xl-5 col-lg-5">
                         <div class="tab-content" id="v-pills-tabContent">
 
-
-                            <div class="tab-pane fade show active" id="v-pills-banks-e-wallet" role="tabpanel"
+                            @if ($check)
+                                <div class="tab-pane fade show active" id="v-pills-banks-e-wallet" role="tabpanel"
                                 aria-labelledby="v-pills-home-tab">
                                 <div class="row">
                                     <div class="col-xl-12 m-auto">
@@ -66,6 +71,9 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
+
+
 
 
                             <div class="tab-pane fade" id="v-pills-cod" role="tabpanel"

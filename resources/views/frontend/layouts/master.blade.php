@@ -143,14 +143,28 @@
     <!--main/custom js-->
     <script src="{{ asset('Frontend/js/main.js') }}"></script>
 
+    @php
+        $settingtwo = \App\Models\AdminApi::first();
+        $TawkToSRC = $settingtwo ? $settingtwo->tawk_to : '';
+    @endphp
 
-    <!--Twakto js-->
+    <!-- Tawk.to JavaScript -->
     @auth
-        <script>
-            var tawktoVisitorName = "{{ auth()->user()->name }}";
-            var tawktoScriptUrl = "{{ env('TAWKTO_SCRIPT_URL') }}";
-        </script>
-        <script src="{{ asset('Frontend/js/tawkto.js') }}"></script>
+        @if (!empty($TawkToSRC))
+            <!--Start of Tawk.to Script-->
+            <script type="text/javascript">
+                var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src= "{{ $TawkToSRC }}";
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+                })();
+            </script>
+            <!--End of Tawk.to Script-->
+        @endif
     @endauth
 
 

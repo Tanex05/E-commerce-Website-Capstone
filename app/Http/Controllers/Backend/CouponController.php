@@ -38,8 +38,8 @@ class CouponController extends Controller
             'end_date' => ['required'],
             'discount_type' => ['required', 'max:200'],
             'discount' => ['required', 'integer'],
-            'status' => ['required', 'integer']
-
+            'status' => ['required', 'integer'],
+            'minimum_spend' => ['nullable', 'numeric'], // Validation for minimum_spend field
         ]);
 
         $coupon = new Coupon();
@@ -50,6 +50,7 @@ class CouponController extends Controller
         $coupon->end_date = $request->end_date;
         $coupon->discount_type = $request->discount_type;
         $coupon->discount = $request->discount;
+        $coupon->minimum_spend = $request->minimum_spend; // Assigning minimum_spend value
         $coupon->total_used = 0;
         $coupon->status = $request->status;
         $coupon->save();
@@ -89,8 +90,8 @@ class CouponController extends Controller
             'end_date' => ['required'],
             'discount_type' => ['required', 'max:200'],
             'discount' => ['required', 'integer'],
-            'status' => ['required', 'integer']
-
+            'status' => ['required', 'integer'],
+            'minimum_spend' => ['nullable', 'numeric'], // Validation for minimum_spend field
         ]);
 
         $coupon = Coupon::findOrFail($id);
@@ -101,6 +102,7 @@ class CouponController extends Controller
         $coupon->end_date = $request->end_date;
         $coupon->discount_type = $request->discount_type;
         $coupon->discount = $request->discount;
+        $coupon->minimum_spend = $request->minimum_spend; // Assigning minimum_spend value
         $coupon->status = $request->status;
         $coupon->save();
 

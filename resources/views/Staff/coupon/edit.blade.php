@@ -14,7 +14,6 @@
                 <div class="card">
                   <div class="card-header">
                     <h4>Update Coupon</h4>
-
                   </div>
                   <div class="card-body">
                     <form action="{{route('coupons.update', $coupon->id)}}" method="POST">
@@ -40,7 +39,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Start Date</label>
-                                        <input type="text" class="form-control datepicker" name="start_date" value="{{$coupon->start_date}}">
+                                    <input type="text" class="form-control datepicker" name="start_date" value="{{$coupon->start_date}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -49,7 +48,6 @@
                                     <input type="text" class="form-control datepicker" name="end_date" value="{{$coupon->end_date}}">
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -62,10 +60,16 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Discount Value</label>
                                     <input type="text" class="form-control" name="discount" value="{{$coupon->discount}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Minimum Spend</label>
+                                    <input type="text" class="form-control" name="minimum_spend" value="{{$coupon->minimum_spend}}">
                                 </div>
                             </div>
                         </div>
@@ -77,15 +81,12 @@
                               <option {{$coupon->status == 0 ? 'selected' : ''}} value="0">Inactive</option>
                             </select>
                         </div>
-                        <button type="submmit" class="btn btn-primary">Update Coupon</button>
+                        <button type="submit" class="btn btn-primary">Update Coupon</button>
                     </form>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </section>
-
 @endsection

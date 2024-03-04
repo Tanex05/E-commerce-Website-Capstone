@@ -230,6 +230,14 @@ class CartController extends Controller
             return response(['status' => 'error', 'message' => 'you can not apply this coupon']);
         }
 
+        // Check if minimum spend is required and validate against the current cart total
+        if ($coupon->minimum_spend !== null) {
+            $cartTotal = $this->cartTotal();
+            if ($cartTotal < $coupon->minimum_spend) {
+                return response(['status' => 'error', 'message' => 'Minimum spend requirement not met!']);
+            }
+        }
+
         if($coupon->discount_type === 'amount'){
             Session::put('coupon', [
                 'coupon_name' => $coupon->name,

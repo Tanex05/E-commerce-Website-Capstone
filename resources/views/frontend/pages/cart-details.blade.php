@@ -201,7 +201,7 @@
                         $(productId).text(totalAmount);
 
                         // Update cart total
-                        $('#cart_total').text("₱" + data.cart_total);
+                        $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2));
 
                         // Update other cart details
                         renderCartSubTotal();
@@ -252,7 +252,7 @@
                             $(productId).text(totalAmount);
 
                             // Update cart total
-                            $('#cart_total').text("₱" + data.cart_total);
+                            $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2));
 
                             // Update other cart details
                             renderCartSubTotal();
@@ -310,7 +310,7 @@
                 method: 'GET',
                 url: "{{ route('cart.sidebar-product-total') }}",
                 success: function(data) {
-                    $('#sub_total').text("₱"+data);
+                    $('#sub_total').text("₱" + parseFloat(data).toFixed(2));
                 },
                 error: function(data) {
                     console.log(data);
@@ -348,6 +348,9 @@
             url: "{{ route('coupon-calculation') }}",
             success: function(data) {
                 if(data.status === 'success'){
+                    var discount = parseFloat(data.discount).toFixed(2);
+                    var cartTotal = parseFloat(data.cart_total).toFixed(2);
+
                     $('#discount').text('₱'+data.discount);
                     $('#cart_total').text('₱'+data.cart_total);
                 }

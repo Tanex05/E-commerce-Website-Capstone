@@ -14,7 +14,6 @@
                 <div class="card">
                   <div class="card-header">
                     <h4>Create Coupon</h4>
-
                   </div>
                   <div class="card-body">
                     <form action="{{route('coupons.store')}}" method="POST">
@@ -62,10 +61,16 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Discount Value</label>
                                     <input type="text" class="form-control" name="discount" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Minimum Spend</label>
+                                    <input type="text" class="form-control" name="minimum_spend" value="">
                                 </div>
                             </div>
                         </div>
@@ -77,15 +82,12 @@
                               <option value="0">Inactive</option>
                             </select>
                         </div>
-                        <button type="submmit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </form>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </section>
-
 @endsection

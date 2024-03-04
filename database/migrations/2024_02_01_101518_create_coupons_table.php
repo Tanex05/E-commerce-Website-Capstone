@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('code');
             $table->integer('quantity');
+            $table->double('minimum_spend')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->string('discount_type');

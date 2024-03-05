@@ -34,7 +34,7 @@
                             </div>
                             <div class="col">
                                 <a class="wsus__dashboard_item purple" href="{{ route('user.wishlist.index') }}">
-                                    <i class="fas fa-star"></i>
+                                    <i class="fa fa-heart"></i>
                                     <p>Wishlist</p>
                                     <h4 style="color:#ffff">{{ $wishlist }}</h4>
                                 </a>
@@ -47,8 +47,6 @@
                                 </a>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

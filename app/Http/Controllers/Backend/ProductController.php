@@ -46,7 +46,6 @@ class ProductController extends Controller
             'thumbnail_image' => ['required','image','max:2000'],
             'name' => ['string','max:200'],
             'category' => ['required'],
-            'brand' => ['required'],
             'price' => ['required'],
             'qty' => ['required'],
             'short_description' => ['required','max:600'],

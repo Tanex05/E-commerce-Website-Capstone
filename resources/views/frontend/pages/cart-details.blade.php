@@ -88,7 +88,10 @@
                                         <td class="wsus__pro_select">
                                             <div class="product_qty_wrapper">
                                                 <button class="btn btn-danger product-decrement">-</button>
-                                                <input class="product-qty" data-rowid="{{$item->rowId}}" type="text" min="1" max="100" value="{{$item->qty}}" readonly />
+                                                <input class="product-qty" data-rowid="{{$item->rowId}}" data-max-quantity="{{ optional($item->model)->qty ?? 0 }}" type="text" min="1" value="{{$item->qty}}" readonly />
+
+
+
                                                 <button class="btn btn-success product-increment">+</button>
                                             </div>
                                         </td>
@@ -116,9 +119,9 @@
                 <div class="col-xl-3">
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
-                        <p>subtotal: <span id="sub_total">₱ {{ number_format((double)getCartTotal(), 2) }}</span></p>
-                        <p>coupon(-): <span id="discount">₱ {{ number_format((double)getCartDiscount(), 2) }}</span></p>
-                        <p class="total"><span>total:</span> <span id="cart_total">₱ {{ number_format((double)getMainCartTotal(), 2) }}</span></p>
+                        <p>subtotal: <span id="sub_total">₱ {{ getCartTotal()}}</span></p>
+                        <p>coupon(-): <span id="discount">₱ {{ getCartDiscount() }}</span></p>
+                        <p class="total"><span>total:</span> <span id="cart_total">₱ {{ getMainCartTotal() }}</span></p>
 
 
 
@@ -175,71 +178,83 @@
             }
         });
 
+// Increment product quantity
+$('.product-increment').on('click', function(){
+    let input = $(this).siblings('.product-qty');
+    let currentQuantity = parseInt(input.val());
+    let maxAllowedQuantity = parseInt(input.data('max-quantity')); // Retrieve the maximum allowed quantity from the 'max-quantity' data attribute
+    let rowId = input.data('rowid');
 
-        // Increment product quantity
-        $('.product-increment').on('click', function(){
-            let input = $(this).siblings('.product-qty');
-            let quantity = parseInt(input.val()) + 1;
-            let rowId = input.data('rowid');
-            input.val(quantity);
+    // Check if the current quantity is equal to the maximum allowed quantity
+    if (currentQuantity >= maxAllowedQuantity) {
+        toastr.error('Reached maximum quantity of product');
+        return;
+    }
 
-            let productId = '#' + rowId;
-            $(productId).text(""); // Or any other default value
+    // Increment the quantity only if it's less than the maximum allowed quantity
+    let quantity = Math.min(currentQuantity + 1, maxAllowedQuantity);
+    input.val(quantity);
 
-            // Send Ajax request to update the quantity
-            $.ajax({
-                url: "{{ route('cart.update-quantity-increment') }}",
-                method: 'POST',
-                data: {
-                    rowId: rowId,
-                    quantity: quantity
-                },
-                success: function(data){
-                    if(data.status === 'success'){
-                        let productId = '#' + rowId;
-                        let totalAmount = "₱" + data.product_total;
-                        $(productId).text(totalAmount);
+    let productId = '#' + rowId;
+    $(productId).text(""); // Or any other default value
 
-                        // Update cart total
-                        $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2));
+    // Send Ajax request to update the quantity
+    $.ajax({
+        url: "{{ route('cart.update-quantity') }}", // Use the existing route for updating quantity
+        method: 'POST',
+        data: {
+            rowId: rowId,
+            quantity: quantity
+        },
+        success: function(data){
+            if(data.status === 'success'){
+                let productId = '#' + rowId;
+                let totalAmount = "₱" + data.product_total;
+                $(productId).text(totalAmount);
 
-                        // Update other cart details
-                        renderCartSubTotal();
-                        calculateCouponDiscount();
+                // Update cart total
+                $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2));
 
-                        toastr.success(data.message);
-                    } else if (data.status === 'error'){
-                        // Display error message
-                        toastr.error(data.message);
+                // Update other cart details
+                renderCartSubTotal();
+                calculateCouponDiscount();
 
-                        // Reset the input value to previous quantity
-                        input.val(quantity - 1);
-                    }
-                },
-                // Display error message directly
-                error: function(xhr, status, error){
-                    toastr.error('Reached maximum quantity of product or not enough stock available');
-
-                    // Reset the input value to previous quantity
-                    input.val(quantity - 1);
+                if (data.message !== '') {
+                    toastr.success(data.message);
                 }
-            });
-        });
+            } else if (data.status === 'error'){
+                // Display error message
+                toastr.error(data.message);
 
-        // Decrement product quantity
+                // Reset the input value to previous quantity
+                input.val(currentQuantity);
+            }
+        },
+        // Display error message directly
+        error: function(xhr, status, error){
+            toastr.error('Failed to update product quantity');
+
+            // Reset the input value to previous quantity
+            input.val(currentQuantity);
+        }
+    });
+});
+
+
+        // decrement product quantity
         $('.product-decrement').on('click', function(){
-            let input = $(this).siblings('.product-qty');
-            let quantity = parseInt(input.val()) - 1;
-            let rowId = input.data('rowid');
+                let input = $(this).siblings('.product-qty');
+                let quantity = parseInt(input.val()) - 1;
+                let rowId = input.data('rowid');
 
-            // Check if quantity is greater than or equal to 1
-            if(quantity >= 1){
-                // Update the input value
+                if(quantity < 1){
+                    quantity = 1;
+                }
+
                 input.val(quantity);
 
-                // Send AJAX request to update quantity and cart total
                 $.ajax({
-                    url: "{{ route('cart.update-quantity-decrement') }}",
+                    url: "{{route('cart.update-quantity')}}",
                     method: 'POST',
                     data: {
                         rowId: rowId,
@@ -247,34 +262,31 @@
                     },
                     success: function(data){
                         if(data.status === 'success'){
-                            let productId = '#' + rowId;
-                            let totalAmount = "₱" + data.product_total;
-                            $(productId).text(totalAmount);
+                            let productId = '#'+rowId;
+                            let totalAmount = "₱"+data.product_total
+                            $(productId).text(totalAmount)
 
-                            // Update cart total
-                            $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2));
+                            renderCartSubTotal()
+                            calculateCouponDescount()
 
-                            // Update other cart details
-                            renderCartSubTotal();
-                            calculateCouponDiscount();
-
-                            toastr.success(data.message);
+                            // Check if the quantity is 1, if so, skip showing the success message
+                            if (quantity !== 1) {
+                                toastr.success(data.message);
+                            }
                         } else if (data.status === 'error'){
                             toastr.error(data.message);
                         }
                     },
                     error: function(data){
-
+                        // Handle error
                     }
                 });
-            }
-        });
-
-
+            });
 
 
 
         // clear cart
+
         $('.clear_cart').on('click', function(e){
             e.preventDefault();
             Swal.fire({
@@ -304,13 +316,13 @@
                 })
         })
 
-        // get subtotal of cart and put it on dom
-        function renderCartSubTotal(){
+         // get subtotal of cart and put it on dom
+         function renderCartSubTotal(){
             $.ajax({
                 method: 'GET',
                 url: "{{ route('cart.sidebar-product-total') }}",
                 success: function(data) {
-                    $('#sub_total').text("₱" + parseFloat(data).toFixed(2));
+                    $('#sub_total').text("₱"+data);
                 },
                 error: function(data) {
                     console.log(data);
@@ -318,7 +330,8 @@
             })
         }
 
-        // apply coupon on cart
+        // applay coupon on cart
+
         $('#coupon_form').on('submit', function(e){
             e.preventDefault();
             let formData = $(this).serialize();
@@ -330,7 +343,7 @@
                    if(data.status === 'error'){
                     toastr.error(data.message)
                    }else if (data.status === 'success'){
-                    calculateCouponDiscount()
+                    calculateCouponDescount()
                     toastr.success(data.message)
                    }
                 },
@@ -341,26 +354,22 @@
 
         })
 
-        // calculate discount amount
-        function calculateCouponDiscount(){
-        $.ajax({
-            method: 'GET',
-            url: "{{ route('coupon-calculation') }}",
-            success: function(data) {
-                if(data.status === 'success'){
-                    var discount = parseFloat(data.discount).toFixed(2);
-                    var cartTotal = parseFloat(data.cart_total).toFixed(2);
-
-                    $('#discount').text('₱'+data.discount);
-                    $('#cart_total').text('₱'+data.cart_total);
+         // calculate discount amount
+         function calculateCouponDescount(){
+            $.ajax({
+                method: 'GET',
+                url: "{{ route('coupon-calculation') }}",
+                success: function(data) {
+                    if(data.status === 'success'){
+                        $('#discount').text('₱'+data.discount);
+                        $('#cart_total').text('₱'+data.cart_total);
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
                 }
-            },
-            error: function(data) {
-                console.log(data);
-            }
-        })
-    }
-
+            })
+        }
 
 
     })

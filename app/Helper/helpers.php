@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Session;
-
 
 /** Set Sidebar item active */
 
@@ -45,14 +43,19 @@ function productType($type)
     switch ($type) {
         case 'new_arrival':
             return 'New';
+
         case 'featured_product':
             return 'Featured';
+
         case 'top_product':
             return 'Top';
+
         case 'promo_product':
             return 'Promo';
+
         case 'flashout_product':
             return 'Flash Out';
+
         default:
             return '';
     }
@@ -69,45 +72,42 @@ function getCartTotal(){
     return $total;
 }
 
-function getCartDiscount() {
-    if (Session::has('coupon')) {
+/** get payable total amount */
+function getMainCartTotal(){
+    if(Session::has('coupon')){
         $coupon = Session::get('coupon');
         $subTotal = getCartTotal();
-        if ($coupon['discount_type'] === 'amount') {
-            $discount = min($coupon['discount'], $subTotal); // Ensure discount doesn't exceed subtotal
-            return $discount;
-        } elseif ($coupon['discount_type'] === 'percent') {
-            $discount = round($subTotal * ($coupon['discount'] / 100), 2); // Calculate discount
-            $discount = min($discount, $subTotal); // Ensure discount doesn't exceed subtotal
-            return $discount;
-        }
-    } else {
-        return 0;
-    }
-}
-
-function getMainCartTotal() {
-    if (Session::has('coupon')) {
-        $coupon = Session::get('coupon');
-        $subTotal = getCartTotal();
-        if ($coupon['discount_type'] === 'amount') {
-            $discount = min($coupon['discount'], $subTotal); // Ensure discount doesn't exceed subtotal
-            $total = $subTotal - $discount;
+        if($coupon['discount_type'] === 'amount'){
+            $total = $subTotal - $coupon['discount'];
             return $total;
-        } elseif ($coupon['discount_type'] === 'percent') {
-            $discount = round($subTotal * ($coupon['discount'] / 100), 2); // Calculate discount
-            $discount = min($discount, $subTotal); // Ensure discount doesn't exceed subtotal
+        }elseif($coupon['discount_type'] === 'percent'){
+            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
             $total = $subTotal - $discount;
             return $total;
         }
-    } else {
+    }else {
         return getCartTotal();
     }
 }
 
+/** get cart discount */
+function getCartDiscount(){
+    if(Session::has('coupon')){
+        $coupon = Session::get('coupon');
+        $subTotal = getCartTotal();
+        if($coupon['discount_type'] === 'amount'){
+            return $coupon['discount'];
+        }elseif($coupon['discount_type'] === 'percent'){
+            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
+            return $discount;
+        }
+    }else {
+        return 0;
+    }
+}
 
 /** get selected shipping fee from session */
-function getShippingFee(){
+function getShppingFee(){
     if(Session::has('shipping_method')){
         return Session::get('shipping_method')['cost'];
     }else {
@@ -117,10 +117,11 @@ function getShippingFee(){
 
 /** get payable amount */
 function getFinalPayableAmount(){
-    return  getMainCartTotal() + getShippingFee();
+    return  getMainCartTotal() + getShppingFee();
 }
 
-/** limit text */
+/** lemit text */
+
 function limitText($text, $limit = 20)
 {
     return \Str::limit($text, $limit);

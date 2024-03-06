@@ -52,8 +52,7 @@ Route::get('change-product-list-view', [FrontendProductController::class, 'chage
 /** Cart routes */
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('cart-details', [CartController::class, 'cartDetails'])->name('cart-details');
-Route::post('cart/update-quantity-increment', [CartController::class, 'updateProductQtyIncrement'])->name('cart.update-quantity-increment');
-Route::post('cart/update-quantity-decrement', [CartController::class, 'updateProductQtyDecrement'])->name('cart.update-quantity-decrement');
+Route::post('cart/update-quantity', [CartController::class, 'updateProductQty'])->name('cart.update-quantity');
 Route::get('clear-cart', [CartController::class, 'clearCart'])->name('clear.cart');
 Route::get('cart/remove-product/{rowId}', [CartController::class, 'removeProduct'])->name('cart.remove-product');
 Route::get('cart-count', [CartController::class, 'getCartCount'])->name('cart-count');

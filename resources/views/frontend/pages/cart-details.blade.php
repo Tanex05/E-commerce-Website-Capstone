@@ -119,7 +119,7 @@
                 <div class="col-xl-3">
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
-                        <p>subtotal: <span id="sub_total">₱ {{ getCartTotal()}}</span></p>
+                        <p>subtotal: <span id="sub_total">₱ {{ number_format(getCartTotal(), 2, '.', ',') }}</span></p>
                         <p>coupon(-): <span id="discount">₱ {{ getCartDiscount() }}</span></p>
                         <p class="total"><span>total:</span> <span id="cart_total">₱ {{ getMainCartTotal() }}</span></p>
 
@@ -130,7 +130,7 @@
                             <button type="submit" class="common_btn" {{ $disabled ? 'disabled' : '' }}>apply</button>
                         </form>
                         @if ($disabled)
-                             <p style="color:red">Coupon disabled because the cart contains a flashout item.</p>
+                            <p style="color:red">Coupon disabled because the cart contains a flashout item.</p>
                         @endif
 
                         <a class="common_btn mt-4 w-100 text-center" href="{{route('user.checkout')}}">checkout</a>
@@ -209,11 +209,11 @@ $('.product-increment').on('click', function(){
         success: function(data){
             if(data.status === 'success'){
                 let productId = '#' + rowId;
-                let totalAmount = "₱" + data.product_total;
+                let totalAmount = "₱" + parseFloat(data.product_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Format the currency
                 $(productId).text(totalAmount);
 
                 // Update cart total
-                $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2));
+                $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')); // Format the currency
 
                 // Update other cart details
                 renderCartSubTotal();
@@ -241,47 +241,48 @@ $('.product-increment').on('click', function(){
 });
 
 
-        // decrement product quantity
-        $('.product-decrement').on('click', function(){
-                let input = $(this).siblings('.product-qty');
-                let quantity = parseInt(input.val()) - 1;
-                let rowId = input.data('rowid');
+// Decrement product quantity
+$('.product-decrement').on('click', function(){
+    let input = $(this).siblings('.product-qty');
+    let quantity = parseInt(input.val()) - 1;
+    let rowId = input.data('rowid');
 
-                if(quantity < 1){
-                    quantity = 1;
+    if(quantity < 1){
+        quantity = 1;
+    }
+
+    input.val(quantity);
+
+    $.ajax({
+        url: "{{route('cart.update-quantity')}}",
+        method: 'POST',
+        data: {
+            rowId: rowId,
+            quantity: quantity
+        },
+        success: function(data){
+            if(data.status === 'success'){
+                let productId = '#' + rowId;
+                let totalAmount = "₱" + parseFloat(data.product_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Format the currency
+                $(productId).text(totalAmount);
+
+                renderCartSubTotal();
+                calculateCouponDiscount();
+
+                if (quantity !== 1) {
+                    toastr.success(data.message);
                 }
+            } else if (data.status === 'error'){
+                toastr.error(data.message);
+            }
+        },
+        error: function(data){
+            // Handle error
+        }
+    });
+});
 
-                input.val(quantity);
 
-                $.ajax({
-                    url: "{{route('cart.update-quantity')}}",
-                    method: 'POST',
-                    data: {
-                        rowId: rowId,
-                        quantity: quantity
-                    },
-                    success: function(data){
-                        if(data.status === 'success'){
-                            let productId = '#'+rowId;
-                            let totalAmount = "₱"+data.product_total
-                            $(productId).text(totalAmount)
-
-                            renderCartSubTotal()
-                            calculateCouponDescount()
-
-                            // Check if the quantity is 1, if so, skip showing the success message
-                            if (quantity !== 1) {
-                                toastr.success(data.message);
-                            }
-                        } else if (data.status === 'error'){
-                            toastr.error(data.message);
-                        }
-                    },
-                    error: function(data){
-                        // Handle error
-                    }
-                });
-            });
 
 
 
@@ -316,13 +317,15 @@ $('.product-increment').on('click', function(){
                 })
         })
 
-         // get subtotal of cart and put it on dom
-         function renderCartSubTotal(){
+        // get subtotal of cart and put it on dom
+        function renderCartSubTotal(){
             $.ajax({
                 method: 'GET',
                 url: "{{ route('cart.sidebar-product-total') }}",
                 success: function(data) {
-                    $('#sub_total').text("₱"+data);
+                    // Format the subtotal amount with commas and two decimal places
+                    let formattedSubTotal = "₱" + parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                    $('#sub_total').text(formattedSubTotal);
                 },
                 error: function(data) {
                     console.log(data);
@@ -330,7 +333,6 @@ $('.product-increment').on('click', function(){
             })
         }
 
-        // applay coupon on cart
 
         $('#coupon_form').on('submit', function(e){
             e.preventDefault();
@@ -340,35 +342,34 @@ $('.product-increment').on('click', function(){
                 url: "{{ route('apply-coupon') }}",
                 data: formData,
                 success: function(data) {
-                   if(data.status === 'error'){
+                if(data.status === 'error'){
                     toastr.error(data.message)
-                   }else if (data.status === 'success'){
-                    calculateCouponDescount()
+                } else if (data.status === 'success'){
+                    calculateCouponDiscount(); // corrected function name
                     toastr.success(data.message)
-                   }
+                }
                 },
                 error: function(data) {
                     console.log(data);
                 }
-            })
+            });
+        });
 
-        })
-
-         // calculate discount amount
-         function calculateCouponDescount(){
+        // Calculate discount amount
+        function calculateCouponDiscount(){
             $.ajax({
                 method: 'GET',
                 url: "{{ route('coupon-calculation') }}",
                 success: function(data) {
                     if(data.status === 'success'){
-                        $('#discount').text('₱'+data.discount);
-                        $('#cart_total').text('₱'+data.cart_total);
+                        $('#discount').text('₱' + parseFloat(data.discount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')); // Format the currency
+                        $('#cart_total').text('₱' + parseFloat(data.cart_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')); // Format the currency
                     }
                 },
                 error: function(data) {
                     console.log(data);
                 }
-            })
+            });
         }
 
 

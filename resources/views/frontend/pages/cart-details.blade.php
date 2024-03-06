@@ -120,8 +120,9 @@
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
                         <p>subtotal: <span id="sub_total">₱ {{ number_format(getCartTotal(), 2, '.', ',') }}</span></p>
-                        <p>coupon(-): <span id="discount">₱ {{ getCartDiscount() }}</span></p>
-                        <p class="total"><span>total:</span> <span id="cart_total">₱ {{ getMainCartTotal() }}</span></p>
+                        <p>coupon(-): <span id="discount">₱ {{ number_format(getCartDiscount(), 2, '.', ',') }}</span></p>
+                        <p class="total"><span>total:</span> <span id="cart_total">₱ {{ number_format(getMainCartTotal(), 2, '.', ',') }}</span></p>
+
 
 
 

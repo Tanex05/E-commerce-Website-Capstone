@@ -65,7 +65,7 @@ function productType($type)
 /** get total cart amount */
 
 function getCartTotal(){
-    $total = 0;
+    $total = 0.00;
     foreach(\Cart::content() as $product){
         $total += ($product->price + $product->options->variants_total) * $product->qty;
     }
@@ -102,7 +102,7 @@ function getCartDiscount(){
             return $discount;
         }
     }else {
-        return 0;
+        return 0.00;
     }
 }
 
@@ -111,7 +111,7 @@ function getShppingFee(){
     if(Session::has('shipping_method')){
         return Session::get('shipping_method')['cost'];
     }else {
-        return 0;
+        return 0.00;
     }
 }
 

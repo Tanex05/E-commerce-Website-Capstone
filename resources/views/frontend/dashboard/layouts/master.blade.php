@@ -124,19 +124,28 @@
         $TawkToSRC = $settingtwo ? $settingtwo->tawk_to : '';
     @endphp
 
-    <!-- Tawk.to JavaScript -->
+    @php
+        $settingtwo = \App\Models\AdminApi::first();
+        $TawkToSRC = $settingtwo ? $settingtwo->tawk_to : '';
+    @endphp
+
     @auth
         @if (!empty($TawkToSRC))
             <!--Start of Tawk.to Script-->
             <script type="text/javascript">
                 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                // Set visitor name dynamically
+                Tawk_API.visitor = {
+                    name: '{{ auth()->user()->name }}', // Assuming user's name is stored in 'name' field
+                    email: '{{ auth()->user()->email }}' // Assuming user's email is stored in 'email' field
+                };
                 (function(){
-                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                s1.async=true;
-                s1.src= "{{ $TawkToSRC }}";
-                s1.charset='UTF-8';
-                s1.setAttribute('crossorigin','*');
-                s0.parentNode.insertBefore(s1,s0);
+                    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                    s1.async=true;
+                    s1.src= "{{ $TawkToSRC }}";
+                    s1.charset='UTF-8';
+                    s1.setAttribute('crossorigin','*');
+                    s0.parentNode.insertBefore(s1,s0);
                 })();
             </script>
             <!--End of Tawk.to Script-->

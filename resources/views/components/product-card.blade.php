@@ -14,7 +14,7 @@
                         $background_color = '#66ccff'; // light blue
                         break;
                     case 'promo_product':
-                        $background_color = '#99ff99'; // light green
+                        $background_color = '#FF0000'; // light green
                         break;
                     case 'flashout_product':
                         $background_color = '#ff9900'; // orange

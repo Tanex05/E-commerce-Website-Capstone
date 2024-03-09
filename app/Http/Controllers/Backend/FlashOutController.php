@@ -34,13 +34,19 @@ class FlashOutController extends Controller
         $flashOutItem->status = $request->status;
         $flashOutItem->save();
 
+
+        $product = Product::findOrFail($request->product);
+
+        $product->product_type = 'flashout_product';
+        $product->save();
+
         toastr('Product Added Successfully!', 'success', 'Success');
 
         return redirect()->back();
 
     }
 
-    public function chageShowAtHomeStatus(Request $request)
+    public function changeShowAtHomeStatus(Request $request)
     {
         $flashOutItem = FlashOutItem::findOrFail($request->id);
         $flashOutItem->show_at_home = $request->status == 'true' ? 1 : 0;

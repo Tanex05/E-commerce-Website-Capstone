@@ -54,6 +54,11 @@ class FlashSaleController extends Controller
             return redirect()->back();
         }
 
+        $product = Product::findOrFail($request->product);
+
+        $product->product_type = 'promo_product';
+        $product->save();
+
         $flashSaleItem = new FlashSaleItem();
         $flashSaleItem->product_id = $request->product;
         $flashSaleItem->flash_sale_id = $flashSaleDate->id;
@@ -67,7 +72,7 @@ class FlashSaleController extends Controller
 
     }
 
-    public function chageShowAtHomeStatus(Request $request)
+    public function changeShowAtHomeStatus(Request $request)
     {
         $flashSaleItem = FlashSaleItem::findOrFail($request->id);
         $flashSaleItem->show_at_home = $request->status == 'true' ? 1 : 0;

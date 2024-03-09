@@ -48,13 +48,13 @@ use Illuminate\Support\Facades\Route;
 
 
 /**Staff Profile Route */
-Route::group(['middlware'=>'staff', 'as' => 'staff.'] , function(){
+Route::group(['middleware' => ['staff', 'verified'], 'as' => 'staff.'], function(){
     Route::get('/profile/staff', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('password.update');
 });
 
-Route::middleware(['staff'])->group(function () {
+Route::middleware(['staff','verified'])->group(function () {
 
     /** Staff Route (Admin & Employee) */
     Route::get('staff/dashboard', [StaffController::class, 'dashboard'])->name('staff.dashboard');

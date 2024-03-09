@@ -29,6 +29,18 @@ class FlashSaleController extends Controller
             ['end_date' => $request->end_date]
        );
 
+       // Fetch all FlashSaleItems
+        $flashSaleItems = FlashSaleItem::all();
+
+        // Check if there are any FlashSaleItems
+        if ($flashSaleItems->isNotEmpty()) {
+            // Iterate over each FlashSaleItem and update the associated product's offer_end_date
+            foreach ($flashSaleItems as $flashSaleItem) {
+                $flashSaleItem->product->offer_end_date = $request->end_date;
+                $flashSaleItem->product->save();
+            }
+        }
+
        toastr('Updated Successfully!', 'success', 'Success');
 
        return redirect()->back();
@@ -55,7 +67,7 @@ class FlashSaleController extends Controller
         }
 
         $product = Product::findOrFail($request->product);
-
+        $product->offer_end_date = $flashSaleDate->end_date;
         $product->product_type = 'promo_product';
         $product->save();
 

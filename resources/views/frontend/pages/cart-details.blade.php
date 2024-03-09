@@ -179,116 +179,111 @@
             }
         });
 
-// Increment product quantity
-$('.product-increment').on('click', function(){
-    let input = $(this).siblings('.product-qty');
-    let currentQuantity = parseInt(input.val());
-    let maxAllowedQuantity = parseInt(input.data('max-quantity')); // Retrieve the maximum allowed quantity from the 'max-quantity' data attribute
-    let rowId = input.data('rowid');
+        // Increment product quantity
+        $('.product-increment').on('click', function(){
+            let input = $(this).siblings('.product-qty');
+            let currentQuantity = parseInt(input.val());
+            let maxAllowedQuantity = parseInt(input.data('max-quantity')); // Retrieve the maximum allowed quantity from the 'max-quantity' data attribute
+            let rowId = input.data('rowid');
 
-    // Check if the current quantity is equal to the maximum allowed quantity
-    if (currentQuantity >= maxAllowedQuantity) {
-        toastr.error('Reached maximum quantity of product');
-        return;
-    }
-
-    // Increment the quantity only if it's less than the maximum allowed quantity
-    let quantity = Math.min(currentQuantity + 1, maxAllowedQuantity);
-    input.val(quantity);
-
-    let productId = '#' + rowId;
-    $(productId).text(""); // Or any other default value
-
-    // Send Ajax request to update the quantity
-    $.ajax({
-        url: "{{ route('cart.update-quantity') }}", // Use the existing route for updating quantity
-        method: 'POST',
-        data: {
-            rowId: rowId,
-            quantity: quantity
-        },
-        success: function(data){
-            if(data.status === 'success'){
-                let productId = '#' + rowId;
-                let totalAmount = "₱" + parseFloat(data.product_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Format the currency
-                $(productId).text(totalAmount);
-
-                // Update cart total
-                $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')); // Format the currency
-
-                // Update other cart details
-                renderCartSubTotal();
-                calculateCouponDiscount();
-
-                if (data.message !== '') {
-                    toastr.success(data.message);
-                }
-            } else if (data.status === 'error'){
-                // Display error message
-                toastr.error(data.message);
-
-                // Reset the input value to previous quantity
-                input.val(currentQuantity);
+            // Check if the current quantity is equal to the maximum allowed quantity
+            if (currentQuantity >= maxAllowedQuantity) {
+                toastr.error('Reached maximum quantity of product');
+                return;
             }
-        },
-        // Display error message directly
-        error: function(xhr, status, error){
-            toastr.error('Failed to update product quantity');
 
-            // Reset the input value to previous quantity
-            input.val(currentQuantity);
-        }
-    });
-});
+            // Increment the quantity only if it's less than the maximum allowed quantity
+            let quantity = Math.min(currentQuantity + 1, maxAllowedQuantity);
+            input.val(quantity);
 
+            let productId = '#' + rowId;
+            $(productId).text(""); // Or any other default value
 
-// Decrement product quantity
-$('.product-decrement').on('click', function(){
-    let input = $(this).siblings('.product-qty');
-    let quantity = parseInt(input.val()) - 1;
-    let rowId = input.data('rowid');
+            // Send Ajax request to update the quantity
+            $.ajax({
+                url: "{{ route('cart.update-quantity') }}", // Use the existing route for updating quantity
+                method: 'POST',
+                data: {
+                    rowId: rowId,
+                    quantity: quantity
+                },
+                success: function(data){
+                    if(data.status === 'success'){
+                        let productId = '#' + rowId;
+                        let totalAmount = "₱" + parseFloat(data.product_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Format the currency
+                        $(productId).text(totalAmount);
 
-    if(quantity < 1){
-        quantity = 1;
-    }
+                        // Update cart total
+                        $('#cart_total').text("₱" + parseFloat(data.cart_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')); // Format the currency
 
-    input.val(quantity);
+                        // Update other cart details
+                        renderCartSubTotal();
+                        calculateCouponDiscount();
 
-    $.ajax({
-        url: "{{route('cart.update-quantity')}}",
-        method: 'POST',
-        data: {
-            rowId: rowId,
-            quantity: quantity
-        },
-        success: function(data){
-            if(data.status === 'success'){
-                let productId = '#' + rowId;
-                let totalAmount = "₱" + parseFloat(data.product_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Format the currency
-                $(productId).text(totalAmount);
+                        if (data.message !== '') {
+                            toastr.success(data.message);
+                        }
+                    } else if (data.status === 'error'){
+                        // Display error message
+                        toastr.error(data.message);
 
-                renderCartSubTotal();
-                calculateCouponDiscount();
+                        // Reset the input value to previous quantity
+                        input.val(currentQuantity);
+                    }
+                },
+                // Display error message directly
+                error: function(xhr, status, error){
+                    toastr.error('Failed to update product quantity');
 
-                if (quantity !== 1) {
-                    toastr.success(data.message);
+                    // Reset the input value to previous quantity
+                    input.val(currentQuantity);
                 }
-            } else if (data.status === 'error'){
-                toastr.error(data.message);
+            });
+        });
+
+
+        // Decrement product quantity
+        $('.product-decrement').on('click', function(){
+            let input = $(this).siblings('.product-qty');
+            let quantity = parseInt(input.val()) - 1;
+            let rowId = input.data('rowid');
+
+            if(quantity < 1){
+                quantity = 1;
             }
-        },
-        error: function(data){
-            // Handle error
-        }
-    });
-});
 
+            input.val(quantity);
 
+            $.ajax({
+                url: "{{route('cart.update-quantity')}}",
+                method: 'POST',
+                data: {
+                    rowId: rowId,
+                    quantity: quantity
+                },
+                success: function(data){
+                    if(data.status === 'success'){
+                        let productId = '#' + rowId;
+                        let totalAmount = "₱" + parseFloat(data.product_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Format the currency
+                        $(productId).text(totalAmount);
 
+                        renderCartSubTotal();
+                        calculateCouponDiscount();
 
+                        if (quantity !== 1) {
+                            toastr.success(data.message);
+                        }
+                    } else if (data.status === 'error'){
+                        toastr.error(data.message);
+                    }
+                },
+                error: function(data){
+                    // Handle error
+                }
+            });
+        });
 
         // clear cart
-
         $('.clear_cart').on('click', function(e){
             e.preventDefault();
             Swal.fire({
@@ -333,7 +328,6 @@ $('.product-decrement').on('click', function(){
                 }
             })
         }
-
 
         $('#coupon_form').on('submit', function(e){
             e.preventDefault();

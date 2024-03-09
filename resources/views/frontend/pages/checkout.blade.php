@@ -109,9 +109,9 @@
                                 </div>
                             </div>
                             <form action="" id="checkOutForm">
+                                @csrf
                                 <input type="hidden" name="shipping_method_id" value="" id="shipping_method_id">
                                 <input type="hidden" name="shipping_address_id" value="" id="shipping_address_id">
-
                             </form>
                             <a href="" id="submitCheckoutForm" class="common_btn">Place Order</a>
                         </div>

@@ -24,7 +24,7 @@
                     <input type="hidden" class="form-control" name="banner_old_image" value="{{ optional(optional($homepage_section_banner_one)->banner_one)->banner_image }}">
                 </div>
                 <div class="form-group">
-                    <label>Banner url</label>
+                    <label>Banner url </label>
                     <input type="text" class="form-control" name="banner_url" value="{{ optional(optional($homepage_section_banner_one)->banner_one)->banner_url }}">
                 </div>
 

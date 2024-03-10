@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('thumbnail_image');
 
             $table->integer('category_id');
-            $table->integer('sub_category_id')->nullable;
-            $table->integer('child_category_id')->nullable;
-            $table->integer('brand_id')->nullable;
+            $table->integer('sub_category_id')->nullable();
+            $table->integer('child_category_id')->nullable();
+            $table->integer('brand_id')->nullable();
             $table->integer('qty');
 
             $table->text('short_description');

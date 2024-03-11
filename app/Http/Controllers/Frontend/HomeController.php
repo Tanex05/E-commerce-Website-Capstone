@@ -42,9 +42,9 @@ class HomeController extends Controller
         $homepage_section_banner_four = Advertisement::where('key', 'homepage_section_banner_four')->first();
         $homepage_section_banner_four = json_decode($homepage_section_banner_four?->value);
 
-        $sliders = Cache::rememberForever('sliders', function(){
-            return Slider::where('status', 1)->orderBy('serial', 'asc')->get();
-        });
+        $sliders = Slider::where('status', 1)->orderBy('serial', 'asc')->get();
+
+
         return view('frontend.home.home',
          compact(
             'sliders',

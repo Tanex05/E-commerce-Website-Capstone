@@ -13,28 +13,28 @@
     @endphp
 
     @if ($favicon)
-        <link rel="icon" type="image/png" href="{{ asset($favicon) }}">
+        <link rel="icon" type="image/png" href="{{ secure_asset($favicon) }}">
     @endif
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <title>TechnoBlast</title>
-  <link rel="stylesheet" href="{{asset('Frontend/css/all.min.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/select2.min.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/slick.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/jquery.nice-number.min.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/jquery.calendar.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/add_row_custon.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/mobile_menu.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/jquery.exzoom.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/multiple-image-video.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/ranger_style.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/jquery.classycountdown.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/venobox.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/slick.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/jquery.nice-number.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/jquery.calendar.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/add_row_custon.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/mobile_menu.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/jquery.exzoom.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/multiple-image-video.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/ranger_style.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/jquery.classycountdown.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/venobox.min.css')}}">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-  <link rel="stylesheet" href="{{asset('Frontend/css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('Frontend/css/responsive.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/style.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('Frontend/css/responsive.css')}}">
   <!-- <link rel="stylesheet" href="css/rtl.css"> -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 </head>
@@ -47,7 +47,7 @@
   ==============================-->
   <div class="wsus__dashboard_menu">
     <div class="wsusd__dashboard_user">
-      <img src="{{ Auth::user()->image ? asset(Auth::user()->image) : asset('Frontend/images/default.jpg') }}" alt="img" class="img-fluid">
+      <img src="{{ Auth::user()->image ? asset(Auth::user()->image) : secure_asset('Frontend/images/default.jpg') }}" alt="img" class="img-fluid">
       <p>{{ Auth::user()->name }}</p>
     </div>
   </div>
@@ -77,45 +77,45 @@
 
 
   <!--jquery library js-->
-  <script src="{{asset('Frontend/js/jquery-3.6.0.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/jquery-3.6.0.min.js')}}"></script>
   <!--bootstrap js-->
-  <script src="{{asset('Frontend/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/bootstrap.bundle.min.js')}}"></script>
   <!--font-awesome js-->
-  <script src="{{asset('Frontend/js/Font-Awesome.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/Font-Awesome.js')}}"></script>
   <!--select2 js-->
-  <script src="{{asset('Frontend/js/select2.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/select2.min.js')}}"></script>
   <!--slick slider js-->
-  <script src="{{asset('Frontend/js/slick.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/slick.min.js')}}"></script>
   <!--simplyCountdown js-->
-  <script src="{{asset('Frontend/js/simplyCountdown.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/simplyCountdown.js')}}"></script>
   <!--product zoomer js-->
-  <script src="{{asset('Frontend/js/jquery.exzoom.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/jquery.exzoom.js')}}"></script>
   <!--nice-number js-->
-  <script src="{{asset('Frontend/js/jquery.nice-number.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/jquery.nice-number.min.js')}}"></script>
   <!--counter js-->
-  <script src="{{asset('Frontend/js/jquery.waypoints.min.js')}}"></script>
-  <script src="{{asset('Frontend/js/jquery.countup.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/jquery.countup.min.js')}}"></script>
   <!--add row js-->
-  <script src="{{asset('Frontend/js/add_row_custon.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/add_row_custon.js')}}"></script>
   <!--multiple-image-video js-->
-  <script src="{{asset('Frontend/js/multiple-image-video.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/multiple-image-video.js')}}"></script>
   <!--sticky sidebar js-->
-  <script src="{{asset('Frontend/js/sticky_sidebar.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/sticky_sidebar.js')}}"></script>
   <!--price ranger js-->
-  <script src="{{asset('Frontend/js/ranger_jquery-ui.min.js')}}"></script>
-  <script src="{{asset('Frontend/js/ranger_slider.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/ranger_jquery-ui.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/ranger_slider.js')}}"></script>
   <!--isotope js-->
-  <script src="{{asset('Frontend/js/isotope.pkgd.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/isotope.pkgd.min.js')}}"></script>
   <!--venobox js-->
-  <script src="{{asset('Frontend/js/venobox.min.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/venobox.min.js')}}"></script>
   <!--classycountdown js-->
-  <script src="{{asset('Frontend/js/jquery.classycountdown.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/jquery.classycountdown.js')}}"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <!--Sweetalert js-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!--main/custom js-->
-  <script src="{{asset('Frontend/js/main.js')}}"></script>
+  <script src="{{secure_asset('Frontend/js/main.js')}}"></script>
 
   <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 

@@ -6,7 +6,7 @@
     <!--============================
         BANNER PART 2 START
     ==============================-->
-        {{-- @include('Frontend.home.sections.banner-slider') --}}
+        @include('Frontend.home.sections.banner-slider')
     <!--============================
         BANNER PART 2 END
     ==============================-->

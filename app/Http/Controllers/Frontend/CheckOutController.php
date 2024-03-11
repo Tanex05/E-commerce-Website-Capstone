@@ -3,17 +3,33 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\ShippingRule;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Cart;
 
 
 class CheckOutController extends Controller
 {
     public function index()
     {
+        // Store order products
+        foreach (\Cart::content() as $item) {
+            $product = Product::find($item->id);
+            $cartQuantity = $item->qty;
+            $productQuantity = $product->qty;
+
+            // Check if cart quantity exceeds product quantity or if product quantity is 0
+            if ($cartQuantity > $productQuantity || $productQuantity == 0) {
+                return back()->with('error', 'A product inside the cart has an invalid quantity or is out of stock.');
+            }
+        }
+
+        // Load addresses and shipping methods for checkout
         $addresses = UserAddress::where('user_id', Auth::user()->id)->get();
         $shippingMethods = ShippingRule::where('status', 1)->get();
         return view('frontend.pages.checkout', compact('addresses', 'shippingMethods'));

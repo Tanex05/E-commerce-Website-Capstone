@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use File;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,14 +18,27 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
         if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+        // Ensure the required directories exist and have write permissions
+        $paths = [
+            'public/flashoutimage',
+            'public/flashsaleimage',
+            'public/uploads',
+            'public/backgrounds',
+        ];
 
-        $this->app->bind('path.public', function () {
-            return base_path('public');
-        });
+        foreach ($paths as $path) {
+            $directory = public_path($path);
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0755, true);
+            } else {
+                File::chmod($directory, 0755);
+            }
+        }
+
     }
 }

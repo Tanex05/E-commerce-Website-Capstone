@@ -105,7 +105,7 @@
                             <h4>Todays Earnings</h4>
                         </div>
                         <div class="card-body">
-                            ₱{{ $todaysEarnings }}
+                            ₱{{ number_format($todaysEarnings, 2) }}
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                             <h4>This Month Earnings</h4>
                         </div>
                         <div class="card-body">
-                            ₱{{ $monthEarnings }}
+                            ₱{{ number_format($monthEarnings, 2) }}
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                             <h4>This Year Earnings</h4>
                         </div>
                         <div class="card-body">
-                            ₱{{ $yearEarnings }}
+                            ₱{{ number_format($yearEarnings, 2) }}
                         </div>
                     </div>
                 </div>

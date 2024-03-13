@@ -44,7 +44,6 @@ class HomeController extends Controller
 
         $sliders = Slider::where('status', 1)->orderBy('serial', 'asc')->get();
 
-
         return view('frontend.home.home',
          compact(
             'sliders',

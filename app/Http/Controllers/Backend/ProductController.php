@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
+use App\Models\FlashOutItem;
+use App\Models\FlashSaleItem;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\ProductImageGallery;
@@ -167,7 +169,9 @@ class ProductController extends Controller
         if(OrderProduct::where('product_id',$product->id)->count() > 0){
             return response(['status' => 'error', 'message' => 'This product have orders can\'t delete it.']);
         }
-        /** Delte the main product image */
+
+
+        /** Delete the main product image */
         $this->deleteImage($product->thumbnail_image);
 
         /** Delete product gallery images */
@@ -183,6 +187,18 @@ class ProductController extends Controller
         foreach($variants as $variant){
             $variant->productVariantItems()->delete();
             $variant->delete();
+        }
+
+        // Delete associated FlashSaleItem
+        $flashSale = FlashSaleItem::where('product_id', $product->id)->get();
+        if ($flashSale->isNotEmpty()) {
+            $flashSale->first()->delete();
+        }
+
+        // Delete associated FlashOutItem
+        $flashOut = FlashOutItem::where('product_id', $product->id)->get();
+        if ($flashOut->isNotEmpty()) {
+            $flashOut->first()->delete();
         }
 
         $product->delete();
